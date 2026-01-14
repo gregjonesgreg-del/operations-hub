@@ -8,8 +8,8 @@ import { Button } from '@/components/ui/button';
 import { Tabs, TabsContent, TabsList, TabsTrigger } from '@/components/ui/tabs';
 import PageHeader from '@/components/ui/PageHeader';
 import LoadingSpinner from '@/components/ui/LoadingSpinner';
-import InternalTasksList from '@/components/internalops/InternalTasksList';
-import IncidentsList from '@/components/internalops/IncidentsList';
+import InternalTasksList from '@/components/internalops/InternalTasksList.jsx';
+import IncidentsList from '@/components/internalops/IncidentsList.jsx';
 
 export default function InternalOps() {
   const { data: tasks = [], isLoading: tasksLoading } = useQuery({

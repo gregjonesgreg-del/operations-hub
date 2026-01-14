@@ -8,8 +8,8 @@ import { Button } from '@/components/ui/button';
 import { Tabs, TabsContent, TabsList, TabsTrigger } from '@/components/ui/tabs';
 import PageHeader from '@/components/ui/PageHeader';
 import LoadingSpinner from '@/components/ui/LoadingSpinner';
-import PPMPlansList from '@/components/ppm/PPMPlansList';
-import PPMInstancesList from '@/components/ppm/PPMInstancesList';
+import PPMPlansList from '@/components/ppm/PPMPlansList.jsx';
+import PPMInstancesList from '@/components/ppm/PPMInstancesList.jsx';
 
 export default function PPM() {
   const { data: plans = [], isLoading: plansLoading } = useQuery({

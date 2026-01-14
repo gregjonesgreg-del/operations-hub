@@ -1,4 +1,4 @@
-import React, { useState, useMemo } from 'react';
+import React, { useMemo } from 'react';
 import { useQuery } from '@tanstack/react-query';
 import { base44 } from '@/api/base44Client';
 import { Link } from 'react-router-dom';
@@ -7,7 +7,6 @@ import { format } from 'date-fns';
 import { Card, CardContent } from '@/components/ui/card';
 import { Badge } from '@/components/ui/badge';
 import StatusBadge from '@/components/ui/StatusBadge';
-import PriorityBadge from '@/components/ui/PriorityBadge';
 import { AlertTriangle, Calendar } from 'lucide-react';
 import EmptyState from '@/components/ui/EmptyState';
 import { cn } from '@/lib/utils';
