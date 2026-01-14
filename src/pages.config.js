@@ -14,6 +14,11 @@ import Contacts from './pages/Contacts';
 import Teams from './pages/Teams';
 import Employees from './pages/Employees';
 import AdminSettings from './pages/AdminSettings';
+import PPM from './pages/PPM';
+import Hire from './pages/Hire';
+import InternalOps from './pages/InternalOps';
+import Fleet from './pages/Fleet';
+import ContactDetail from './pages/ContactDetail';
 import __Layout from './Layout.jsx';
 
 
@@ -34,6 +39,11 @@ export const PAGES = {
     "Teams": Teams,
     "Employees": Employees,
     "AdminSettings": AdminSettings,
+    "PPM": PPM,
+    "Hire": Hire,
+    "InternalOps": InternalOps,
+    "Fleet": Fleet,
+    "ContactDetail": ContactDetail,
 }
 
 export const pagesConfig = {
