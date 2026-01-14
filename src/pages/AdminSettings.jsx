@@ -4,7 +4,7 @@ import { base44 } from '@/api/base44Client';
 import {
   Settings,
   Shield,
-  Users,
+  Users as UsersIcon,
   Database,
   Check,
   X
@@ -223,7 +223,7 @@ export default function AdminSettings() {
         <Card>
           <CardHeader>
             <CardTitle className="flex items-center gap-2">
-              <Users className="h-5 w-5" />
+              <UsersIcon className="h-5 w-5" />
               Role Descriptions
             </CardTitle>
           </CardHeader>

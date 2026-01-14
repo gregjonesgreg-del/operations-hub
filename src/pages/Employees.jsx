@@ -7,7 +7,7 @@ import {
   Search,
   Phone,
   Mail,
-  Users,
+  Users as UsersIcon,
   Edit2,
   Shield
 } from 'lucide-react';
@@ -270,7 +270,7 @@ export default function Employees() {
                     <div className="mt-4 space-y-2 text-sm">
                       {team && (
                         <div className="flex items-center gap-2 text-slate-600">
-                          <Users className="h-4 w-4" />
+                          <UsersIcon className="h-4 w-4" />
                           {team.name}
                         </div>
                       )}
