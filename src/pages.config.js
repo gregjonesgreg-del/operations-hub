@@ -10,6 +10,10 @@ import Assets from './pages/Assets';
 import AssetDetail from './pages/AssetDetail';
 import Sites from './pages/Sites';
 import SiteDetail from './pages/SiteDetail';
+import Contacts from './pages/Contacts';
+import Teams from './pages/Teams';
+import Employees from './pages/Employees';
+import AdminSettings from './pages/AdminSettings';
 import __Layout from './Layout.jsx';
 
 
@@ -26,6 +30,10 @@ export const PAGES = {
     "AssetDetail": AssetDetail,
     "Sites": Sites,
     "SiteDetail": SiteDetail,
+    "Contacts": Contacts,
+    "Teams": Teams,
+    "Employees": Employees,
+    "AdminSettings": AdminSettings,
 }
 
 export const pagesConfig = {
