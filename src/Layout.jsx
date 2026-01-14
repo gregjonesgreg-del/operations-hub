@@ -2,7 +2,6 @@ import React, { useState, useEffect } from 'react';
 import { Link, useLocation } from 'react-router-dom';
 import { createPageUrl } from './utils';
 import { base44 } from '@/api/base44Client';
-import { ROUTES } from '@/components/Routes';
 import {
   Wrench,
   Calendar,
@@ -39,9 +38,9 @@ const navSections = [
     label: 'Work Orders',
     icon: Wrench,
     pages: [
-      { route: ROUTES.JOBS, label: 'All Jobs' },
-      { route: ROUTES.JOBS_BOARD, label: 'Jobs Board' },
-      { route: ROUTES.JOBS_CREATE, label: 'Create Job' }
+      { name: 'Jobs', label: 'All Jobs' },
+      { name: 'JobsBoard', label: 'Jobs Board' },
+      { name: 'CreateJob', label: 'Create Job' }
     ]
   },
   {
@@ -49,8 +48,7 @@ const navSections = [
     label: 'PPM',
     icon: Calendar,
     pages: [
-      { route: ROUTES.PPM_PLANS, label: 'Plans' },
-      { route: ROUTES.PPM_INSTANCES, label: 'Instances' }
+      { name: 'PPM', label: 'Plans' }
     ]
   },
   {
@@ -58,10 +56,9 @@ const navSections = [
     label: 'Fleet',
     icon: Car,
     pages: [
-      { route: ROUTES.FLEET_VEHICLES, label: 'Vehicles' },
-      { route: ROUTES.FLEET_DEFECTS, label: 'Defects' },
-      { route: ROUTES.FLEET_FUEL, label: 'Fuel Log' },
-      { route: ROUTES.FLEET_FUEL_REVIEW, label: 'Fuel Review' }
+      { name: 'Fleet', label: 'Vehicles' },
+      { name: 'FleetDefects', label: 'Defects' },
+      { name: 'FleetFuel', label: 'Fuel Log' }
     ]
   },
   {
@@ -69,19 +66,8 @@ const navSections = [
     label: 'Hire / Rental',
     icon: Truck,
     pages: [
-      { route: ROUTES.HIRE_ASSETS, label: 'Assets' },
-      { route: ROUTES.HIRE_CONTRACTS, label: 'Contracts' },
-      { route: ROUTES.HIRE_CALENDAR, label: 'Calendar' }
-    ]
-  },
-  {
-    id: 'ops',
-    label: 'Compliance & Ops',
-    icon: ClipboardCheck,
-    pages: [
-      { route: ROUTES.OPS, label: 'Dashboard' },
-      { route: ROUTES.OPS_TASKS, label: 'Tasks' },
-      { route: ROUTES.OPS_INCIDENTS, label: 'Incidents' }
+      { name: 'Hire', label: 'Assets' },
+      { name: 'HireCalendar', label: 'Calendar' }
     ]
   },
   {
@@ -89,11 +75,7 @@ const navSections = [
     label: 'Dashboards',
     icon: BarChart3,
     pages: [
-      { route: ROUTES.DASHBOARDS, label: 'Overview' },
-      { route: ROUTES.DASHBOARDS_JOBS, label: 'Jobs' },
-      { route: ROUTES.DASHBOARDS_PPM, label: 'PPM' },
-      { route: ROUTES.DASHBOARDS_FLEET, label: 'Fleet' },
-      { route: ROUTES.DASHBOARDS_HIRE, label: 'Hire' }
+      { name: 'Dashboards', label: 'Overview' }
     ]
   },
   {
@@ -101,10 +83,10 @@ const navSections = [
     label: 'Core Data',
     icon: Database,
     pages: [
-      { route: ROUTES.CUSTOMERS, label: 'Customers' },
-      { route: ROUTES.SITES, label: 'Sites' },
-      { route: ROUTES.ASSETS, label: 'Assets' },
-      { route: ROUTES.CONTACTS, label: 'Contacts' }
+      { name: 'Customers', label: 'Customers' },
+      { name: 'Sites', label: 'Sites' },
+      { name: 'Assets', label: 'Assets' },
+      { name: 'Contacts', label: 'Contacts' }
     ]
   },
   {
@@ -112,8 +94,7 @@ const navSections = [
     label: 'Admin',
     icon: Settings,
     pages: [
-      { route: ROUTES.ADMIN_SETTINGS, label: 'Settings' },
-      { route: ROUTES.DIAGNOSTICS_ROUTES, label: 'Route Diagnostics' }
+      { name: 'AdminSettings', label: 'Settings' }
     ]
   }
 ];
@@ -130,14 +111,14 @@ export default function Layout({ children, currentPageName }) {
   }, []);
 
   useEffect(() => {
-    // Set active section based on current path
+    // Find active section based on current page
     for (const section of navSections) {
-      if (section.pages.some(p => location.pathname.startsWith(p.route.split(':')[0]))) {
+      if (section.pages.some(p => p.name === currentPageName)) {
         setActiveSection(section.id);
         break;
       }
     }
-  }, [location.pathname]);
+  }, [currentPageName]);
 
   const handleLogout = () => {
     base44.auth.logout();
@@ -173,12 +154,12 @@ export default function Layout({ children, currentPageName }) {
                       </div>
                       {section.pages.map((page) => (
                         <Link
-                          key={page.route}
-                          to={page.route}
+                          key={page.name}
+                          to={createPageUrl(page.name)}
                           onClick={() => setMobileMenuOpen(false)}
                           className={cn(
                             "flex items-center gap-3 px-3 py-2.5 rounded-lg text-sm transition-colors",
-                            location.pathname === page.route || location.pathname.startsWith(page.route.split(':')[0])
+                            currentPageName === page.name
                               ? "bg-indigo-50 text-indigo-700 font-medium"
                               : "text-slate-600 hover:bg-slate-100"
                           )}
@@ -193,7 +174,7 @@ export default function Layout({ children, currentPageName }) {
               </SheetContent>
             </Sheet>
 
-            <Link to={ROUTES.HOME} className="flex items-center gap-2">
+            <Link to={createPageUrl('Dashboard')} className="flex items-center gap-2">
               <div className="h-9 w-9 rounded-xl bg-gradient-to-br from-indigo-600 to-indigo-700 flex items-center justify-center shadow-sm">
                 <Wrench className="h-5 w-5 text-white" />
               </div>
@@ -222,8 +203,8 @@ export default function Layout({ children, currentPageName }) {
                 </DropdownMenuTrigger>
                 <DropdownMenuContent align="start" className="w-48">
                   {section.pages.map((page) => (
-                    <DropdownMenuItem key={page.route} asChild>
-                      <Link to={page.route} className="cursor-pointer">
+                    <DropdownMenuItem key={page.name} asChild>
+                      <Link to={createPageUrl(page.name)} className="cursor-pointer">
                         {page.label}
                       </Link>
                     </DropdownMenuItem>
@@ -268,7 +249,7 @@ export default function Layout({ children, currentPageName }) {
                   </>
                 )}
                 <DropdownMenuItem asChild>
-                  <Link to={ROUTES.ADMIN_SETTINGS} className="cursor-pointer">
+                  <Link to={createPageUrl('AdminSettings')} className="cursor-pointer">
                     <Settings className="h-4 w-4 mr-2" />
                     Settings
                   </Link>
