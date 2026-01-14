@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 import { useQuery, useMutation, useQueryClient } from '@tanstack/react-query';
 import { base44 } from '@/api/base44Client';
 import { useParams } from 'react-router-dom';
-import AppLink from '@/components/AppLink';
+import useAppNavigate from '@/components/useAppNavigate';
 import { routeBuilders } from '@/components/Routes';
 import {
   MapPin,
@@ -35,6 +35,7 @@ import EmptyState from '@/components/ui/EmptyState';
 import ActivityTimeline from '@/components/ActivityTimeline';
 
 export default function SiteDetail() {
+  const navigate = useAppNavigate();
   const { siteId } = useParams();
   const queryClient = useQueryClient();
   
@@ -104,7 +105,7 @@ export default function SiteDetail() {
       <PageHeader
         title={site.siteName}
         subtitle={site.address}
-        backLink="Sites"
+        backLink={routeBuilders.sites()}
         backLabel="Sites"
         actions={
           <div className="flex gap-2">
@@ -175,10 +176,13 @@ export default function SiteDetail() {
       >
         <div className="flex items-center gap-2 mt-4 text-sm text-slate-500">
           {customer && (
-            <AppLink to={routeBuilders.customerDetail(customer.id)} className="flex items-center gap-1 text-indigo-600 hover:underline">
+            <button
+              onClick={() => navigate(routeBuilders.customerDetail(customer.id))}
+              className="flex items-center gap-1 text-indigo-600 hover:underline bg-transparent border-0 p-0 cursor-pointer"
+            >
               <Building2 className="h-4 w-4" />
               {customer.name}
-            </AppLink>
+            </button>
           )}
           <span>•</span>
           <span>{assets.length} assets</span>
@@ -255,19 +259,24 @@ export default function SiteDetail() {
                 ) : (
                   <div className="space-y-2">
                     {assets.map(asset => (
-                      <AppLink key={asset.id} to={routeBuilders.assetDetail(asset.id)}>
-                        <div className="flex items-center gap-3 p-3 rounded-lg hover:bg-slate-50 transition-colors">
-                          <div className="h-10 w-10 rounded-lg bg-purple-100 flex items-center justify-center">
-                            <Package className="h-5 w-5 text-purple-600" />
-                          </div>
-                          <div className="flex-1 min-w-0">
-                            <p className="font-medium truncate">{asset.make} {asset.model}</p>
-                            <p className="text-sm text-slate-500">{asset.internalAssetId}</p>
-                          </div>
-                          <StatusBadge status={asset.status} size="xs" />
-                          <ChevronRight className="h-4 w-4 text-slate-400" />
+                      <div
+                        key={asset.id}
+                        onClick={() => navigate(routeBuilders.assetDetail(asset.id))}
+                        className="flex items-center gap-3 p-3 rounded-lg hover:bg-slate-50 transition-colors cursor-pointer"
+                        role="button"
+                        tabIndex={0}
+                        onKeyDown={(e) => e.key === 'Enter' && navigate(routeBuilders.assetDetail(asset.id))}
+                      >
+                        <div className="h-10 w-10 rounded-lg bg-purple-100 flex items-center justify-center">
+                          <Package className="h-5 w-5 text-purple-600" />
                         </div>
-                      </AppLink>
+                        <div className="flex-1 min-w-0">
+                          <p className="font-medium truncate">{asset.make} {asset.model}</p>
+                          <p className="text-sm text-slate-500">{asset.internalAssetId}</p>
+                        </div>
+                        <StatusBadge status={asset.status} size="xs" />
+                        <ChevronRight className="h-4 w-4 text-slate-400" />
+                      </div>
                     ))}
                   </div>
                 )}
@@ -290,19 +299,24 @@ export default function SiteDetail() {
                 ) : (
                   <div className="space-y-2">
                     {jobs.map(job => (
-                      <AppLink key={job.id} to={routeBuilders.jobDetail(job.id)}>
-                        <div className="flex items-center gap-3 p-3 rounded-lg hover:bg-slate-50 transition-colors">
-                          <div className="h-10 w-10 rounded-lg bg-indigo-100 flex items-center justify-center">
-                            <Wrench className="h-5 w-5 text-indigo-600" />
-                          </div>
-                          <div className="flex-1 min-w-0">
-                            <p className="font-medium truncate">{job.jobNumber || 'Draft'}</p>
-                            <p className="text-sm text-slate-500 truncate">{job.description || job.jobType}</p>
-                          </div>
-                          <StatusBadge status={job.status} size="xs" />
-                          <ChevronRight className="h-4 w-4 text-slate-400" />
+                      <div
+                        key={job.id}
+                        onClick={() => navigate(routeBuilders.jobDetail(job.id))}
+                        className="flex items-center gap-3 p-3 rounded-lg hover:bg-slate-50 transition-colors cursor-pointer"
+                        role="button"
+                        tabIndex={0}
+                        onKeyDown={(e) => e.key === 'Enter' && navigate(routeBuilders.jobDetail(job.id))}
+                      >
+                        <div className="h-10 w-10 rounded-lg bg-indigo-100 flex items-center justify-center">
+                          <Wrench className="h-5 w-5 text-indigo-600" />
                         </div>
-                      </AppLink>
+                        <div className="flex-1 min-w-0">
+                          <p className="font-medium truncate">{job.jobNumber || 'Draft'}</p>
+                          <p className="text-sm text-slate-500 truncate">{job.description || job.jobType}</p>
+                        </div>
+                        <StatusBadge status={job.status} size="xs" />
+                        <ChevronRight className="h-4 w-4 text-slate-400" />
+                      </div>
                     ))}
                   </div>
                 )}
