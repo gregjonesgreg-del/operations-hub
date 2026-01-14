@@ -58,8 +58,8 @@ export const ROUTES = {
   // Core Data & Admin
   CUSTOMERS: '/core/customers',
   CUSTOMERS_DETAIL: '/core/customers/:customerId',
-  SITES: '/core/sites',
-  SITES_DETAIL: '/core/sites/:siteId',
+  SITES: '/sites',
+  SITES_DETAIL: '/sites/:siteId',
   CONTACTS: '/core/contacts',
   ASSETS: '/core/assets',
   ASSETS_DETAIL: '/core/assets/:assetId',
