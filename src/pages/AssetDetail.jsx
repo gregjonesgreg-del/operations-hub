@@ -316,10 +316,10 @@ export default function AssetDetail() {
                     >
                       <MapPin className="h-5 w-5 text-emerald-600" />
                       <div>
-                        <p className="font-medium">{site.siteName}</p>
-                        <p className="text-sm text-slate-500">{site.address}</p>
-                      </div>
-                    </div>
+                         <p className="font-medium">{site.siteName}</p>
+                         <p className="text-sm text-slate-500">{site.address}</p>
+                       </div>
+                      </a>
                   )}
                   {asset.warrantyExpiry && (
                     <div className="flex items-start gap-3">
