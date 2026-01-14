@@ -2,8 +2,7 @@ import React, { useState, useMemo } from 'react';
 import { useQuery } from '@tanstack/react-query';
 import { base44 } from '@/api/base44Client';
 import { Link, useSearchParams } from 'react-router-dom';
-import { createPageUrl } from '../utils';
-import { routeBuilders } from '@/components/Routes';
+import { routeBuilders, ROUTES } from '@/components/Routes';
 import { format, isAfter, isBefore, parseISO } from 'date-fns';
 import {
   Plus,
@@ -188,7 +187,7 @@ export default function Jobs() {
         title="Work Orders"
         subtitle={`${filteredJobs.length} job${filteredJobs.length !== 1 ? 's' : ''}`}
         actions={
-          <Link to="/jobs/new">
+          <Link to={ROUTES.JOBS_CREATE}>
             <Button className="gap-2 bg-indigo-600 hover:bg-indigo-700">
               <Plus className="h-4 w-4" />
               <span className="hidden sm:inline">Create Job</span>

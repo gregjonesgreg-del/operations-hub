@@ -2,8 +2,7 @@ import React, { useState, useMemo } from 'react';
 import { useQuery, useMutation, useQueryClient } from '@tanstack/react-query';
 import { base44 } from '@/api/base44Client';
 import { useSearchParams, Link, useParams } from 'react-router-dom';
-import { createPageUrl } from '../utils';
-import { routeBuilders } from '@/components/Routes';
+import { routeBuilders, ROUTES } from '@/components/Routes';
 import { format } from 'date-fns';
 import {
   Building2,
@@ -242,7 +241,7 @@ export default function JobDetail() {
       <PageHeader
         title={job.jobNumber || 'Draft Job'}
         subtitle={job.description || job.jobType}
-        backLink="Jobs"
+        backLink={ROUTES.JOBS}
         backLabel="Back to Jobs"
         actions={
           <div className="flex items-center gap-2">

@@ -2,7 +2,6 @@ import React from 'react';
 import { Link } from 'react-router-dom';
 import { ChevronLeft } from 'lucide-react';
 import { Button } from '@/components/ui/button';
-import { createPageUrl } from '../../utils';
 
 export default function PageHeader({ 
   title, 
@@ -17,7 +16,7 @@ export default function PageHeader({
       <div className="px-4 sm:px-6 py-4">
         {backLink && (
           <Link 
-            to={createPageUrl(backLink)}
+            to={backLink}
             className="inline-flex items-center gap-1 text-sm text-slate-500 hover:text-slate-700 mb-2 transition-colors"
           >
             <ChevronLeft className="h-4 w-4" />
