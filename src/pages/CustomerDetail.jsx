@@ -1,7 +1,7 @@
 import React, { useState, useMemo } from 'react';
 import { useQuery, useMutation, useQueryClient } from '@tanstack/react-query';
 import { base44 } from '@/api/base44Client';
-import { useParams } from 'react-router-dom';
+import { useSearchParams } from 'react-router-dom';
 import useAppNavigate from '@/components/useAppNavigate';
 import { routeBuilders, ROUTES } from '@/components/Routes';
 import {
@@ -45,7 +45,8 @@ import { cn } from '@/lib/utils';
 
 export default function CustomerDetail() {
   const navigate = useAppNavigate();
-  const { customerId } = useParams();
+  const [searchParams] = useSearchParams();
+  const customerId = searchParams.get('id');
   const queryClient = useQueryClient();
   
   const [showSiteDialog, setShowSiteDialog] = useState(false);

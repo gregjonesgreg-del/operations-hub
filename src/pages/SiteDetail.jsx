@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import { useQuery, useMutation, useQueryClient } from '@tanstack/react-query';
 import { base44 } from '@/api/base44Client';
-import { useParams } from 'react-router-dom';
+import { useSearchParams } from 'react-router-dom';
 import useAppNavigate from '@/components/useAppNavigate';
 import { routeBuilders } from '@/components/Routes';
 import {
@@ -36,7 +36,8 @@ import ActivityTimeline from '@/components/ActivityTimeline';
 
 export default function SiteDetail() {
   const navigate = useAppNavigate();
-  const { siteId } = useParams();
+  const [searchParams] = useSearchParams();
+  const siteId = searchParams.get('id');
   const queryClient = useQueryClient();
   
   const [showEditDialog, setShowEditDialog] = useState(false);
