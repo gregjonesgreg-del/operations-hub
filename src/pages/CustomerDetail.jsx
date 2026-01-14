@@ -401,7 +401,7 @@ export default function CustomerDetail() {
                           </div>
                           <ChevronRight className="h-4 w-4 text-slate-400" />
                         </div>
-                      </Link>
+                      </AppLink>
                     ))}
                   </div>
                 )}
@@ -533,7 +533,7 @@ export default function CustomerDetail() {
                     <Plus className="h-4 w-4" />
                     New Job
                   </Button>
-                </Link>
+                </AppLink>
               </CardHeader>
               <CardContent>
                 {jobs.length === 0 ? (
