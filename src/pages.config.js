@@ -42,6 +42,10 @@ import DashboardsPPM from './pages/DashboardsPPM';
 import DashboardsFleet from './pages/DashboardsFleet';
 import DashboardsHire from './pages/DashboardsHire';
 import DashboardsOps from './pages/DashboardsOps';
+import HireContracts from './pages/HireContracts';
+import CreateHireContract from './pages/CreateHireContract';
+import HireInspectionDetail from './pages/HireInspectionDetail';
+import CreateIncident from './pages/CreateIncident';
 import __Layout from './Layout.jsx';
 
 
@@ -90,6 +94,10 @@ export const PAGES = {
     "DashboardsFleet": DashboardsFleet,
     "DashboardsHire": DashboardsHire,
     "DashboardsOps": DashboardsOps,
+    "HireContracts": HireContracts,
+    "CreateHireContract": CreateHireContract,
+    "HireInspectionDetail": HireInspectionDetail,
+    "CreateIncident": CreateIncident,
 }
 
 export const pagesConfig = {
