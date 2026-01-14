@@ -121,7 +121,7 @@ export const routeBuilders = {
   hireContractDetail: (contractId) => `/hire/contracts/${contractId}`,
   hireInspectionDetail: (inspectionId) => `/hire/inspections/${inspectionId}`,
   customerDetail: (customerId) => `/core/customers/${customerId}`,
-  siteDetail: (siteId) => `/core/sites/${siteId}`,
+  siteDetail: (siteId) => `/sites/${siteId}`,
   assetDetail: (assetId) => `/core/assets/${assetId}`,
 };
 
