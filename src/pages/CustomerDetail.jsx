@@ -2,7 +2,7 @@ import React, { useState, useMemo } from 'react';
 import { useQuery, useMutation, useQueryClient } from '@tanstack/react-query';
 import { base44 } from '@/api/base44Client';
 import { useParams } from 'react-router-dom';
-import AppLink from '@/components/AppLink';
+import useAppNavigate from '@/components/useAppNavigate';
 import { routeBuilders, ROUTES } from '@/components/Routes';
 import {
   Building2,
@@ -44,6 +44,7 @@ import ActivityTimeline from '@/components/ActivityTimeline';
 import { cn } from '@/lib/utils';
 
 export default function CustomerDetail() {
+  const navigate = useAppNavigate();
   const { customerId } = useParams();
   const queryClient = useQueryClient();
   
@@ -134,7 +135,7 @@ export default function CustomerDetail() {
       <PageHeader
         title={customer.name}
         subtitle={customer.billingAddress?.split('\n')[0]}
-        backLink="Customers"
+        backLink={routeBuilders.customers()}
         backLabel="Customers"
         actions={
           <Dialog open={showEditDialog} onOpenChange={(open) => {
@@ -286,12 +287,14 @@ export default function CustomerDetail() {
               <Card className="lg:col-span-2">
                 <CardHeader className="flex flex-row items-center justify-between">
                   <CardTitle className="text-lg">Recent Jobs</CardTitle>
-                  <AppLink to={ROUTES.JOBS_CREATE}>
-                    <Button size="sm" className="gap-2">
-                      <Plus className="h-4 w-4" />
-                      New Job
-                    </Button>
-                  </AppLink>
+                  <Button 
+                    onClick={() => navigate(routeBuilders.jobsNew())}
+                    size="sm" 
+                    className="gap-2"
+                  >
+                    <Plus className="h-4 w-4" />
+                    New Job
+                  </Button>
                 </CardHeader>
                 <CardContent>
                   {recentJobs.length === 0 ? (
@@ -303,19 +306,24 @@ export default function CustomerDetail() {
                   ) : (
                     <div className="space-y-2">
                       {jobs.map(job => (
-                        <AppLink key={job.id} to={routeBuilders.jobDetail(job.id)}>
-                          <div className="flex items-center gap-3 p-3 rounded-lg hover:bg-slate-50 transition-colors">
-                            <div className="h-10 w-10 rounded-lg bg-indigo-100 flex items-center justify-center">
-                              <Wrench className="h-5 w-5 text-indigo-600" />
-                            </div>
-                            <div className="flex-1 min-w-0">
-                              <p className="font-medium truncate">{job.jobNumber || 'Draft'}</p>
-                              <p className="text-sm text-slate-500 truncate">{job.description || job.jobType}</p>
-                            </div>
-                            <StatusBadge status={job.status} size="xs" />
-                            <ChevronRight className="h-4 w-4 text-slate-400" />
+                        <div
+                          key={job.id}
+                          onClick={() => navigate(routeBuilders.jobDetail(job.id))}
+                          className="flex items-center gap-3 p-3 rounded-lg hover:bg-slate-50 transition-colors cursor-pointer"
+                          role="button"
+                          tabIndex={0}
+                          onKeyDown={(e) => e.key === 'Enter' && navigate(routeBuilders.jobDetail(job.id))}
+                        >
+                          <div className="h-10 w-10 rounded-lg bg-indigo-100 flex items-center justify-center">
+                            <Wrench className="h-5 w-5 text-indigo-600" />
                           </div>
-                        </AppLink>
+                          <div className="flex-1 min-w-0">
+                            <p className="font-medium truncate">{job.jobNumber || 'Draft'}</p>
+                            <p className="text-sm text-slate-500 truncate">{job.description || job.jobType}</p>
+                          </div>
+                          <StatusBadge status={job.status} size="xs" />
+                          <ChevronRight className="h-4 w-4 text-slate-400" />
+                        </div>
                       ))}
                       </div>
                   )}
@@ -390,18 +398,23 @@ export default function CustomerDetail() {
                 ) : (
                   <div className="space-y-2">
                     {sites.map(site => (
-                      <AppLink key={site.id} to={routeBuilders.siteDetail(site.id)}>
-                        <div className="flex items-center gap-3 p-3 rounded-lg hover:bg-slate-50 transition-colors">
-                          <div className="h-10 w-10 rounded-lg bg-emerald-100 flex items-center justify-center">
-                            <MapPin className="h-5 w-5 text-emerald-600" />
-                          </div>
-                          <div className="flex-1 min-w-0">
-                            <p className="font-medium truncate">{site.siteName}</p>
-                            <p className="text-sm text-slate-500 truncate">{site.address}</p>
-                          </div>
-                          <ChevronRight className="h-4 w-4 text-slate-400" />
+                      <div
+                        key={site.id}
+                        onClick={() => navigate(routeBuilders.siteDetail(site.id))}
+                        className="flex items-center gap-3 p-3 rounded-lg hover:bg-slate-50 transition-colors cursor-pointer"
+                        role="button"
+                        tabIndex={0}
+                        onKeyDown={(e) => e.key === 'Enter' && navigate(routeBuilders.siteDetail(site.id))}
+                      >
+                        <div className="h-10 w-10 rounded-lg bg-emerald-100 flex items-center justify-center">
+                          <MapPin className="h-5 w-5 text-emerald-600" />
                         </div>
-                      </AppLink>
+                        <div className="flex-1 min-w-0">
+                          <p className="font-medium truncate">{site.siteName}</p>
+                          <p className="text-sm text-slate-500 truncate">{site.address}</p>
+                        </div>
+                        <ChevronRight className="h-4 w-4 text-slate-400" />
+                      </div>
                     ))}
                   </div>
                 )}
@@ -528,12 +541,14 @@ export default function CustomerDetail() {
             <Card>
               <CardHeader className="flex flex-row items-center justify-between">
                 <CardTitle className="text-lg">All Jobs</CardTitle>
-                <AppLink to={ROUTES.JOBS_CREATE}>
-                  <Button size="sm" className="gap-2">
-                    <Plus className="h-4 w-4" />
-                    New Job
-                  </Button>
-                </AppLink>
+                <Button 
+                  onClick={() => navigate(routeBuilders.jobsNew())}
+                  size="sm" 
+                  className="gap-2"
+                >
+                  <Plus className="h-4 w-4" />
+                  New Job
+                </Button>
               </CardHeader>
               <CardContent>
                 {jobs.length === 0 ? (
@@ -541,19 +556,24 @@ export default function CustomerDetail() {
                 ) : (
                   <div className="space-y-2">
                     {jobs.map(job => (
-                      <AppLink key={job.id} to={routeBuilders.jobDetail(job.id)}>
-                        <div className="flex items-center gap-3 p-3 rounded-lg hover:bg-slate-50 transition-colors">
-                          <div className="h-10 w-10 rounded-lg bg-indigo-100 flex items-center justify-center">
-                            <Wrench className="h-5 w-5 text-indigo-600" />
-                          </div>
-                          <div className="flex-1 min-w-0">
-                            <p className="font-medium truncate">{job.jobNumber || 'Draft'}</p>
-                            <p className="text-sm text-slate-500 truncate">{job.description || job.jobType}</p>
-                          </div>
-                          <StatusBadge status={job.status} size="xs" />
-                          <ChevronRight className="h-4 w-4 text-slate-400" />
+                      <div
+                        key={job.id}
+                        onClick={() => navigate(routeBuilders.jobDetail(job.id))}
+                        className="flex items-center gap-3 p-3 rounded-lg hover:bg-slate-50 transition-colors cursor-pointer"
+                        role="button"
+                        tabIndex={0}
+                        onKeyDown={(e) => e.key === 'Enter' && navigate(routeBuilders.jobDetail(job.id))}
+                      >
+                        <div className="h-10 w-10 rounded-lg bg-indigo-100 flex items-center justify-center">
+                          <Wrench className="h-5 w-5 text-indigo-600" />
                         </div>
-                        </AppLink>
+                        <div className="flex-1 min-w-0">
+                          <p className="font-medium truncate">{job.jobNumber || 'Draft'}</p>
+                          <p className="text-sm text-slate-500 truncate">{job.description || job.jobType}</p>
+                        </div>
+                        <StatusBadge status={job.status} size="xs" />
+                        <ChevronRight className="h-4 w-4 text-slate-400" />
+                      </div>
                         ))}
                         </div>
                         )}
