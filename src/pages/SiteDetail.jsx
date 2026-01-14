@@ -267,30 +267,30 @@ export default function SiteDetail() {
                           <StatusBadge status={asset.status} size="xs" />
                           <ChevronRight className="h-4 w-4 text-slate-400" />
                         </div>
-                        </AppLink>
-                        ))}
-                        </div>
-                        )}
-                        </CardContent>
-                        </Card>
-                        </TabsContent>
+                      </AppLink>
+                    ))}
+                  </div>
+                )}
+              </CardContent>
+            </Card>
+          </TabsContent>
 
-                        <TabsContent value="jobs" className="mt-6">
-                        <Card>
-                        <CardHeader>
-                        <CardTitle className="text-lg">Jobs at this Site</CardTitle>
-                        </CardHeader>
-                        <CardContent>
-                        {jobs.length === 0 ? (
-                        <EmptyState
-                        icon={Wrench}
-                        title="No jobs at this site"
-                        description="Jobs for this site will appear here"
-                        />
-                        ) : (
-                        <div className="space-y-2">
-                        {jobs.map(job => (
-                        <AppLink key={job.id} to={routeBuilders.jobDetail(job.id)}>
+          <TabsContent value="jobs" className="mt-6">
+            <Card>
+              <CardHeader>
+                <CardTitle className="text-lg">Jobs at this Site</CardTitle>
+              </CardHeader>
+              <CardContent>
+                {jobs.length === 0 ? (
+                  <EmptyState
+                    icon={Wrench}
+                    title="No jobs at this site"
+                    description="Jobs for this site will appear here"
+                  />
+                ) : (
+                  <div className="space-y-2">
+                    {jobs.map(job => (
+                      <AppLink key={job.id} to={routeBuilders.jobDetail(job.id)}>
                         <div className="flex items-center gap-3 p-3 rounded-lg hover:bg-slate-50 transition-colors">
                           <div className="h-10 w-10 rounded-lg bg-indigo-100 flex items-center justify-center">
                             <Wrench className="h-5 w-5 text-indigo-600" />
@@ -302,15 +302,15 @@ export default function SiteDetail() {
                           <StatusBadge status={job.status} size="xs" />
                           <ChevronRight className="h-4 w-4 text-slate-400" />
                         </div>
-                        </AppLink>
-                        ))}
-                        </div>
-                        )}
-                        </CardContent>
-                        </Card>
-                        </TabsContent>
+                      </AppLink>
+                    ))}
+                  </div>
+                )}
+              </CardContent>
+            </Card>
+          </TabsContent>
 
-                        <TabsContent value="activity" className="mt-6">
+          <TabsContent value="activity" className="mt-6">
             <Card>
               <CardHeader>
                 <CardTitle className="text-lg">Activity Timeline</CardTitle>

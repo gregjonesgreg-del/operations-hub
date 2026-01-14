@@ -377,15 +377,15 @@ export default function AssetDetail() {
                           <StatusBadge status={job.status} size="xs" />
                           <ChevronRight className="h-4 w-4 text-slate-400" />
                         </div>
-                        </AppLink>
-                        ))}
-                        </div>
-                        )}
-                        </CardContent>
-                        </Card>
-                        </TabsContent>
+                      </AppLink>
+                    ))}
+                  </div>
+                )}
+              </CardContent>
+            </Card>
+          </TabsContent>
 
-                        <TabsContent value="documents" className="mt-6">
+          <TabsContent value="documents" className="mt-6">
             <Card>
               <CardHeader className="flex flex-row items-center justify-between">
                 <CardTitle className="text-lg">Documents & Photos</CardTitle>
