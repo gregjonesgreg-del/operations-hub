@@ -32,6 +32,9 @@ import Dashboards from './pages/Dashboards';
 import FleetChecks from './pages/FleetChecks';
 import FleetDefects from './pages/FleetDefects';
 import FleetDefectDetail from './pages/FleetDefectDetail';
+import FleetFuel from './pages/FleetFuel';
+import FleetFuelDetail from './pages/FleetFuelDetail';
+import FleetFuelReview from './pages/FleetFuelReview';
 import __Layout from './Layout.jsx';
 
 
@@ -70,6 +73,9 @@ export const PAGES = {
     "FleetChecks": FleetChecks,
     "FleetDefects": FleetDefects,
     "FleetDefectDetail": FleetDefectDetail,
+    "FleetFuel": FleetFuel,
+    "FleetFuelDetail": FleetFuelDetail,
+    "FleetFuelReview": FleetFuelReview,
 }
 
 export const pagesConfig = {
