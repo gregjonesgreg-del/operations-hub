@@ -2,7 +2,7 @@ import React, { useState, useMemo } from 'react';
 import { useQuery } from '@tanstack/react-query';
 import { base44 } from '@/api/base44Client';
 import { Link } from 'react-router-dom';
-import { createPageUrl } from '../utils';
+import { routeBuilders, ROUTES } from '@/components/Routes';
 import {
   Search,
   MapPin,
@@ -88,7 +88,7 @@ export default function Sites() {
               const assetCount = getAssetCount(site.id);
 
               return (
-                <Link key={site.id} to={createPageUrl('SiteDetail') + `?id=${site.id}`}>
+                <Link key={site.id} to={routeBuilders.siteDetail(site.id)}>
                   <Card className="hover:shadow-md transition-all cursor-pointer">
                     <CardContent className="p-4">
                       <div className="flex items-start gap-4">
