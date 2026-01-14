@@ -26,6 +26,8 @@ import IncidentDetail from './pages/IncidentDetail';
 import MyVehicle from './pages/MyVehicle';
 import VehicleDetail from './pages/VehicleDetail';
 import HireContractDetail from './pages/HireContractDetail';
+import NotFound from './pages/NotFound';
+import DiagnosticsRoutes from './pages/DiagnosticsRoutes';
 import __Layout from './Layout.jsx';
 
 
@@ -58,6 +60,8 @@ export const PAGES = {
     "MyVehicle": MyVehicle,
     "VehicleDetail": VehicleDetail,
     "HireContractDetail": HireContractDetail,
+    "NotFound": NotFound,
+    "DiagnosticsRoutes": DiagnosticsRoutes,
 }
 
 export const pagesConfig = {
