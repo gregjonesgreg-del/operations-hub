@@ -3,11 +3,18 @@ import AssetDetail from './pages/AssetDetail';
 import Assets from './pages/Assets';
 import ContactDetail from './pages/ContactDetail';
 import Contacts from './pages/Contacts';
+import CreateHireContract from './pages/CreateHireContract';
+import CreateIncident from './pages/CreateIncident';
 import CreateJob from './pages/CreateJob';
 import CustomerDetail from './pages/CustomerDetail';
 import Customers from './pages/Customers';
 import Dashboard from './pages/Dashboard';
 import Dashboards from './pages/Dashboards';
+import DashboardsFleet from './pages/DashboardsFleet';
+import DashboardsHire from './pages/DashboardsHire';
+import DashboardsJobs from './pages/DashboardsJobs';
+import DashboardsOps from './pages/DashboardsOps';
+import DashboardsPPM from './pages/DashboardsPPM';
 import DiagnosticsRoutes from './pages/DiagnosticsRoutes';
 import Employees from './pages/Employees';
 import Fleet from './pages/Fleet';
@@ -21,6 +28,8 @@ import Hire from './pages/Hire';
 import HireAssetDetail from './pages/HireAssetDetail';
 import HireCalendar from './pages/HireCalendar';
 import HireContractDetail from './pages/HireContractDetail';
+import HireContracts from './pages/HireContracts';
+import HireInspectionDetail from './pages/HireInspectionDetail';
 import IncidentDetail from './pages/IncidentDetail';
 import InternalOps from './pages/InternalOps';
 import InternalTaskDetail from './pages/InternalTaskDetail';
@@ -37,15 +46,6 @@ import SiteDetail from './pages/SiteDetail';
 import Sites from './pages/Sites';
 import Teams from './pages/Teams';
 import VehicleDetail from './pages/VehicleDetail';
-import DashboardsJobs from './pages/DashboardsJobs';
-import DashboardsPPM from './pages/DashboardsPPM';
-import DashboardsFleet from './pages/DashboardsFleet';
-import DashboardsHire from './pages/DashboardsHire';
-import DashboardsOps from './pages/DashboardsOps';
-import HireContracts from './pages/HireContracts';
-import CreateHireContract from './pages/CreateHireContract';
-import HireInspectionDetail from './pages/HireInspectionDetail';
-import CreateIncident from './pages/CreateIncident';
 import __Layout from './Layout.jsx';
 
 
@@ -55,11 +55,18 @@ export const PAGES = {
     "Assets": Assets,
     "ContactDetail": ContactDetail,
     "Contacts": Contacts,
+    "CreateHireContract": CreateHireContract,
+    "CreateIncident": CreateIncident,
     "CreateJob": CreateJob,
     "CustomerDetail": CustomerDetail,
     "Customers": Customers,
     "Dashboard": Dashboard,
     "Dashboards": Dashboards,
+    "DashboardsFleet": DashboardsFleet,
+    "DashboardsHire": DashboardsHire,
+    "DashboardsJobs": DashboardsJobs,
+    "DashboardsOps": DashboardsOps,
+    "DashboardsPPM": DashboardsPPM,
     "DiagnosticsRoutes": DiagnosticsRoutes,
     "Employees": Employees,
     "Fleet": Fleet,
@@ -73,6 +80,8 @@ export const PAGES = {
     "HireAssetDetail": HireAssetDetail,
     "HireCalendar": HireCalendar,
     "HireContractDetail": HireContractDetail,
+    "HireContracts": HireContracts,
+    "HireInspectionDetail": HireInspectionDetail,
     "IncidentDetail": IncidentDetail,
     "InternalOps": InternalOps,
     "InternalTaskDetail": InternalTaskDetail,
@@ -89,15 +98,6 @@ export const PAGES = {
     "Sites": Sites,
     "Teams": Teams,
     "VehicleDetail": VehicleDetail,
-    "DashboardsJobs": DashboardsJobs,
-    "DashboardsPPM": DashboardsPPM,
-    "DashboardsFleet": DashboardsFleet,
-    "DashboardsHire": DashboardsHire,
-    "DashboardsOps": DashboardsOps,
-    "HireContracts": HireContracts,
-    "CreateHireContract": CreateHireContract,
-    "HireInspectionDetail": HireInspectionDetail,
-    "CreateIncident": CreateIncident,
 }
 
 export const pagesConfig = {

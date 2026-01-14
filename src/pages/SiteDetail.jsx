@@ -1,7 +1,8 @@
 import React, { useState } from 'react';
 import { useQuery, useMutation, useQueryClient } from '@tanstack/react-query';
 import { base44 } from '@/api/base44Client';
-import { useParams, Link } from 'react-router-dom';
+import { useParams } from 'react-router-dom';
+import AppLink from '@/components/AppLink';
 import { routeBuilders } from '@/components/Routes';
 import {
   MapPin,
@@ -174,10 +175,10 @@ export default function SiteDetail() {
       >
         <div className="flex items-center gap-2 mt-4 text-sm text-slate-500">
           {customer && (
-            <Link to={routeBuilders.customerDetail(customer.id)} className="flex items-center gap-1 text-indigo-600 hover:underline">
+            <AppLink to={routeBuilders.customerDetail(customer.id)} className="flex items-center gap-1 text-indigo-600 hover:underline">
               <Building2 className="h-4 w-4" />
               {customer.name}
-            </Link>
+            </AppLink>
           )}
           <span>•</span>
           <span>{assets.length} assets</span>
@@ -254,7 +255,7 @@ export default function SiteDetail() {
                 ) : (
                   <div className="space-y-2">
                     {assets.map(asset => (
-                      <Link key={asset.id} to={routeBuilders.assetDetail(asset.id)}>
+                      <AppLink key={asset.id} to={routeBuilders.assetDetail(asset.id)}>
                         <div className="flex items-center gap-3 p-3 rounded-lg hover:bg-slate-50 transition-colors">
                           <div className="h-10 w-10 rounded-lg bg-purple-100 flex items-center justify-center">
                             <Package className="h-5 w-5 text-purple-600" />
@@ -266,30 +267,30 @@ export default function SiteDetail() {
                           <StatusBadge status={asset.status} size="xs" />
                           <ChevronRight className="h-4 w-4 text-slate-400" />
                         </div>
-                      </Link>
-                    ))}
-                  </div>
-                )}
-              </CardContent>
-            </Card>
-          </TabsContent>
+                        </AppLink>
+                        ))}
+                        </div>
+                        )}
+                        </CardContent>
+                        </Card>
+                        </TabsContent>
 
-          <TabsContent value="jobs" className="mt-6">
-            <Card>
-              <CardHeader>
-                <CardTitle className="text-lg">Jobs at this Site</CardTitle>
-              </CardHeader>
-              <CardContent>
-                {jobs.length === 0 ? (
-                  <EmptyState
-                    icon={Wrench}
-                    title="No jobs at this site"
-                    description="Jobs for this site will appear here"
-                  />
-                ) : (
-                  <div className="space-y-2">
-                    {jobs.map(job => (
-                      <Link key={job.id} to={routeBuilders.jobDetail(job.id)}>
+                        <TabsContent value="jobs" className="mt-6">
+                        <Card>
+                        <CardHeader>
+                        <CardTitle className="text-lg">Jobs at this Site</CardTitle>
+                        </CardHeader>
+                        <CardContent>
+                        {jobs.length === 0 ? (
+                        <EmptyState
+                        icon={Wrench}
+                        title="No jobs at this site"
+                        description="Jobs for this site will appear here"
+                        />
+                        ) : (
+                        <div className="space-y-2">
+                        {jobs.map(job => (
+                        <AppLink key={job.id} to={routeBuilders.jobDetail(job.id)}>
                         <div className="flex items-center gap-3 p-3 rounded-lg hover:bg-slate-50 transition-colors">
                           <div className="h-10 w-10 rounded-lg bg-indigo-100 flex items-center justify-center">
                             <Wrench className="h-5 w-5 text-indigo-600" />
@@ -301,15 +302,15 @@ export default function SiteDetail() {
                           <StatusBadge status={job.status} size="xs" />
                           <ChevronRight className="h-4 w-4 text-slate-400" />
                         </div>
-                      </Link>
-                    ))}
-                  </div>
-                )}
-              </CardContent>
-            </Card>
-          </TabsContent>
+                        </AppLink>
+                        ))}
+                        </div>
+                        )}
+                        </CardContent>
+                        </Card>
+                        </TabsContent>
 
-          <TabsContent value="activity" className="mt-6">
+                        <TabsContent value="activity" className="mt-6">
             <Card>
               <CardHeader>
                 <CardTitle className="text-lg">Activity Timeline</CardTitle>

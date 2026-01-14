@@ -1,8 +1,9 @@
 import React, { useState, useMemo } from 'react';
 import { useQuery, useMutation, useQueryClient } from '@tanstack/react-query';
 import { base44 } from '@/api/base44Client';
-import { useParams, Link } from 'react-router-dom';
-import { routeBuilders } from '@/components/Routes';
+import { useParams } from 'react-router-dom';
+import AppLink from '@/components/AppLink';
+import { routeBuilders, ROUTES } from '@/components/Routes';
 import {
   Building2,
   MapPin,
@@ -285,12 +286,12 @@ export default function CustomerDetail() {
               <Card className="lg:col-span-2">
                 <CardHeader className="flex flex-row items-center justify-between">
                   <CardTitle className="text-lg">Recent Jobs</CardTitle>
-                  <Link to="/jobs/new">
+                  <AppLink to={ROUTES.JOBS_CREATE}>
                     <Button size="sm" className="gap-2">
                       <Plus className="h-4 w-4" />
                       New Job
                     </Button>
-                  </Link>
+                  </AppLink>
                 </CardHeader>
                 <CardContent>
                   {recentJobs.length === 0 ? (
@@ -302,7 +303,7 @@ export default function CustomerDetail() {
                   ) : (
                     <div className="space-y-2">
                       {recentJobs.map(job => (
-                        <Link key={job.id} to={routeBuilders.jobDetail(job.id)}>
+                        <AppLink key={job.id} to={routeBuilders.jobDetail(job.id)}>
                           <div className="flex items-center gap-3 p-3 rounded-lg hover:bg-slate-50 transition-colors">
                             <div className="h-10 w-10 rounded-lg bg-indigo-100 flex items-center justify-center">
                               <Wrench className="h-5 w-5 text-indigo-600" />
@@ -314,8 +315,8 @@ export default function CustomerDetail() {
                             <StatusBadge status={job.status} size="xs" />
                             <ChevronRight className="h-4 w-4 text-slate-400" />
                           </div>
-                        </Link>
-                      ))}
+                          </AppLink>
+                          ))}
                     </div>
                   )}
                 </CardContent>
@@ -389,7 +390,7 @@ export default function CustomerDetail() {
                 ) : (
                   <div className="space-y-2">
                     {sites.map(site => (
-                      <Link key={site.id} to={routeBuilders.siteDetail(site.id)}>
+                      <AppLink key={site.id} to={routeBuilders.siteDetail(site.id)}>
                         <div className="flex items-center gap-3 p-3 rounded-lg hover:bg-slate-50 transition-colors">
                           <div className="h-10 w-10 rounded-lg bg-emerald-100 flex items-center justify-center">
                             <MapPin className="h-5 w-5 text-emerald-600" />
@@ -540,7 +541,7 @@ export default function CustomerDetail() {
                 ) : (
                   <div className="space-y-2">
                     {jobs.map(job => (
-                      <Link key={job.id} to={routeBuilders.jobDetail(job.id)}>
+                      <AppLink key={job.id} to={routeBuilders.jobDetail(job.id)}>
                         <div className="flex items-center gap-3 p-3 rounded-lg hover:bg-slate-50 transition-colors">
                           <div className="h-10 w-10 rounded-lg bg-indigo-100 flex items-center justify-center">
                             <Wrench className="h-5 w-5 text-indigo-600" />
@@ -552,15 +553,15 @@ export default function CustomerDetail() {
                           <StatusBadge status={job.status} size="xs" />
                           <ChevronRight className="h-4 w-4 text-slate-400" />
                         </div>
-                      </Link>
-                    ))}
-                  </div>
-                )}
-              </CardContent>
-            </Card>
-          </TabsContent>
+                        </AppLink>
+                        ))}
+                        </div>
+                        )}
+                        </CardContent>
+                        </Card>
+                        </TabsContent>
 
-          <TabsContent value="activity" className="mt-6">
+                        <TabsContent value="activity" className="mt-6">
             <Card>
               <CardHeader>
                 <CardTitle className="text-lg">Activity Timeline</CardTitle>

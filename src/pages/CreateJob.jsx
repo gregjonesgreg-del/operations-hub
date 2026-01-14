@@ -1,8 +1,8 @@
 import React, { useState, useEffect, useMemo } from 'react';
 import { useQuery, useMutation, useQueryClient } from '@tanstack/react-query';
 import { base44 } from '@/api/base44Client';
-import { useNavigate } from 'react-router-dom';
-import { createPageUrl } from '../utils';
+import useAppNavigate from '@/components/useAppNavigate';
+import { routeBuilders } from '@/components/Routes';
 import {
   ChevronRight,
   ChevronLeft,
@@ -65,7 +65,7 @@ const WORK_LOCATIONS = [
 ];
 
 export default function CreateJob() {
-  const navigate = useNavigate();
+  const navigate = useAppNavigate();
   const queryClient = useQueryClient();
   const [currentStep, setCurrentStep] = useState(1);
   const [formData, setFormData] = useState({
@@ -162,7 +162,7 @@ export default function CreateJob() {
       });
       
       queryClient.invalidateQueries({ queryKey: ['jobs'] });
-      navigate(createPageUrl('JobDetail') + `?id=${job.id}`);
+      navigate(routeBuilders.jobDetail(job.id));
     }
   });
 
