@@ -109,20 +109,20 @@ export const routeBuilders = {
   home: () => ROUTES.HOME,
   notFound: () => ROUTES.NOT_FOUND,
 
-  // Detail routes (always return absolute paths)
-  jobDetail: (jobId) => `/jobs/${jobId}`,
-  ppmPlanDetail: (planId) => `/ppm/plans/${planId}`,
-  ppmInstanceDetail: (instanceId) => `/ppm/instances/${instanceId}`,
-  opsTaskDetail: (taskId) => `/ops/tasks/${taskId}`,
-  incidentDetail: (incidentId) => `/ops/incidents/${incidentId}`,
-  vehicleDetail: (vehicleId) => `/fleet/vehicles/${vehicleId}`,
-  defectDetail: (defectId) => `/fleet/defects/${defectId}`,
-  fuelDetail: (fuelId) => `/fleet/fuel/${fuelId}`,
-  hireContractDetail: (contractId) => `/hire/contracts/${contractId}`,
-  hireInspectionDetail: (inspectionId) => `/hire/inspections/${inspectionId}`,
-  customerDetail: (customerId) => `/core/customers/${customerId}`,
-  siteDetail: (siteId) => `/core/sites/${siteId}`,
-  assetDetail: (assetId) => `/core/assets/${assetId}`,
+  // Detail routes (always return absolute paths with query params)
+    jobDetail: (jobId) => `/jobs?id=${jobId}`,
+    ppmPlanDetail: (planId) => `/ppm/plans?id=${planId}`,
+    ppmInstanceDetail: (instanceId) => `/ppm/instances?id=${instanceId}`,
+    opsTaskDetail: (taskId) => `/ops/tasks?id=${taskId}`,
+    incidentDetail: (incidentId) => `/ops/incidents?id=${incidentId}`,
+    vehicleDetail: (vehicleId) => `/fleet/vehicles?id=${vehicleId}`,
+    defectDetail: (defectId) => `/fleet/defects?id=${defectId}`,
+    fuelDetail: (fuelId) => `/fleet/fuel?id=${fuelId}`,
+    hireContractDetail: (contractId) => `/hire/contracts?id=${contractId}`,
+    hireInspectionDetail: (inspectionId) => `/hire/inspections?id=${inspectionId}`,
+    customerDetail: (customerId) => `/core/customers?id=${customerId}`,
+    siteDetail: (siteId) => `/core/sites?id=${siteId}`,
+    assetDetail: (assetId) => `/core/assets?id=${assetId}`,
 };
 
 /**
