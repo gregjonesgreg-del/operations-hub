@@ -377,6 +377,49 @@ export default function DiagnosticsRoutes() {
             )}
           </CardContent>
         </Card>
+
+        {/* Deep Link Builder Test */}
+        <Card>
+          <CardHeader>
+            <CardTitle className="flex items-center gap-2">
+              <CheckCircle className="h-5 w-5 text-indigo-600" />
+              Route Builder Test (with sample ID: "test-id-123")
+            </CardTitle>
+          </CardHeader>
+          <CardContent>
+            <p className="text-sm text-slate-600 mb-4">
+              These are examples of how route builders generate absolute paths. All should start with "/".
+            </p>
+            <div className="space-y-4">
+              <div className="grid sm:grid-cols-2 gap-4">
+                <div className="p-3 bg-slate-50 rounded-lg border border-slate-200">
+                  <p className="text-xs font-mono text-slate-500">jobDetail("test-id-123")</p>
+                  <p className="font-mono text-sm mt-1 text-slate-700">/jobs/test-id-123</p>
+                </div>
+                <div className="p-3 bg-slate-50 rounded-lg border border-slate-200">
+                  <p className="text-xs font-mono text-slate-500">ppmInstanceDetail("test-id-123")</p>
+                  <p className="font-mono text-sm mt-1 text-slate-700">/ppm/instances/test-id-123</p>
+                </div>
+                <div className="p-3 bg-slate-50 rounded-lg border border-slate-200">
+                  <p className="text-xs font-mono text-slate-500">vehicleDetail("test-id-123")</p>
+                  <p className="font-mono text-sm mt-1 text-slate-700">/fleet/vehicles/test-id-123</p>
+                </div>
+                <div className="p-3 bg-slate-50 rounded-lg border border-slate-200">
+                  <p className="text-xs font-mono text-slate-500">hireContractDetail("test-id-123")</p>
+                  <p className="font-mono text-sm mt-1 text-slate-700">/hire/contracts/test-id-123</p>
+                </div>
+                <div className="p-3 bg-slate-50 rounded-lg border border-slate-200">
+                  <p className="text-xs font-mono text-slate-500">customerDetail("test-id-123")</p>
+                  <p className="font-mono text-sm mt-1 text-slate-700">/core/customers/test-id-123</p>
+                </div>
+                <div className="p-3 bg-slate-50 rounded-lg border border-slate-200">
+                  <p className="text-xs font-mono text-slate-500">defectDetail("test-id-123")</p>
+                  <p className="font-mono text-sm mt-1 text-slate-700">/fleet/defects/test-id-123</p>
+                </div>
+              </div>
+            </div>
+          </CardContent>
+        </Card>
       </div>
     </div>
   );
