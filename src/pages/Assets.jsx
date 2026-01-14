@@ -1,8 +1,7 @@
 import React, { useState, useMemo } from 'react';
 import { useQuery, useMutation, useQueryClient } from '@tanstack/react-query';
 import { base44 } from '@/api/base44Client';
-import useAppNavigate from '@/components/useAppNavigate';
-import { routeBuilders } from '@/components/Routes';
+import { useNavigate } from 'react-router-dom';
 import {
   Plus,
   Search,
@@ -70,7 +69,7 @@ const typeColors = {
 };
 
 export default function Assets() {
-  const navigate = useAppNavigate();
+  const navigate = useNavigate();
   const queryClient = useQueryClient();
   const [searchQuery, setSearchQuery] = useState('');
   const [showCreateDialog, setShowCreateDialog] = useState(false);
@@ -426,10 +425,10 @@ export default function Assets() {
                 <Card 
                   key={asset.id}
                   className="hover:shadow-md transition-all cursor-pointer h-full"
-                  onClick={() => navigate(routeBuilders.assetDetail(asset.id))}
+                  onClick={() => navigate(`/AssetDetail?assetId=${asset.id}`)}
                   role="button"
                   tabIndex={0}
-                  onKeyDown={(e) => e.key === 'Enter' && navigate(routeBuilders.assetDetail(asset.id))}
+                  onKeyDown={(e) => e.key === 'Enter' && navigate(`/AssetDetail?assetId=${asset.id}`)}
                 >
                   <CardContent className="p-4">
                     <div className="flex items-start gap-3">
