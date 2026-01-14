@@ -302,7 +302,7 @@ export default function CustomerDetail() {
                     />
                   ) : (
                     <div className="space-y-2">
-                      {recentJobs.map(job => (
+                      {jobs.map(job => (
                         <AppLink key={job.id} to={routeBuilders.jobDetail(job.id)}>
                           <div className="flex items-center gap-3 p-3 rounded-lg hover:bg-slate-50 transition-colors">
                             <div className="h-10 w-10 rounded-lg bg-indigo-100 flex items-center justify-center">
@@ -315,9 +315,9 @@ export default function CustomerDetail() {
                             <StatusBadge status={job.status} size="xs" />
                             <ChevronRight className="h-4 w-4 text-slate-400" />
                           </div>
-                          </AppLink>
-                          ))}
-                    </div>
+                        </AppLink>
+                      ))}
+                      </div>
                   )}
                 </CardContent>
               </Card>
