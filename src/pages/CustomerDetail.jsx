@@ -1,8 +1,8 @@
 import React, { useState, useMemo } from 'react';
 import { useQuery, useMutation, useQueryClient } from '@tanstack/react-query';
 import { base44 } from '@/api/base44Client';
-import { useSearchParams, Link } from 'react-router-dom';
-import { createPageUrl } from '../utils';
+import { useParams, Link } from 'react-router-dom';
+import { routeBuilders } from '@/components/Routes';
 import {
   Building2,
   MapPin,
@@ -43,8 +43,7 @@ import ActivityTimeline from '@/components/ActivityTimeline';
 import { cn } from '@/lib/utils';
 
 export default function CustomerDetail() {
-  const [searchParams] = useSearchParams();
-  const customerId = searchParams.get('id');
+  const { customerId } = useParams();
   const queryClient = useQueryClient();
   
   const [showSiteDialog, setShowSiteDialog] = useState(false);
@@ -286,7 +285,7 @@ export default function CustomerDetail() {
               <Card className="lg:col-span-2">
                 <CardHeader className="flex flex-row items-center justify-between">
                   <CardTitle className="text-lg">Recent Jobs</CardTitle>
-                  <Link to={createPageUrl('CreateJob') + `?customer=${customerId}`}>
+                  <Link to="/jobs/new">
                     <Button size="sm" className="gap-2">
                       <Plus className="h-4 w-4" />
                       New Job
@@ -303,7 +302,7 @@ export default function CustomerDetail() {
                   ) : (
                     <div className="space-y-2">
                       {recentJobs.map(job => (
-                        <Link key={job.id} to={createPageUrl('JobDetail') + `?id=${job.id}`}>
+                        <Link key={job.id} to={routeBuilders.jobDetail(job.id)}>
                           <div className="flex items-center gap-3 p-3 rounded-lg hover:bg-slate-50 transition-colors">
                             <div className="h-10 w-10 rounded-lg bg-indigo-100 flex items-center justify-center">
                               <Wrench className="h-5 w-5 text-indigo-600" />
@@ -390,7 +389,7 @@ export default function CustomerDetail() {
                 ) : (
                   <div className="space-y-2">
                     {sites.map(site => (
-                      <Link key={site.id} to={createPageUrl('SiteDetail') + `?id=${site.id}`}>
+                      <Link key={site.id} to={routeBuilders.siteDetail(site.id)}>
                         <div className="flex items-center gap-3 p-3 rounded-lg hover:bg-slate-50 transition-colors">
                           <div className="h-10 w-10 rounded-lg bg-emerald-100 flex items-center justify-center">
                             <MapPin className="h-5 w-5 text-emerald-600" />
@@ -541,7 +540,7 @@ export default function CustomerDetail() {
                 ) : (
                   <div className="space-y-2">
                     {jobs.map(job => (
-                      <Link key={job.id} to={createPageUrl('JobDetail') + `?id=${job.id}`}>
+                      <Link key={job.id} to={routeBuilders.jobDetail(job.id)}>
                         <div className="flex items-center gap-3 p-3 rounded-lg hover:bg-slate-50 transition-colors">
                           <div className="h-10 w-10 rounded-lg bg-indigo-100 flex items-center justify-center">
                             <Wrench className="h-5 w-5 text-indigo-600" />

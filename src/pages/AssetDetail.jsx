@@ -1,8 +1,8 @@
 import React, { useState } from 'react';
 import { useQuery, useMutation, useQueryClient } from '@tanstack/react-query';
 import { base44 } from '@/api/base44Client';
-import { useSearchParams, Link } from 'react-router-dom';
-import { createPageUrl } from '../utils';
+import { useParams, Link } from 'react-router-dom';
+import { routeBuilders } from '@/components/Routes';
 import { format } from 'date-fns';
 import {
   Package,
@@ -47,8 +47,7 @@ const ASSET_STATUSES = ['Active', 'In Repair', 'Off Hire', 'Decommissioned'];
 const LOCATION_TYPES = ['Site', 'Workshop', 'Yard', 'On Hire'];
 
 export default function AssetDetail() {
-  const [searchParams] = useSearchParams();
-  const assetId = searchParams.get('id');
+  const { assetId } = useParams();
   const queryClient = useQueryClient();
   
   const [showEditDialog, setShowEditDialog] = useState(false);
@@ -312,7 +311,7 @@ export default function AssetDetail() {
                     </div>
                   </div>
                   {site && (
-                    <Link to={createPageUrl('SiteDetail') + `?id=${site.id}`}>
+                    <Link to={routeBuilders.siteDetail(site.id)}>
                       <div className="flex items-start gap-3 p-3 rounded-lg hover:bg-slate-50 transition-colors">
                         <MapPin className="h-5 w-5 text-emerald-600" />
                         <div>
@@ -365,7 +364,7 @@ export default function AssetDetail() {
                 ) : (
                   <div className="space-y-2">
                     {jobs.map(job => (
-                      <Link key={job.id} to={createPageUrl('JobDetail') + `?id=${job.id}`}>
+                      <Link key={job.id} to={routeBuilders.jobDetail(job.id)}>
                         <div className="flex items-center gap-3 p-3 rounded-lg hover:bg-slate-50 transition-colors">
                           <div className="h-10 w-10 rounded-lg bg-indigo-100 flex items-center justify-center">
                             <Wrench className="h-5 w-5 text-indigo-600" />
