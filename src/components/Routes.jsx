@@ -72,12 +72,48 @@ export const ROUTES = {
 
 /**
  * Route builders for detail pages with ID substitution
+ * ALL return absolute paths starting with "/"
  */
 export const routeBuilders = {
+  // Static routes
+  jobs: () => ROUTES.JOBS,
+  jobsBoard: () => ROUTES.JOBS_BOARD,
+  jobsNew: () => ROUTES.JOBS_CREATE,
+  ppmPlans: () => ROUTES.PPM_PLANS,
+  ppmInstances: () => ROUTES.PPM_INSTANCES,
+  ops: () => ROUTES.OPS,
+  opsTasks: () => ROUTES.OPS_TASKS,
+  opsIncidents: () => ROUTES.OPS_INCIDENTS,
+  opsIncidentsNew: () => ROUTES.OPS_INCIDENTS_CREATE,
+  fleetVehicles: () => ROUTES.FLEET_VEHICLES,
+  fleetChecks: () => ROUTES.FLEET_CHECKS,
+  fleetDefects: () => ROUTES.FLEET_DEFECTS,
+  fleetFuel: () => ROUTES.FLEET_FUEL,
+  fleetFuelReview: () => ROUTES.FLEET_FUEL_REVIEW,
+  hireAssets: () => ROUTES.HIRE_ASSETS,
+  hireCalendar: () => ROUTES.HIRE_CALENDAR,
+  hireContracts: () => ROUTES.HIRE_CONTRACTS,
+  hireContractsNew: () => ROUTES.HIRE_CONTRACTS_CREATE,
+  customers: () => ROUTES.CUSTOMERS,
+  sites: () => ROUTES.SITES,
+  contacts: () => ROUTES.CONTACTS,
+  assets: () => ROUTES.ASSETS,
+  dashboards: () => ROUTES.DASHBOARDS,
+  dashboardsJobs: () => ROUTES.DASHBOARDS_JOBS,
+  dashboardsPPM: () => ROUTES.DASHBOARDS_PPM,
+  dashboardsFleet: () => ROUTES.DASHBOARDS_FLEET,
+  dashboardsHire: () => ROUTES.DASHBOARDS_HIRE,
+  dashboardsOps: () => ROUTES.DASHBOARDS_OPS,
+  adminSettings: () => ROUTES.ADMIN_SETTINGS,
+  diagnosticsRoutes: () => ROUTES.DIAGNOSTICS_ROUTES,
+  home: () => ROUTES.HOME,
+  notFound: () => ROUTES.NOT_FOUND,
+
+  // Detail routes (always return absolute paths)
   jobDetail: (jobId) => `/jobs/${jobId}`,
   ppmPlanDetail: (planId) => `/ppm/plans/${planId}`,
   ppmInstanceDetail: (instanceId) => `/ppm/instances/${instanceId}`,
-  opTaskDetail: (taskId) => `/ops/tasks/${taskId}`,
+  opsTaskDetail: (taskId) => `/ops/tasks/${taskId}`,
   incidentDetail: (incidentId) => `/ops/incidents/${incidentId}`,
   vehicleDetail: (vehicleId) => `/fleet/vehicles/${vehicleId}`,
   defectDetail: (defectId) => `/fleet/defects/${defectId}`,
@@ -87,4 +123,23 @@ export const routeBuilders = {
   customerDetail: (customerId) => `/core/customers/${customerId}`,
   siteDetail: (siteId) => `/core/sites/${siteId}`,
   assetDetail: (assetId) => `/core/assets/${assetId}`,
+};
+
+/**
+ * Safety guard: ensure path is absolute or known external
+ * Logs warning for relative paths (dev only)
+ */
+export const ensureAbsolutePath = (path) => {
+  if (!path) return path;
+  if (path.startsWith('http') || path.startsWith('mailto:') || path.startsWith('tel:')) {
+    return path; // External links OK
+  }
+  if (path.startsWith('/')) {
+    return path; // Already absolute
+  }
+  // Relative path detected - log warning
+  if (typeof console !== 'undefined') {
+    console.warn(`[Route Warning] Relative path detected: "${path}". Use routeBuilders or absolute paths (start with "/").`);
+  }
+  return `/${path}`; // Auto-fix
 };
