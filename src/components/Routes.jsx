@@ -56,13 +56,13 @@ export const ROUTES = {
   DASHBOARDS_OPS: '/dashboards/ops',
   
   // Core Data & Admin
-  CUSTOMERS: '/core/customers',
-  CUSTOMERS_DETAIL: '/core/customers/:customerId',
+  CUSTOMERS: '/customers',
+  CUSTOMERS_DETAIL: '/customers/:customerId',
   SITES: '/sites',
   SITES_DETAIL: '/sites/:siteId',
-  CONTACTS: '/core/contacts',
-  ASSETS: '/core/assets',
-  ASSETS_DETAIL: '/core/assets/:assetId',
+  CONTACTS: '/contacts',
+  ASSETS: '/assets',
+  ASSETS_DETAIL: '/assets/:assetId',
   ADMIN_SETTINGS: '/admin/settings',
   
   // Special
@@ -120,9 +120,9 @@ export const routeBuilders = {
   fuelDetail: (fuelId) => `/fleet/fuel/${fuelId}`,
   hireContractDetail: (contractId) => `/hire/contracts/${contractId}`,
   hireInspectionDetail: (inspectionId) => `/hire/inspections/${inspectionId}`,
-  customerDetail: (customerId) => `/core/customers/${customerId}`,
+  customerDetail: (customerId) => `/customers/${customerId}`,
   siteDetail: (siteId) => `/sites/${siteId}`,
-  assetDetail: (assetId) => `/core/assets/${assetId}`,
+  assetDetail: (assetId) => `/assets/${assetId}`,
 };
 
 /**
