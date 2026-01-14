@@ -43,11 +43,11 @@ const STEPS = [
 ];
 
 const JOB_TYPES = [
-  { value: 'Breakdown', label: 'Breakdown', desc: 'Emergency repair or fault' },
-  { value: 'Service', label: 'Service', desc: 'Scheduled maintenance' },
-  { value: 'Install', label: 'Install', desc: 'New equipment installation' },
-  { value: 'Transport', label: 'Transport', desc: 'Equipment transport/delivery' },
-  { value: 'Inspection', label: 'Inspection', desc: 'Safety or compliance check' },
+  { value: 'Breakdown', label: 'Breakdown', desc: 'Emergency equipment repair or fault' },
+  { value: 'Service', label: 'Service', desc: 'Scheduled maintenance & cleaning' },
+  { value: 'Install', label: 'Install', desc: 'Equipment installation or setup' },
+  { value: 'Transport', label: 'Transport', desc: 'Equipment delivery or pickup' },
+  { value: 'Inspection', label: 'Inspection', desc: 'Equipment inspection & safety check' },
   { value: 'Other', label: 'Other', desc: 'General work order' }
 ];
 
@@ -462,8 +462,8 @@ export default function CreateJob() {
             {currentStep === 4 && (
               <div className="space-y-4">
                 <div className="text-center mb-6">
-                  <h2 className="text-xl font-semibold">Select Asset (Optional)</h2>
-                  <p className="text-slate-500 text-sm mt-1">Link this job to an asset</p>
+                  <h2 className="text-xl font-semibold">Select Equipment (Optional)</h2>
+                  <p className="text-slate-500 text-sm mt-1">Link this job to equipment</p>
                 </div>
 
                 <button
@@ -475,8 +475,8 @@ export default function CreateJob() {
                       : "border-slate-200 hover:border-slate-300"
                   )}
                 >
-                  <p className="font-medium">No specific asset</p>
-                  <p className="text-sm text-slate-500">General work order</p>
+                  <p className="font-medium">No specific equipment</p>
+                   <p className="text-sm text-slate-500">General service work</p>
                 </button>
                 
                 {filteredAssets.length > 0 && (
@@ -503,7 +503,7 @@ export default function CreateJob() {
                           </div>
                           <div>
                             <p className="font-medium">{asset.make} {asset.model}</p>
-                            <p className="text-sm text-slate-500">{asset.internalAssetId}</p>
+                             <p className="text-sm text-slate-500">ID: {asset.internalAssetId}</p>
                           </div>
                         </div>
                       </button>
@@ -658,7 +658,7 @@ export default function CreateJob() {
                         <p className="font-medium">{formData.priority}</p>
                       </div>
                       <div>
-                        <p className="text-slate-500">Asset</p>
+                        <p className="text-slate-500">Equipment</p>
                         <p className="font-medium">
                           {selectedAsset ? `${selectedAsset.make} ${selectedAsset.model}` : 'None'}
                         </p>

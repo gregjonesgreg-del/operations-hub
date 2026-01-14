@@ -385,7 +385,7 @@ export default function Dashboard() {
                 <div className="h-12 w-12 rounded-xl bg-purple-100 flex items-center justify-center">
                   <Package className="h-6 w-6 text-purple-600" />
                 </div>
-                <p className="font-medium text-sm">Assets</p>
+                <p className="font-medium text-sm">Equipment</p>
               </CardContent>
             </Card>
           </Link>

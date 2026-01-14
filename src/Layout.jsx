@@ -143,7 +143,7 @@ export default function Layout({ children, currentPageName }) {
                     <div className="h-8 w-8 rounded-lg bg-indigo-600 flex items-center justify-center">
                       <Wrench className="h-4 w-4 text-white" />
                     </div>
-                    <span className="font-semibold text-lg">OpsHub</span>
+                    <span className="font-semibold text-lg">CleanOps</span>
                   </div>
                 </div>
                 <nav className="p-2">
@@ -178,7 +178,7 @@ export default function Layout({ children, currentPageName }) {
               <div className="h-9 w-9 rounded-xl bg-gradient-to-br from-indigo-600 to-indigo-700 flex items-center justify-center shadow-sm">
                 <Wrench className="h-5 w-5 text-white" />
               </div>
-              <span className="font-bold text-xl hidden sm:block text-slate-800">OpsHub</span>
+              <span className="font-bold text-xl hidden sm:block text-slate-800">CleanOps</span>
             </Link>
           </div>
 
@@ -271,10 +271,10 @@ export default function Layout({ children, currentPageName }) {
               <div className="relative">
                 <Search className="absolute left-3 top-1/2 -translate-y-1/2 h-4 w-4 text-slate-400" />
                 <Input
-                  placeholder="Search customers, sites, assets, jobs..."
-                  className="pl-10 h-11"
-                  autoFocus
-                />
+                     placeholder="Search customers, sites, equipment, jobs..."
+                     className="pl-10 h-11"
+                     autoFocus
+                   />
               </div>
             </div>
           </div>
