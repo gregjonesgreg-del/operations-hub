@@ -23,7 +23,7 @@ import {
   Clock,
   AlertTriangle,
   CheckCircle,
-  Users,
+  Users as UsersIcon,
   TrendingUp,
   ArrowRight,
   Calendar,
@@ -394,7 +394,7 @@ export default function Dashboard() {
             <Card className="hover:shadow-md transition-shadow cursor-pointer h-full">
               <CardContent className="p-4 flex flex-col items-center justify-center text-center gap-2">
                 <div className="h-12 w-12 rounded-xl bg-emerald-100 flex items-center justify-center">
-                  <Users className="h-6 w-6 text-emerald-600" />
+                  <UsersIcon className="h-6 w-6 text-emerald-600" />
                 </div>
                 <p className="font-medium text-sm">Customers</p>
               </CardContent>
