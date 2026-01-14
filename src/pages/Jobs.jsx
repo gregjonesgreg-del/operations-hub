@@ -1,9 +1,7 @@
 import React, { useState, useMemo } from 'react';
 import { useQuery } from '@tanstack/react-query';
 import { base44 } from '@/api/base44Client';
-import { useSearchParams } from 'react-router-dom';
-import useAppNavigate from '@/components/useAppNavigate';
-import { routeBuilders, ROUTES } from '@/components/Routes';
+import { useSearchParams, useNavigate } from 'react-router-dom';
 import { format, isAfter, isBefore, parseISO } from 'date-fns';
 import {
   Plus,
@@ -48,7 +46,7 @@ const JOB_TYPES = ['Breakdown', 'Service', 'Install', 'Transport', 'Inspection',
 const PRIORITIES = ['Low', 'Medium', 'High', 'Urgent'];
 
 export default function Jobs() {
-  const navigate = useAppNavigate();
+  const navigate = useNavigate();
   const [searchParams, setSearchParams] = useSearchParams();
   const [searchQuery, setSearchQuery] = useState('');
   const [viewMode, setViewMode] = useState('list');
@@ -190,7 +188,7 @@ export default function Jobs() {
         subtitle={`${filteredJobs.length} job${filteredJobs.length !== 1 ? 's' : ''}`}
         actions={
           <Button 
-            onClick={() => navigate(ROUTES.JOBS_CREATE)}
+            onClick={() => navigate('/CreateJob')}
             className="gap-2 bg-indigo-600 hover:bg-indigo-700"
           >
             <Plus className="h-4 w-4" />
@@ -416,10 +414,10 @@ export default function Jobs() {
                      "hover:shadow-md transition-all cursor-pointer",
                      overdue && "border-red-200 bg-red-50/30"
                    )}
-                   onClick={() => navigate(routeBuilders.jobDetail(job.id))}
+                   onClick={() => navigate(`/JobDetail?jobId=${job.id}`)}
                    role="button"
                    tabIndex={0}
-                   onKeyDown={(e) => e.key === 'Enter' && navigate(routeBuilders.jobDetail(job.id))}
+                   onKeyDown={(e) => e.key === 'Enter' && navigate(`/JobDetail?jobId=${job.id}`)}
                  >
                    <CardContent className="p-4">
                      <div className="flex items-start gap-4">
