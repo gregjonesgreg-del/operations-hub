@@ -1,24 +1,20 @@
 import React, { useState, useEffect } from 'react';
 import { Link, useLocation } from 'react-router-dom';
-import { ROUTES, routeBuilders } from '@/components/Routes';
 import { base44 } from '@/api/base44Client';
 import {
   Wrench,
   Calendar,
   Truck,
-  ClipboardCheck,
   Car,
   BarChart3,
   Database,
   Menu,
-  X,
   Search,
   Bell,
   User,
   ChevronDown,
   LogOut,
-  Settings,
-  Home
+  Settings
 } from 'lucide-react';
 import { Button } from '@/components/ui/button';
 import {
@@ -32,15 +28,16 @@ import { Input } from '@/components/ui/input';
 import { Sheet, SheetContent, SheetTrigger } from '@/components/ui/sheet';
 import { cn } from '@/lib/utils';
 
+// Navigation sections with Base44 page paths
 const navSections = [
   {
     id: 'jobs',
     label: 'Work Orders',
     icon: Wrench,
     pages: [
-      { route: ROUTES.JOBS, label: 'All Jobs' },
-      { route: ROUTES.JOBS_BOARD, label: 'Jobs Board' },
-      { route: ROUTES.JOBS_CREATE, label: 'Create Job' }
+      { path: '/Jobs', label: 'All Jobs' },
+      { path: '/JobsBoard', label: 'Jobs Board' },
+      { path: '/CreateJob', label: 'Create Job' }
     ]
   },
   {
@@ -48,8 +45,7 @@ const navSections = [
     label: 'PPM',
     icon: Calendar,
     pages: [
-      { route: ROUTES.PPM_PLANS, label: 'Plans' },
-      { route: ROUTES.PPM_INSTANCES, label: 'Instances' }
+      { path: '/PPM', label: 'Plans & Instances' }
     ]
   },
   {
@@ -57,9 +53,9 @@ const navSections = [
     label: 'Fleet',
     icon: Car,
     pages: [
-      { route: ROUTES.FLEET_VEHICLES, label: 'Vehicles' },
-      { route: ROUTES.FLEET_DEFECTS, label: 'Defects' },
-      { route: ROUTES.FLEET_FUEL, label: 'Fuel Log' }
+      { path: '/Fleet', label: 'Vehicles & Checks' },
+      { path: '/FleetDefects', label: 'Defects' },
+      { path: '/FleetFuel', label: 'Fuel Log' }
     ]
   },
   {
@@ -67,9 +63,8 @@ const navSections = [
     label: 'Hire / Rental',
     icon: Truck,
     pages: [
-      { route: ROUTES.HIRE_ASSETS, label: 'Assets' },
-      { route: ROUTES.HIRE_CALENDAR, label: 'Calendar' },
-      { route: ROUTES.HIRE_CONTRACTS, label: 'Contracts' }
+      { path: '/Hire', label: 'Assets & Contracts' },
+      { path: '/HireCalendar', label: 'Calendar' }
     ]
   },
   {
@@ -77,7 +72,7 @@ const navSections = [
     label: 'Dashboards',
     icon: BarChart3,
     pages: [
-      { route: ROUTES.DASHBOARDS, label: 'Overview' }
+      { path: '/Dashboards', label: 'Overview' }
     ]
   },
   {
@@ -85,10 +80,10 @@ const navSections = [
     label: 'Core Data',
     icon: Database,
     pages: [
-      { route: ROUTES.CUSTOMERS, label: 'Customers' },
-      { route: ROUTES.SITES, label: 'Sites' },
-      { route: ROUTES.ASSETS, label: 'Assets' },
-      { route: ROUTES.CONTACTS, label: 'Contacts' }
+      { path: '/Customers', label: 'Customers' },
+      { path: '/Sites', label: 'Sites' },
+      { path: '/Assets', label: 'Assets' },
+      { path: '/Contacts', label: 'Contacts' }
     ]
   },
   {
@@ -96,7 +91,7 @@ const navSections = [
     label: 'Admin',
     icon: Settings,
     pages: [
-      { route: ROUTES.ADMIN_SETTINGS, label: 'Settings' }
+      { path: '/AdminSettings', label: 'Settings' }
     ]
   }
 ];
@@ -113,14 +108,14 @@ export default function Layout({ children, currentPageName }) {
   }, []);
 
   useEffect(() => {
-    // Find active section based on current route path
+    // Find active section based on current page name
     for (const section of navSections) {
-      if (section.pages.some(p => location.pathname === p.route || location.pathname.startsWith(p.route + '/'))) {
+      if (section.pages.some(p => currentPageName === p.path.slice(1))) {
         setActiveSection(section.id);
         break;
       }
     }
-  }, [location.pathname]);
+  }, [currentPageName]);
 
   const handleLogout = () => {
     base44.auth.logout();
@@ -156,12 +151,12 @@ export default function Layout({ children, currentPageName }) {
                       </div>
                       {section.pages.map((page) => (
                         <Link
-                          key={page.route}
-                          to={page.route}
+                          key={page.path}
+                          to={page.path}
                           onClick={() => setMobileMenuOpen(false)}
                           className={cn(
                             "flex items-center gap-3 px-3 py-2.5 rounded-lg text-sm transition-colors",
-                            location.pathname === page.route || location.pathname.startsWith(page.route + '/')
+                            currentPageName === page.path.slice(1)
                               ? "bg-indigo-50 text-indigo-700 font-medium"
                               : "text-slate-600 hover:bg-slate-100"
                           )}
@@ -176,7 +171,7 @@ export default function Layout({ children, currentPageName }) {
               </SheetContent>
             </Sheet>
 
-            <Link to={ROUTES.HOME} className="flex items-center gap-2">
+            <Link to="/" className="flex items-center gap-2">
               <div className="h-9 w-9 rounded-xl bg-gradient-to-br from-indigo-600 to-indigo-700 flex items-center justify-center shadow-sm">
                 <Wrench className="h-5 w-5 text-white" />
               </div>
@@ -205,8 +200,8 @@ export default function Layout({ children, currentPageName }) {
                 </DropdownMenuTrigger>
                 <DropdownMenuContent align="start" className="w-48">
                   {section.pages.map((page) => (
-                    <DropdownMenuItem key={page.route} asChild>
-                      <Link to={page.route} className="cursor-pointer">
+                    <DropdownMenuItem key={page.path} asChild>
+                      <Link to={page.path} className="cursor-pointer">
                         {page.label}
                       </Link>
                     </DropdownMenuItem>
@@ -251,7 +246,7 @@ export default function Layout({ children, currentPageName }) {
                   </>
                 )}
                 <DropdownMenuItem asChild>
-                  <Link to={ROUTES.ADMIN_SETTINGS} className="cursor-pointer">
+                  <Link to="/AdminSettings" className="cursor-pointer">
                     <Settings className="h-4 w-4 mr-2" />
                     Settings
                   </Link>
