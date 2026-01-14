@@ -2,7 +2,7 @@ import React, { useState, useMemo } from 'react';
 import { useQuery } from '@tanstack/react-query';
 import { base44 } from '@/api/base44Client';
 import { Link } from 'react-router-dom';
-import { createPageUrl } from '../utils';
+import { routeBuilders } from '@/components/Routes';
 import {
   Search,
   User,
@@ -102,7 +102,7 @@ export default function Contacts() {
                         <div className="flex flex-wrap items-center gap-x-4 gap-y-1 mt-1 text-sm text-slate-500">
                           {customer && (
                             <Link 
-                              to={createPageUrl('CustomerDetail') + `?id=${customer.id}`}
+                              to={routeBuilders.customerDetail(customer.id)}
                               className="flex items-center gap-1 hover:text-indigo-600"
                             >
                               <Building2 className="h-3 w-3" />

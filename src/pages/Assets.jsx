@@ -2,7 +2,7 @@ import React, { useState, useMemo } from 'react';
 import { useQuery, useMutation, useQueryClient } from '@tanstack/react-query';
 import { base44 } from '@/api/base44Client';
 import { Link } from 'react-router-dom';
-import { createPageUrl } from '../utils';
+import { routeBuilders } from '@/components/Routes';
 import {
   Plus,
   Search,
@@ -422,7 +422,7 @@ export default function Assets() {
               const site = siteMap[asset.site];
 
               return (
-                <Link key={asset.id} to={createPageUrl('AssetDetail') + `?id=${asset.id}`}>
+                <Link key={asset.id} to={routeBuilders.assetDetail(asset.id)}>
                   <Card className="hover:shadow-md transition-all cursor-pointer h-full">
                     <CardContent className="p-4">
                       <div className="flex items-start gap-3">
