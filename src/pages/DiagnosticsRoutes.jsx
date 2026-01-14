@@ -2,7 +2,6 @@ import React, { useState, useMemo } from 'react';
 import { Link } from 'react-router-dom';
 import { useQuery } from '@tanstack/react-query';
 import { base44 } from '@/api/base44Client';
-import { ROUTES, routeBuilders } from '@/components/Routes';
 import { Button } from '@/components/ui/button';
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
 import { Badge } from '@/components/ui/badge';
@@ -12,67 +11,7 @@ import LoadingSpinner from '@/components/ui/LoadingSpinner';
 import PageHeader from '@/components/ui/PageHeader';
 import EmptyState from '@/components/ui/EmptyState';
 
-const NAV_SECTIONS = [
-  {
-    id: 'jobs',
-    label: 'Work Orders',
-    pages: [
-      { route: ROUTES.JOBS, label: 'All Jobs' },
-      { route: ROUTES.JOBS_BOARD, label: 'Jobs Board' },
-      { route: ROUTES.JOBS_CREATE, label: 'Create Job' }
-    ]
-  },
-  {
-    id: 'ppm',
-    label: 'PPM',
-    pages: [
-      { route: ROUTES.PPM_PLANS, label: 'Plans' },
-      { route: ROUTES.PPM_INSTANCES, label: 'Instances' }
-    ]
-  },
-  {
-    id: 'fleet',
-    label: 'Fleet',
-    pages: [
-      { route: ROUTES.FLEET_VEHICLES, label: 'Vehicles' },
-      { route: ROUTES.FLEET_DEFECTS, label: 'Defects' },
-      { route: ROUTES.FLEET_FUEL, label: 'Fuel Log' }
-    ]
-  },
-  {
-    id: 'hire',
-    label: 'Hire / Rental',
-    pages: [
-      { route: ROUTES.HIRE_ASSETS, label: 'Assets' },
-      { route: ROUTES.HIRE_CALENDAR, label: 'Calendar' },
-      { route: ROUTES.HIRE_CONTRACTS, label: 'Contracts' }
-    ]
-  },
-  {
-    id: 'dashboards',
-    label: 'Dashboards',
-    pages: [
-      { route: ROUTES.DASHBOARDS, label: 'Overview' }
-    ]
-  },
-  {
-    id: 'core',
-    label: 'Core Data',
-    pages: [
-      { route: ROUTES.CUSTOMERS, label: 'Customers' },
-      { route: ROUTES.SITES, label: 'Sites' },
-      { route: ROUTES.ASSETS, label: 'Assets' },
-      { route: ROUTES.CONTACTS, label: 'Contacts' }
-    ]
-  },
-  {
-    id: 'admin',
-    label: 'Admin',
-    pages: [
-      { route: ROUTES.ADMIN_SETTINGS, label: 'Settings' }
-    ]
-  }
-];
+const NAV_SECTIONS = [];
 
 export default function DiagnosticsRoutes() {
   const { data: user, isLoading: userLoading } = useQuery({
@@ -128,16 +67,8 @@ export default function DiagnosticsRoutes() {
     );
   }
 
-  // Build registered routes list
-  const registeredRoutes = Object.entries(ROUTES)
-    .map(([key, route]) => ({
-      key,
-      route,
-      isDetailRoute: route.includes(':'),
-      isDynamic: /:\w+/.test(route),
-      section: getSection(key),
-    }))
-    .sort((a, b) => a.section.localeCompare(b.section));
+  // Build registered routes list (empty since Routes.js is removed)
+  const registeredRoutes = [];
 
   const registeredRoutesMap = new Set(registeredRoutes.map(r => r.route));
   const baseRoutes = new Set(registeredRoutes.map(r => r.route.split(':')[0].replace(/\/$/, '')));
@@ -412,28 +343,28 @@ export default function DiagnosticsRoutes() {
             </p>
             <div className="grid sm:grid-cols-2 gap-4">
               {firstJob && (
-                <Link to={routeBuilders.jobDetail(firstJob.id)}>
+                <Link to={`/JobDetail?jobId=${firstJob.id}`}>
                   <Button className="w-full bg-emerald-600 hover:bg-emerald-700">
                     Open First Job ({firstJob.jobNumber || 'Draft'})
                   </Button>
                 </Link>
               )}
               {firstAsset && (
-                <Link to={routeBuilders.assetDetail(firstAsset.id)}>
+                <Link to={`/AssetDetail?assetId=${firstAsset.id}`}>
                   <Button className="w-full bg-emerald-600 hover:bg-emerald-700">
                     Open First Asset ({firstAsset.internalAssetId})
                   </Button>
                 </Link>
               )}
               {firstCustomer && (
-                <Link to={routeBuilders.customerDetail(firstCustomer.id)}>
+                <Link to={`/CustomerDetail?customerId=${firstCustomer.id}`}>
                   <Button className="w-full bg-emerald-600 hover:bg-emerald-700">
                     Open First Customer ({firstCustomer.name})
                   </Button>
                 </Link>
               )}
               {firstSite && (
-                <Link to={routeBuilders.siteDetail(firstSite.id)}>
+                <Link to={`/SiteDetail?siteId=${firstSite.id}`}>
                   <Button className="w-full bg-emerald-600 hover:bg-emerald-700">
                     Open First Site ({firstSite.siteName})
                   </Button>
