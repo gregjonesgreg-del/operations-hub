@@ -2,7 +2,6 @@ import React from 'react';
 import { useQuery } from '@tanstack/react-query';
 import { base44 } from '@/api/base44Client';
 import { Link } from 'react-router-dom';
-import { ROUTES, routeBuilders } from '@/components/Routes';
 import { Card, CardContent } from '@/components/ui/card';
 import { Badge } from '@/components/ui/badge';
 import PageHeader from '@/components/ui/PageHeader';
@@ -41,7 +40,7 @@ export default function FleetDefects() {
         ) : (
           <div className="space-y-3">
             {sorted.map(defect => (
-              <Link key={defect.id} to={routeBuilders.defectDetail(defect.id)}>
+              <Link key={defect.id} to={`/FleetDefectDetail?defectId=${defect.id}`}>
                 <Card className="hover:shadow-md transition-all cursor-pointer">
                   <CardContent className="p-4">
                     <div className="flex items-start justify-between">
