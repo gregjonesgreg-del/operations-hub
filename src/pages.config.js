@@ -24,6 +24,8 @@ import PPMInstanceDetail from './pages/PPMInstanceDetail';
 import InternalTaskDetail from './pages/InternalTaskDetail';
 import IncidentDetail from './pages/IncidentDetail';
 import MyVehicle from './pages/MyVehicle';
+import VehicleDetail from './pages/VehicleDetail';
+import HireContractDetail from './pages/HireContractDetail';
 import __Layout from './Layout.jsx';
 
 
@@ -54,6 +56,8 @@ export const PAGES = {
     "InternalTaskDetail": InternalTaskDetail,
     "IncidentDetail": IncidentDetail,
     "MyVehicle": MyVehicle,
+    "VehicleDetail": VehicleDetail,
+    "HireContractDetail": HireContractDetail,
 }
 
 export const pagesConfig = {
