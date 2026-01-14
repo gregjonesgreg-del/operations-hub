@@ -2,7 +2,7 @@ import React, { useState, useMemo } from 'react';
 import { Link } from 'react-router-dom';
 import { useQuery } from '@tanstack/react-query';
 import { base44 } from '@/api/base44Client';
-import { ROUTES } from '@/components/Routes';
+import { ROUTES, routeBuilders } from '@/components/Routes';
 import { Button } from '@/components/ui/button';
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
 import { Badge } from '@/components/ui/badge';
@@ -78,6 +78,26 @@ export default function DiagnosticsRoutes() {
   const { data: user, isLoading: userLoading } = useQuery({
     queryKey: ['user'],
     queryFn: () => base44.auth.me()
+  });
+
+  const { data: firstJob } = useQuery({
+    queryKey: ['firstJob'],
+    queryFn: () => base44.entities.Job.list(null, 1).then(r => r[0])
+  });
+
+  const { data: firstAsset } = useQuery({
+    queryKey: ['firstAsset'],
+    queryFn: () => base44.entities.Asset.list(null, 1).then(r => r[0])
+  });
+
+  const { data: firstCustomer } = useQuery({
+    queryKey: ['firstCustomer'],
+    queryFn: () => base44.entities.Customer.list(null, 1).then(r => r[0])
+  });
+
+  const { data: firstSite } = useQuery({
+    queryKey: ['firstSite'],
+    queryFn: () => base44.entities.Site.list(null, 1).then(r => r[0])
   });
 
   const [searchQuery, setSearchQuery] = useState('');
@@ -378,17 +398,65 @@ export default function DiagnosticsRoutes() {
           </CardContent>
         </Card>
 
+        {/* Smoke Test: Live List→Detail Navigation */}
+        <Card className="border-emerald-200 bg-emerald-50">
+          <CardHeader>
+            <CardTitle className="flex items-center gap-2 text-emerald-900">
+              <CheckCircle className="h-5 w-5 text-emerald-600" />
+              Smoke Test: Click to verify detail pages load
+            </CardTitle>
+          </CardHeader>
+          <CardContent>
+            <p className="text-sm text-emerald-800 mb-4">
+              These buttons navigate to actual first records using routeBuilders. If they work, list→detail routing is fixed.
+            </p>
+            <div className="grid sm:grid-cols-2 gap-4">
+              {firstJob && (
+                <Link to={routeBuilders.jobDetail(firstJob.id)}>
+                  <Button className="w-full bg-emerald-600 hover:bg-emerald-700">
+                    Open First Job ({firstJob.jobNumber || 'Draft'})
+                  </Button>
+                </Link>
+              )}
+              {firstAsset && (
+                <Link to={routeBuilders.assetDetail(firstAsset.id)}>
+                  <Button className="w-full bg-emerald-600 hover:bg-emerald-700">
+                    Open First Asset ({firstAsset.internalAssetId})
+                  </Button>
+                </Link>
+              )}
+              {firstCustomer && (
+                <Link to={routeBuilders.customerDetail(firstCustomer.id)}>
+                  <Button className="w-full bg-emerald-600 hover:bg-emerald-700">
+                    Open First Customer ({firstCustomer.name})
+                  </Button>
+                </Link>
+              )}
+              {firstSite && (
+                <Link to={routeBuilders.siteDetail(firstSite.id)}>
+                  <Button className="w-full bg-emerald-600 hover:bg-emerald-700">
+                    Open First Site ({firstSite.siteName})
+                  </Button>
+                </Link>
+              )}
+              {!firstJob && !firstAsset && !firstCustomer && !firstSite && (
+                <p className="text-sm text-emerald-700 col-span-2">No records found to test.</p>
+              )}
+            </div>
+          </CardContent>
+        </Card>
+
         {/* Deep Link Builder Test */}
         <Card>
           <CardHeader>
             <CardTitle className="flex items-center gap-2">
               <CheckCircle className="h-5 w-5 text-indigo-600" />
-              Route Builder Test (with sample ID: "test-id-123")
+              Route Builder Examples (sample ID: "test-id-123")
             </CardTitle>
           </CardHeader>
           <CardContent>
             <p className="text-sm text-slate-600 mb-4">
-              These are examples of how route builders generate absolute paths. All should start with "/".
+              How route builders generate absolute paths. All use URL segments (/:id), not query params.
             </p>
             <div className="space-y-4">
               <div className="grid sm:grid-cols-2 gap-4">
