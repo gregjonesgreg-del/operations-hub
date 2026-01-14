@@ -1,7 +1,7 @@
 import React, { useState, useMemo } from 'react';
 import { useQuery, useMutation, useQueryClient } from '@tanstack/react-query';
 import { base44 } from '@/api/base44Client';
-import { Link } from 'react-router-dom';
+import AppLink from '@/components/AppLink';
 import { routeBuilders } from '@/components/Routes';
 import {
   Plus,
@@ -422,7 +422,7 @@ export default function Assets() {
               const site = siteMap[asset.site];
 
               return (
-                <Link key={asset.id} to={routeBuilders.assetDetail(asset.id)}>
+                <AppLink key={asset.id} to={routeBuilders.assetDetail(asset.id)}>
                   <Card className="hover:shadow-md transition-all cursor-pointer h-full">
                     <CardContent className="p-4">
                       <div className="flex items-start gap-3">
@@ -450,7 +450,7 @@ export default function Assets() {
                       </div>
                     </CardContent>
                   </Card>
-                </Link>
+                </AppLink>
               );
             })}
           </div>
