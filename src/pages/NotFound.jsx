@@ -2,7 +2,7 @@ import React from 'react';
 import { Link } from 'react-router-dom';
 import { AlertTriangle } from 'lucide-react';
 import { Button } from '@/components/ui/button';
-import { ROUTES } from '@/components/Routes';
+import { ROUTES } from '../components/Routes';
 
 export default function NotFound() {
   return (
