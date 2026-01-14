@@ -389,26 +389,26 @@ export default function Jobs() {
 
       <div className="px-4 sm:px-6 py-6">
         {filteredJobs.length === 0 ? (
-          <EmptyState
-            icon={Search}
-            title="No jobs found"
-            description={searchQuery || activeFiltersCount > 0 
-              ? "Try adjusting your search or filters"
-              : "Create your first job to get started"
-            }
-            action={searchQuery || activeFiltersCount > 0 ? clearFilters : undefined}
-            actionLabel={searchQuery || activeFiltersCount > 0 ? "Clear Filters" : undefined}
-          />
-        ) : viewMode === 'list' ? (
-          <div className="space-y-3">
-            {filteredJobs.map(job => {
-              const customer = customerMap[job.customer];
-              const site = siteMap[job.site];
-              const assignedEmployee = employeeMap[job.assignedPrimary];
-              const overdue = isOverdue(job);
+           <EmptyState
+             icon={Search}
+             title="No jobs found"
+             description={searchQuery || activeFiltersCount > 0 
+               ? "Try adjusting your search or filters"
+               : "Create your first job to get started"
+             }
+             action={searchQuery || activeFiltersCount > 0 ? clearFilters : undefined}
+             actionLabel={searchQuery || activeFiltersCount > 0 ? "Clear Filters" : undefined}
+           />
+         ) : viewMode === 'list' ? (
+           <div className="space-y-3">
+             {filteredJobs.map(job => {
+               const customer = customerMap[job.customer];
+               const site = siteMap[job.site];
+               const assignedEmployee = employeeMap[job.assignedPrimary];
+               const overdue = isOverdue(job);
 
-              return (
-                <Link key={job.id} to={createPageUrl('JobDetail') + `?id=${job.id}`}>
+               return (
+                 <Link key={job.id} to={routeBuilders.jobDetail(job.id)}>
                   <Card className={cn(
                     "hover:shadow-md transition-all cursor-pointer",
                     overdue && "border-red-200 bg-red-50/30"

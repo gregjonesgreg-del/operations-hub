@@ -202,7 +202,7 @@ export default function Customers() {
               const siteCount = getSiteCount(customer.id);
 
               return (
-                <Link key={customer.id} to={createPageUrl('CustomerDetail') + `?id=${customer.id}`}>
+                <Link key={customer.id} to={routeBuilders.customerDetail(customer.id)}>
                   <Card className="hover:shadow-md transition-all cursor-pointer">
                     <CardContent className="p-4">
                       <div className="flex items-center gap-4">
