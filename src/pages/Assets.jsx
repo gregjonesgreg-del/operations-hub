@@ -1,7 +1,7 @@
 import React, { useState, useMemo } from 'react';
 import { useQuery, useMutation, useQueryClient } from '@tanstack/react-query';
 import { base44 } from '@/api/base44Client';
-import AppLink from '@/components/AppLink';
+import useAppNavigate from '@/components/useAppNavigate';
 import { routeBuilders } from '@/components/Routes';
 import {
   Plus,
@@ -70,6 +70,7 @@ const typeColors = {
 };
 
 export default function Assets() {
+  const navigate = useAppNavigate();
   const queryClient = useQueryClient();
   const [searchQuery, setSearchQuery] = useState('');
   const [showCreateDialog, setShowCreateDialog] = useState(false);
@@ -422,35 +423,40 @@ export default function Assets() {
               const site = siteMap[asset.site];
 
               return (
-                <AppLink key={asset.id} to={routeBuilders.assetDetail(asset.id)}>
-                  <Card className="hover:shadow-md transition-all cursor-pointer h-full">
-                    <CardContent className="p-4">
-                      <div className="flex items-start gap-3">
-                        <div className={cn("h-12 w-12 rounded-xl flex items-center justify-center flex-shrink-0", colorClass)}>
-                          <Icon className="h-6 w-6" />
+                <Card 
+                  key={asset.id}
+                  className="hover:shadow-md transition-all cursor-pointer h-full"
+                  onClick={() => navigate(routeBuilders.assetDetail(asset.id))}
+                  role="button"
+                  tabIndex={0}
+                  onKeyDown={(e) => e.key === 'Enter' && navigate(routeBuilders.assetDetail(asset.id))}
+                >
+                  <CardContent className="p-4">
+                    <div className="flex items-start gap-3">
+                      <div className={cn("h-12 w-12 rounded-xl flex items-center justify-center flex-shrink-0", colorClass)}>
+                        <Icon className="h-6 w-6" />
+                      </div>
+                      <div className="flex-1 min-w-0">
+                        <div className="flex items-center gap-2">
+                          <span className="font-semibold text-slate-900 truncate">
+                            {asset.make} {asset.model}
+                          </span>
                         </div>
-                        <div className="flex-1 min-w-0">
-                          <div className="flex items-center gap-2">
-                            <span className="font-semibold text-slate-900 truncate">
-                              {asset.make} {asset.model}
-                            </span>
-                          </div>
-                          <p className="text-sm text-slate-500">{asset.internalAssetId}</p>
-                        </div>
+                        <p className="text-sm text-slate-500">{asset.internalAssetId}</p>
                       </div>
+                    </div>
 
-                      <div className="flex flex-wrap gap-2 mt-3">
-                        <Badge variant="outline" className="text-xs">{asset.assetType}</Badge>
-                        <StatusBadge status={asset.status} size="xs" />
-                      </div>
+                    <div className="flex flex-wrap gap-2 mt-3">
+                      <Badge variant="outline" className="text-xs">{asset.assetType}</Badge>
+                      <StatusBadge status={asset.status} size="xs" />
+                    </div>
 
-                      <div className="mt-3 pt-3 border-t text-sm text-slate-500">
-                        <span>{asset.locationType}</span>
-                        {site && <span className="ml-1">• {site.siteName}</span>}
-                      </div>
-                    </CardContent>
-                  </Card>
-                </AppLink>
+                    <div className="mt-3 pt-3 border-t text-sm text-slate-500">
+                      <span>{asset.locationType}</span>
+                      {site && <span className="ml-1">• {site.siteName}</span>}
+                    </div>
+                  </CardContent>
+                </Card>
               );
             })}
           </div>
