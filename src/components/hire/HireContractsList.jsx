@@ -8,8 +8,6 @@ import { Calendar } from 'lucide-react';
 import EmptyState from '@/components/ui/EmptyState';
 
 export default function HireContractsList({ contracts }) {
-  const { data: customers = [] } = React.useContext(React.createContext({ data: [] }));
-
   const sorted = useMemo(() => {
     const statusOrder = { 'On Hire': 0, 'Confirmed': 1, 'Draft': 2, 'Off Hire Requested': 3, 'Returned': 4, 'Closed': 5 };
     return [...contracts].sort((a, b) => (statusOrder[a.status] ?? 6) - (statusOrder[b.status] ?? 6));
