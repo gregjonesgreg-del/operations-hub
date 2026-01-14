@@ -6,6 +6,10 @@ import JobDetail from './pages/JobDetail';
 import MyJobs from './pages/MyJobs';
 import Customers from './pages/Customers';
 import CustomerDetail from './pages/CustomerDetail';
+import Assets from './pages/Assets';
+import AssetDetail from './pages/AssetDetail';
+import Sites from './pages/Sites';
+import SiteDetail from './pages/SiteDetail';
 import __Layout from './Layout.jsx';
 
 
@@ -18,6 +22,10 @@ export const PAGES = {
     "MyJobs": MyJobs,
     "Customers": Customers,
     "CustomerDetail": CustomerDetail,
+    "Assets": Assets,
+    "AssetDetail": AssetDetail,
+    "Sites": Sites,
+    "SiteDetail": SiteDetail,
 }
 
 export const pagesConfig = {
