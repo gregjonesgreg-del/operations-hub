@@ -1,9 +1,7 @@
 import React, { useState } from 'react';
 import { useQuery, useMutation, useQueryClient } from '@tanstack/react-query';
 import { base44 } from '@/api/base44Client';
-import { useSearchParams } from 'react-router-dom';
-import useAppNavigate from '@/components/useAppNavigate';
-import { routeBuilders, ROUTES } from '@/components/Routes';
+import { useParams } from 'react-router-dom';
 import { format } from 'date-fns';
 import {
   Package,
@@ -48,9 +46,7 @@ const ASSET_STATUSES = ['Active', 'In Repair', 'Off Hire', 'Decommissioned'];
 const LOCATION_TYPES = ['Site', 'Workshop', 'Yard', 'On Hire'];
 
 export default function AssetDetail() {
-  const navigate = useAppNavigate();
-  const [searchParams] = useSearchParams();
-  const assetId = searchParams.get('id');
+  const { assetId } = useParams();
   const queryClient = useQueryClient();
   
   const [showEditDialog, setShowEditDialog] = useState(false);
@@ -116,7 +112,7 @@ export default function AssetDetail() {
       <PageHeader
         title={`${asset.make} ${asset.model}`}
         subtitle={asset.internalAssetId}
-        backLink={routeBuilders.assets()}
+        backLink="/core/assets"
         backLabel="Assets"
         actions={
           <Dialog open={showEditDialog} onOpenChange={(open) => {
@@ -314,12 +310,9 @@ export default function AssetDetail() {
                     </div>
                   </div>
                   {site && (
-                    <div 
-                      onClick={() => navigate(routeBuilders.siteDetail(site.id))}
-                      className="flex items-start gap-3 p-3 rounded-lg hover:bg-slate-50 transition-colors cursor-pointer"
-                      role="button"
-                      tabIndex={0}
-                      onKeyDown={(e) => e.key === 'Enter' && navigate(routeBuilders.siteDetail(site.id))}
+                    <a 
+                      href={`/core/sites/${site.id}`}
+                      className="flex items-start gap-3 p-3 rounded-lg hover:bg-slate-50 transition-colors"
                     >
                       <MapPin className="h-5 w-5 text-emerald-600" />
                       <div>
@@ -357,12 +350,12 @@ export default function AssetDetail() {
             <Card>
               <CardHeader className="flex flex-row items-center justify-between">
                 <CardTitle className="text-lg">Related Jobs</CardTitle>
-                <Button 
-                  onClick={() => navigate(routeBuilders.jobsNew())}
-                  size="sm"
+                <a 
+                  href="/jobs/new"
+                  className="inline-flex items-center justify-center gap-2 whitespace-nowrap rounded-md text-sm font-medium h-9 px-4 py-2 bg-primary text-primary-foreground shadow hover:bg-primary/90"
                 >
                   New Job
-                </Button>
+                </a>
               </CardHeader>
               <CardContent>
                 {jobs.length === 0 ? (
@@ -374,13 +367,10 @@ export default function AssetDetail() {
                 ) : (
                   <div className="space-y-2">
                      {jobs.map(job => (
-                       <div
+                       <a
                          key={job.id}
-                         onClick={() => navigate(routeBuilders.jobDetail(job.id))}
-                         className="flex items-center gap-3 p-3 rounded-lg hover:bg-slate-50 transition-colors cursor-pointer"
-                         role="button"
-                         tabIndex={0}
-                         onKeyDown={(e) => e.key === 'Enter' && navigate(routeBuilders.jobDetail(job.id))}
+                         href={`/jobs/${job.id}`}
+                         className="flex items-center gap-3 p-3 rounded-lg hover:bg-slate-50 transition-colors"
                        >
                          <div className="h-10 w-10 rounded-lg bg-indigo-100 flex items-center justify-center">
                            <Wrench className="h-5 w-5 text-indigo-600" />
@@ -391,8 +381,8 @@ export default function AssetDetail() {
                          </div>
                          <StatusBadge status={job.status} size="xs" />
                          <ChevronRight className="h-4 w-4 text-slate-400" />
-                       </div>
-                     ))}
+                         </a>
+                         ))}
                   </div>
                 )}
               </CardContent>
