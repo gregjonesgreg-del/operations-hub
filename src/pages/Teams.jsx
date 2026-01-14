@@ -3,7 +3,7 @@ import { useQuery, useMutation, useQueryClient } from '@tanstack/react-query';
 import { base44 } from '@/api/base44Client';
 import {
   Plus,
-  Users,
+  Users as UsersIcon,
   Edit2,
   User,
   MapPin
@@ -123,7 +123,7 @@ export default function Teams() {
       <div className="px-4 sm:px-6 py-6">
         {teams.length === 0 ? (
           <EmptyState
-            icon={Users}
+            icon={UsersIcon}
             title="No teams yet"
             description="Create teams to organize your workforce"
             action={() => setShowCreateDialog(true)}
@@ -141,7 +141,7 @@ export default function Teams() {
                     <div className="flex items-start justify-between">
                       <div className="flex items-center gap-3">
                         <div className="h-10 w-10 rounded-lg bg-indigo-100 flex items-center justify-center">
-                          <Users className="h-5 w-5 text-indigo-600" />
+                          <UsersIcon className="h-5 w-5 text-indigo-600" />
                         </div>
                         <div>
                           <CardTitle className="text-lg">{team.name}</CardTitle>
