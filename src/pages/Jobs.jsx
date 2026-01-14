@@ -1,7 +1,8 @@
 import React, { useState, useMemo } from 'react';
 import { useQuery } from '@tanstack/react-query';
 import { base44 } from '@/api/base44Client';
-import { Link, useSearchParams } from 'react-router-dom';
+import { useSearchParams } from 'react-router-dom';
+import AppLink from '@/components/AppLink';
 import { routeBuilders, ROUTES } from '@/components/Routes';
 import { format, isAfter, isBefore, parseISO } from 'date-fns';
 import {
@@ -187,12 +188,12 @@ export default function Jobs() {
         title="Work Orders"
         subtitle={`${filteredJobs.length} job${filteredJobs.length !== 1 ? 's' : ''}`}
         actions={
-          <Link to={ROUTES.JOBS_CREATE}>
+          <AppLink to={ROUTES.JOBS_CREATE}>
             <Button className="gap-2 bg-indigo-600 hover:bg-indigo-700">
               <Plus className="h-4 w-4" />
               <span className="hidden sm:inline">Create Job</span>
             </Button>
-          </Link>
+          </AppLink>
         }
       >
         {/* Search and Filter Bar */}
@@ -407,59 +408,59 @@ export default function Jobs() {
                const overdue = isOverdue(job);
 
                return (
-                 <Link key={job.id} to={routeBuilders.jobDetail(job.id)}>
-                  <Card className={cn(
-                    "hover:shadow-md transition-all cursor-pointer",
-                    overdue && "border-red-200 bg-red-50/30"
-                  )}>
-                    <CardContent className="p-4">
-                      <div className="flex items-start gap-4">
-                        <div className="flex-1 min-w-0">
-                          <div className="flex items-center gap-2 flex-wrap">
-                            <span className="font-semibold text-slate-900">
-                              {job.jobNumber || 'Draft'}
-                            </span>
-                            <PriorityBadge priority={job.priority} size="xs" />
-                            <StatusBadge status={job.status} size="xs" />
-                            {overdue && (
-                              <Badge variant="destructive" className="gap-1 text-xs">
-                                <AlertTriangle className="h-3 w-3" />
-                                Overdue
-                              </Badge>
-                            )}
-                          </div>
-                          
-                          <p className="text-sm text-slate-600 mt-1 line-clamp-1">
-                            {job.description || job.jobType}
-                          </p>
+                 <AppLink key={job.id} to={routeBuilders.jobDetail(job.id)}>
+                   <Card className={cn(
+                     "hover:shadow-md transition-all cursor-pointer",
+                     overdue && "border-red-200 bg-red-50/30"
+                   )}>
+                     <CardContent className="p-4">
+                       <div className="flex items-start gap-4">
+                         <div className="flex-1 min-w-0">
+                           <div className="flex items-center gap-2 flex-wrap">
+                             <span className="font-semibold text-slate-900">
+                               {job.jobNumber || 'Draft'}
+                             </span>
+                             <PriorityBadge priority={job.priority} size="xs" />
+                             <StatusBadge status={job.status} size="xs" />
+                             {overdue && (
+                               <Badge variant="destructive" className="gap-1 text-xs">
+                                 <AlertTriangle className="h-3 w-3" />
+                                 Overdue
+                               </Badge>
+                             )}
+                           </div>
 
-                          <div className="flex flex-wrap items-center gap-x-4 gap-y-1 mt-2 text-xs text-slate-500">
-                            {customer && (
-                              <span className="flex items-center gap-1">
-                                <Building2 className="h-3 w-3" />
-                                {customer.name}
-                              </span>
-                            )}
-                            {site && (
-                              <span className="flex items-center gap-1">
-                                <MapPin className="h-3 w-3" />
-                                {site.siteName}
-                              </span>
-                            )}
-                            {job.dueDate && (
-                              <span className="flex items-center gap-1">
-                                <Calendar className="h-3 w-3" />
-                                Due: {format(new Date(job.dueDate), 'MMM d')}
-                              </span>
-                            )}
-                          </div>
-                        </div>
-                        
-                        <ChevronRight className="h-5 w-5 text-slate-400 flex-shrink-0" />
-                      </div>
-                    </CardContent>
-                  </Card>
-                </Link>
+                           <p className="text-sm text-slate-600 mt-1 line-clamp-1">
+                             {job.description || job.jobType}
+                           </p>
+
+                           <div className="flex flex-wrap items-center gap-x-4 gap-y-1 mt-2 text-xs text-slate-500">
+                             {customer && (
+                               <span className="flex items-center gap-1">
+                                 <Building2 className="h-3 w-3" />
+                                 {customer.name}
+                               </span>
+                             )}
+                             {site && (
+                               <span className="flex items-center gap-1">
+                                 <MapPin className="h-3 w-3" />
+                                 {site.siteName}
+                               </span>
+                             )}
+                             {job.dueDate && (
+                               <span className="flex items-center gap-1">
+                                 <Calendar className="h-3 w-3" />
+                                 Due: {format(new Date(job.dueDate), 'MMM d')}
+                               </span>
+                             )}
+                           </div>
+                         </div>
+
+                         <ChevronRight className="h-5 w-5 text-slate-400 flex-shrink-0" />
+                       </div>
+                     </CardContent>
+                   </Card>
+                 </AppLink>
               );
             })}
           </div>
@@ -471,9 +472,9 @@ export default function Jobs() {
               const overdue = isOverdue(job);
 
               return (
-               <Link key={job.id} to={routeBuilders.jobDetail(job.id)}>
-                 <Card className={cn(
-                   "hover:shadow-md transition-all cursor-pointer h-full",
+                <AppLink key={job.id} to={routeBuilders.jobDetail(job.id)}>
+                  <Card className={cn(
+                    "hover:shadow-md transition-all cursor-pointer h-full",
                     overdue && "border-red-200 bg-red-50/30"
                   )}>
                     <CardContent className="p-4">
@@ -483,9 +484,9 @@ export default function Jobs() {
                         </span>
                         <PriorityBadge priority={job.priority} size="xs" showLabel={false} />
                       </div>
-                      
+
                       <StatusBadge status={job.status} size="xs" />
-                      
+
                       {overdue && (
                         <Badge variant="destructive" className="gap-1 text-xs ml-2">
                           <AlertTriangle className="h-3 w-3" />
@@ -519,7 +520,7 @@ export default function Jobs() {
                       </div>
                     </CardContent>
                   </Card>
-                </Link>
+                </AppLink>
               );
             })}
           </div>
