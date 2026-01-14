@@ -412,8 +412,8 @@ export default function JobDetail() {
                             <p className="text-sm text-amber-600 mt-1">{site.accessNotes}</p>
                           )}
                         </div>
-                      </div>
-                    )}
+                        </a>
+                        )}
 
                     {contact && (
                       <div className="flex items-start gap-3 p-3 rounded-lg bg-slate-50">

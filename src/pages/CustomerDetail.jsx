@@ -317,7 +317,7 @@ export default function CustomerDetail() {
                           <StatusBadge status={job.status} size="xs" />
                           <ChevronRight className="h-4 w-4 text-slate-400" />
                           </a>
-                      ))}
+                          ))}
                       </div>
                   )}
                 </CardContent>
@@ -404,7 +404,7 @@ export default function CustomerDetail() {
                           <p className="text-sm text-slate-500 truncate">{site.address}</p>
                         </div>
                         <ChevronRight className="h-4 w-4 text-slate-400" />
-                      </div>
+                        </a>
                     ))}
                   </div>
                 )}
