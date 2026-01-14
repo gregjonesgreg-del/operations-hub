@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 import { useQuery, useMutation, useQueryClient } from '@tanstack/react-query';
 import { base44 } from '@/api/base44Client';
 import { useParams } from 'react-router-dom';
-import AppLink from '@/components/AppLink';
+import useAppNavigate from '@/components/useAppNavigate';
 import { routeBuilders, ROUTES } from '@/components/Routes';
 import { format } from 'date-fns';
 import {
@@ -48,6 +48,7 @@ const ASSET_STATUSES = ['Active', 'In Repair', 'Off Hire', 'Decommissioned'];
 const LOCATION_TYPES = ['Site', 'Workshop', 'Yard', 'On Hire'];
 
 export default function AssetDetail() {
+  const navigate = useAppNavigate();
   const { assetId } = useParams();
   const queryClient = useQueryClient();
   
@@ -114,7 +115,7 @@ export default function AssetDetail() {
       <PageHeader
         title={`${asset.make} ${asset.model}`}
         subtitle={asset.internalAssetId}
-        backLink="Assets"
+        backLink={routeBuilders.assets()}
         backLabel="Assets"
         actions={
           <Dialog open={showEditDialog} onOpenChange={(open) => {
@@ -312,15 +313,19 @@ export default function AssetDetail() {
                     </div>
                   </div>
                   {site && (
-                    <AppLink to={routeBuilders.siteDetail(site.id)}>
-                      <div className="flex items-start gap-3 p-3 rounded-lg hover:bg-slate-50 transition-colors">
-                        <MapPin className="h-5 w-5 text-emerald-600" />
-                        <div>
-                          <p className="font-medium">{site.siteName}</p>
-                          <p className="text-sm text-slate-500">{site.address}</p>
-                        </div>
+                    <div 
+                      onClick={() => navigate(routeBuilders.siteDetail(site.id))}
+                      className="flex items-start gap-3 p-3 rounded-lg hover:bg-slate-50 transition-colors cursor-pointer"
+                      role="button"
+                      tabIndex={0}
+                      onKeyDown={(e) => e.key === 'Enter' && navigate(routeBuilders.siteDetail(site.id))}
+                    >
+                      <MapPin className="h-5 w-5 text-emerald-600" />
+                      <div>
+                        <p className="font-medium">{site.siteName}</p>
+                        <p className="text-sm text-slate-500">{site.address}</p>
                       </div>
-                    </AppLink>
+                    </div>
                   )}
                   {asset.warrantyExpiry && (
                     <div className="flex items-start gap-3">
@@ -351,9 +356,12 @@ export default function AssetDetail() {
             <Card>
               <CardHeader className="flex flex-row items-center justify-between">
                 <CardTitle className="text-lg">Related Jobs</CardTitle>
-                <AppLink to={ROUTES.JOBS_CREATE}>
-                  <Button size="sm">New Job</Button>
-                </AppLink>
+                <Button 
+                  onClick={() => navigate(routeBuilders.jobsNew())}
+                  size="sm"
+                >
+                  New Job
+                </Button>
               </CardHeader>
               <CardContent>
                 {jobs.length === 0 ? (
@@ -364,21 +372,26 @@ export default function AssetDetail() {
                   />
                 ) : (
                   <div className="space-y-2">
-                    {jobs.map(job => (
-                      <AppLink key={job.id} to={routeBuilders.jobDetail(job.id)}>
-                        <div className="flex items-center gap-3 p-3 rounded-lg hover:bg-slate-50 transition-colors">
-                          <div className="h-10 w-10 rounded-lg bg-indigo-100 flex items-center justify-center">
-                            <Wrench className="h-5 w-5 text-indigo-600" />
-                          </div>
-                          <div className="flex-1 min-w-0">
-                            <p className="font-medium truncate">{job.jobNumber || 'Draft'}</p>
-                            <p className="text-sm text-slate-500 truncate">{job.description || job.jobType}</p>
-                          </div>
-                          <StatusBadge status={job.status} size="xs" />
-                          <ChevronRight className="h-4 w-4 text-slate-400" />
-                        </div>
-                      </AppLink>
-                    ))}
+                     {jobs.map(job => (
+                       <div
+                         key={job.id}
+                         onClick={() => navigate(routeBuilders.jobDetail(job.id))}
+                         className="flex items-center gap-3 p-3 rounded-lg hover:bg-slate-50 transition-colors cursor-pointer"
+                         role="button"
+                         tabIndex={0}
+                         onKeyDown={(e) => e.key === 'Enter' && navigate(routeBuilders.jobDetail(job.id))}
+                       >
+                         <div className="h-10 w-10 rounded-lg bg-indigo-100 flex items-center justify-center">
+                           <Wrench className="h-5 w-5 text-indigo-600" />
+                         </div>
+                         <div className="flex-1 min-w-0">
+                           <p className="font-medium truncate">{job.jobNumber || 'Draft'}</p>
+                           <p className="text-sm text-slate-500 truncate">{job.description || job.jobType}</p>
+                         </div>
+                         <StatusBadge status={job.status} size="xs" />
+                         <ChevronRight className="h-4 w-4 text-slate-400" />
+                       </div>
+                     ))}
                   </div>
                 )}
               </CardContent>
