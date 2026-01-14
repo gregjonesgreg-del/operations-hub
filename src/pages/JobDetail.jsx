@@ -1,7 +1,8 @@
 import React, { useState, useMemo } from 'react';
 import { useQuery, useMutation, useQueryClient } from '@tanstack/react-query';
 import { base44 } from '@/api/base44Client';
-import { useSearchParams, Link, useParams } from 'react-router-dom';
+import { useSearchParams, useParams } from 'react-router-dom';
+import AppLink from '@/components/AppLink';
 import { routeBuilders, ROUTES } from '@/components/Routes';
 import { format } from 'date-fns';
 import {
@@ -387,7 +388,7 @@ export default function JobDetail() {
                   </CardHeader>
                   <CardContent className="space-y-4">
                     {customer && (
-                      <Link to={routeBuilders.customerDetail(customer.id)} className="block">
+                      <AppLink to={routeBuilders.customerDetail(customer.id)} className="block">
                         <div className="flex items-start gap-3 p-3 rounded-lg hover:bg-slate-50 transition-colors">
                           <div className="h-10 w-10 rounded-lg bg-blue-100 flex items-center justify-center">
                             <Building2 className="h-5 w-5 text-blue-600" />
@@ -397,11 +398,11 @@ export default function JobDetail() {
                             <p className="text-sm text-slate-500">Customer</p>
                           </div>
                         </div>
-                      </Link>
+                      </AppLink>
                     )}
 
                     {site && (
-                      <Link to={routeBuilders.siteDetail(site.id)} className="block">
+                      <AppLink to={routeBuilders.siteDetail(site.id)} className="block">
                         <div className="flex items-start gap-3 p-3 rounded-lg hover:bg-slate-50 transition-colors">
                           <div className="h-10 w-10 rounded-lg bg-emerald-100 flex items-center justify-center">
                             <MapPin className="h-5 w-5 text-emerald-600" />
@@ -414,7 +415,7 @@ export default function JobDetail() {
                             )}
                           </div>
                         </div>
-                      </Link>
+                      </AppLink>
                     )}
 
                     {contact && (
@@ -488,24 +489,24 @@ export default function JobDetail() {
               <div className="space-y-6">
                 {/* Asset */}
                 {asset && (
-                  <Card>
-                    <CardHeader>
-                      <CardTitle className="text-lg">Asset</CardTitle>
-                    </CardHeader>
-                    <CardContent>
-                      <Link to={routeBuilders.assetDetail(asset.id)}>
-                        <div className="flex items-start gap-3 p-3 rounded-lg hover:bg-slate-50 transition-colors">
-                          <div className="h-10 w-10 rounded-lg bg-purple-100 flex items-center justify-center">
-                            <Package className="h-5 w-5 text-purple-600" />
-                          </div>
-                          <div>
-                            <p className="font-medium">{asset.make} {asset.model}</p>
-                            <p className="text-sm text-slate-500">{asset.internalAssetId}</p>
-                          </div>
-                        </div>
-                      </Link>
-                    </CardContent>
-                  </Card>
+                <Card>
+                 <CardHeader>
+                   <CardTitle className="text-lg">Asset</CardTitle>
+                 </CardHeader>
+                 <CardContent>
+                   <AppLink to={routeBuilders.assetDetail(asset.id)}>
+                     <div className="flex items-start gap-3 p-3 rounded-lg hover:bg-slate-50 transition-colors">
+                       <div className="h-10 w-10 rounded-lg bg-purple-100 flex items-center justify-center">
+                         <Package className="h-5 w-5 text-purple-600" />
+                       </div>
+                       <div>
+                         <p className="font-medium">{asset.make} {asset.model}</p>
+                         <p className="text-sm text-slate-500">{asset.internalAssetId}</p>
+                       </div>
+                     </div>
+                   </AppLink>
+                 </CardContent>
+                </Card>
                 )}
 
                 {/* Schedule */}
