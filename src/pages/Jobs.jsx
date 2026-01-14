@@ -3,6 +3,7 @@ import { useQuery } from '@tanstack/react-query';
 import { base44 } from '@/api/base44Client';
 import { Link, useSearchParams } from 'react-router-dom';
 import { createPageUrl } from '../utils';
+import { routeBuilders } from '@/components/Routes';
 import { format, isAfter, isBefore, parseISO } from 'date-fns';
 import {
   Plus,
@@ -187,7 +188,7 @@ export default function Jobs() {
         title="Work Orders"
         subtitle={`${filteredJobs.length} job${filteredJobs.length !== 1 ? 's' : ''}`}
         actions={
-          <Link to={createPageUrl('CreateJob')}>
+          <Link to="/jobs/new">
             <Button className="gap-2 bg-indigo-600 hover:bg-indigo-700">
               <Plus className="h-4 w-4" />
               <span className="hidden sm:inline">Create Job</span>
@@ -471,9 +472,9 @@ export default function Jobs() {
               const overdue = isOverdue(job);
 
               return (
-                <Link key={job.id} to={createPageUrl('JobDetail') + `?id=${job.id}`}>
-                  <Card className={cn(
-                    "hover:shadow-md transition-all cursor-pointer h-full",
+               <Link key={job.id} to={routeBuilders.jobDetail(job.id)}>
+                 <Card className={cn(
+                   "hover:shadow-md transition-all cursor-pointer h-full",
                     overdue && "border-red-200 bg-red-50/30"
                   )}>
                     <CardContent className="p-4">
