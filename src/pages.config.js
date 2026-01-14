@@ -28,6 +28,10 @@ import VehicleDetail from './pages/VehicleDetail';
 import HireContractDetail from './pages/HireContractDetail';
 import NotFound from './pages/NotFound';
 import DiagnosticsRoutes from './pages/DiagnosticsRoutes';
+import Dashboards from './pages/Dashboards';
+import FleetChecks from './pages/FleetChecks';
+import FleetDefects from './pages/FleetDefects';
+import FleetDefectDetail from './pages/FleetDefectDetail';
 import __Layout from './Layout.jsx';
 
 
@@ -62,6 +66,10 @@ export const PAGES = {
     "HireContractDetail": HireContractDetail,
     "NotFound": NotFound,
     "DiagnosticsRoutes": DiagnosticsRoutes,
+    "Dashboards": Dashboards,
+    "FleetChecks": FleetChecks,
+    "FleetDefects": FleetDefects,
+    "FleetDefectDetail": FleetDefectDetail,
 }
 
 export const pagesConfig = {
