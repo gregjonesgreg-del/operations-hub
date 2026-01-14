@@ -1,8 +1,7 @@
 import React, { useState } from 'react';
 import { useQuery, useMutation, useQueryClient } from '@tanstack/react-query';
 import { base44 } from '@/api/base44Client';
-import useAppNavigate from '@/components/useAppNavigate';
-import { routeBuilders, ROUTES } from '@/components/Routes';
+import { useNavigate } from 'react-router-dom';
 import {
   Plus,
   Search,
@@ -39,7 +38,7 @@ import EmptyState from '@/components/ui/EmptyState';
 import { cn } from '@/lib/utils';
 
 export default function Customers() {
-  const navigate = useAppNavigate();
+  const navigate = useNavigate();
   const queryClient = useQueryClient();
   const [searchQuery, setSearchQuery] = useState('');
   const [showCreateDialog, setShowCreateDialog] = useState(false);
@@ -206,10 +205,10 @@ export default function Customers() {
                 <Card 
                   key={customer.id}
                   className="hover:shadow-md transition-all cursor-pointer"
-                  onClick={() => navigate(routeBuilders.customerDetail(customer.id))}
+                  onClick={() => navigate(`/CustomerDetail?customerId=${customer.id}`)}
                   role="button"
                   tabIndex={0}
-                  onKeyDown={(e) => e.key === 'Enter' && navigate(routeBuilders.customerDetail(customer.id))}
+                  onKeyDown={(e) => e.key === 'Enter' && navigate(`/CustomerDetail?customerId=${customer.id}`)}
                 >
                   <CardContent className="p-4">
                     <div className="flex items-center gap-4">

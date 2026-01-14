@@ -1,8 +1,7 @@
 import React, { useState, useMemo } from 'react';
 import { useQuery } from '@tanstack/react-query';
 import { base44 } from '@/api/base44Client';
-import useAppNavigate from '@/components/useAppNavigate';
-import { routeBuilders } from '@/components/Routes';
+import { useNavigate } from 'react-router-dom';
 import {
   Search,
   User,
@@ -20,7 +19,7 @@ import LoadingSpinner from '@/components/ui/LoadingSpinner';
 import EmptyState from '@/components/ui/EmptyState';
 
 export default function Contacts() {
-  const navigate = useAppNavigate();
+  const navigate = useNavigate();
   const [searchQuery, setSearchQuery] = useState('');
 
   const { data: contacts = [], isLoading } = useQuery({
@@ -103,7 +102,7 @@ export default function Contacts() {
                         <div className="flex flex-wrap items-center gap-x-4 gap-y-1 mt-1 text-sm text-slate-500">
                           {customer && (
                             <button
-                              onClick={() => navigate(routeBuilders.customerDetail(customer.id))}
+                              onClick={() => navigate(`/CustomerDetail?customerId=${customer.id}`)}
                               className="flex items-center gap-1 hover:text-indigo-600 bg-transparent border-0 p-0 cursor-pointer text-inherit"
                             >
                               <Building2 className="h-3 w-3" />

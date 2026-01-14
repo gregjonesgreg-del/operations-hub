@@ -1,8 +1,7 @@
 import React, { useState, useMemo } from 'react';
 import { useQuery } from '@tanstack/react-query';
 import { base44 } from '@/api/base44Client';
-import useAppNavigate from '@/components/useAppNavigate';
-import { routeBuilders, ROUTES } from '@/components/Routes';
+import { useNavigate } from 'react-router-dom';
 import {
   Search,
   MapPin,
@@ -18,7 +17,7 @@ import EmptyState from '@/components/ui/EmptyState';
 import { cn } from '@/lib/utils';
 
 export default function Sites() {
-  const navigate = useAppNavigate();
+  const navigate = useNavigate();
   const [searchQuery, setSearchQuery] = useState('');
 
   const { data: sites = [], isLoading } = useQuery({
@@ -92,10 +91,10 @@ export default function Sites() {
                 <Card 
                   key={site.id}
                   className="hover:shadow-md transition-all cursor-pointer"
-                  onClick={() => navigate(routeBuilders.siteDetail(site.id))}
+                  onClick={() => navigate(`/SiteDetail?siteId=${site.id}`)}
                   role="button"
                   tabIndex={0}
-                  onKeyDown={(e) => e.key === 'Enter' && navigate(routeBuilders.siteDetail(site.id))}
+                  onKeyDown={(e) => e.key === 'Enter' && navigate(`/SiteDetail?siteId=${site.id}`)}
                 >
                   <CardContent className="p-4">
                     <div className="flex items-start gap-4">
