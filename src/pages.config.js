@@ -35,6 +35,8 @@ import FleetDefectDetail from './pages/FleetDefectDetail';
 import FleetFuel from './pages/FleetFuel';
 import FleetFuelDetail from './pages/FleetFuelDetail';
 import FleetFuelReview from './pages/FleetFuelReview';
+import HireCalendar from './pages/HireCalendar';
+import HireAssetDetail from './pages/HireAssetDetail';
 import __Layout from './Layout.jsx';
 
 
@@ -76,6 +78,8 @@ export const PAGES = {
     "FleetFuel": FleetFuel,
     "FleetFuelDetail": FleetFuelDetail,
     "FleetFuelReview": FleetFuelReview,
+    "HireCalendar": HireCalendar,
+    "HireAssetDetail": HireAssetDetail,
 }
 
 export const pagesConfig = {
