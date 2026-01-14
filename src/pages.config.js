@@ -23,6 +23,7 @@ import PPMPlanDetail from './pages/PPMPlanDetail';
 import PPMInstanceDetail from './pages/PPMInstanceDetail';
 import InternalTaskDetail from './pages/InternalTaskDetail';
 import IncidentDetail from './pages/IncidentDetail';
+import MyVehicle from './pages/MyVehicle';
 import __Layout from './Layout.jsx';
 
 
@@ -52,6 +53,7 @@ export const PAGES = {
     "PPMInstanceDetail": PPMInstanceDetail,
     "InternalTaskDetail": InternalTaskDetail,
     "IncidentDetail": IncidentDetail,
+    "MyVehicle": MyVehicle,
 }
 
 export const pagesConfig = {
