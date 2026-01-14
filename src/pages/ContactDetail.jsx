@@ -1,9 +1,7 @@
 import React from 'react';
-import { useSearchParams } from 'react-router-dom';
+import { useParams } from 'react-router-dom';
 import { useQuery } from '@tanstack/react-query';
 import { base44 } from '@/api/base44Client';
-import useAppNavigate from '@/components/useAppNavigate';
-import { routeBuilders } from '@/components/Routes';
 import { User, Phone, Mail, Building2, MapPin } from 'lucide-react';
 import { Button } from '@/components/ui/button';
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
@@ -13,9 +11,7 @@ import LoadingSpinner from '@/components/ui/LoadingSpinner';
 import EmptyState from '@/components/ui/EmptyState';
 
 export default function ContactDetail() {
-  const navigate = useAppNavigate();
-  const [searchParams] = useSearchParams();
-  const contactId = searchParams.get('id');
+  const { contactId } = useParams();
 
   const { data: contact, isLoading } = useQuery({
     queryKey: ['contact', contactId],
@@ -59,7 +55,7 @@ export default function ContactDetail() {
       <PageHeader
         title={contact.name}
         subtitle={contact.role}
-        backLink={routeBuilders.contacts()}
+        backLink="/core/contacts"
         backLabel="Contacts"
       >
         <div className="flex items-center gap-2 mt-4">
@@ -114,13 +110,7 @@ export default function ContactDetail() {
             </CardHeader>
             <CardContent className="space-y-3">
               {customer && (
-               <div 
-                 onClick={() => navigate(routeBuilders.customerDetail(customer.id))}
-                 className="flex items-center gap-3 p-3 rounded-lg hover:bg-slate-50 transition-colors cursor-pointer"
-                 role="button"
-                 tabIndex={0}
-                 onKeyDown={(e) => e.key === 'Enter' && navigate(routeBuilders.customerDetail(customer.id))}
-               >
+               <a href={`/core/customers/${customer.id}`} className="flex items-center gap-3 p-3 rounded-lg hover:bg-slate-50 transition-colors">
                  <div className="h-10 w-10 rounded-lg bg-blue-100 flex items-center justify-center">
                    <Building2 className="h-5 w-5 text-blue-600" />
                  </div>
@@ -128,16 +118,10 @@ export default function ContactDetail() {
                    <p className="font-medium">{customer.name}</p>
                    <p className="text-sm text-slate-500">Customer</p>
                  </div>
-               </div>
+               </a>
               )}
               {site && (
-               <div 
-                 onClick={() => navigate(routeBuilders.siteDetail(site.id))}
-                 className="flex items-center gap-3 p-3 rounded-lg hover:bg-slate-50 transition-colors cursor-pointer"
-                 role="button"
-                 tabIndex={0}
-                 onKeyDown={(e) => e.key === 'Enter' && navigate(routeBuilders.siteDetail(site.id))}
-               >
+               <a href={`/core/sites/${site.id}`} className="flex items-center gap-3 p-3 rounded-lg hover:bg-slate-50 transition-colors">
                  <div className="h-10 w-10 rounded-lg bg-emerald-100 flex items-center justify-center">
                    <MapPin className="h-5 w-5 text-emerald-600" />
                  </div>
@@ -145,7 +129,7 @@ export default function ContactDetail() {
                    <p className="font-medium">{site.siteName}</p>
                    <p className="text-sm text-slate-500">Site</p>
                  </div>
-               </div>
+               </a>
               )}
             </CardContent>
           </Card>

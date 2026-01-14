@@ -1,8 +1,7 @@
 import React, { useState, useMemo } from 'react';
 import { useQuery, useMutation, useQueryClient } from '@tanstack/react-query';
 import { base44 } from '@/api/base44Client';
-import { useSearchParams } from 'react-router-dom';
-import useAppNavigate from '@/components/useAppNavigate';
+import { useParams } from 'react-router-dom';
 import { routeBuilders, ROUTES } from '@/components/Routes';
 import { format } from 'date-fns';
 import {
@@ -59,9 +58,7 @@ import { cn } from '@/lib/utils';
 const JOB_STATUSES = ['Draft', 'Scheduled', 'Assigned', 'In Progress', 'Awaiting Parts', 'Awaiting Customer', 'Completed', 'Closed', 'Cancelled'];
 
 export default function JobDetail() {
-  const navigate = useAppNavigate();
-  const [searchParams] = useSearchParams();
-  const jobId = searchParams.get('id');
+  const { jobId } = useParams();
   const queryClient = useQueryClient();
   
   const [activeTab, setActiveTab] = useState('overview');
@@ -244,7 +241,7 @@ export default function JobDetail() {
       <PageHeader
         title={job.jobNumber || 'Draft Job'}
         subtitle={job.description || job.jobType}
-        backLink={ROUTES.JOBS}
+        backLink="/jobs"
         backLabel="Back to Jobs"
         actions={
           <div className="flex items-center gap-2">
@@ -390,13 +387,8 @@ export default function JobDetail() {
                   </CardHeader>
                   <CardContent className="space-y-4">
                     {customer && (
-                      <div 
-                        onClick={() => navigate(routeBuilders.customerDetail(customer.id))}
-                        className="flex items-start gap-3 p-3 rounded-lg hover:bg-slate-50 transition-colors cursor-pointer"
-                        role="button"
-                        tabIndex={0}
-                        onKeyDown={(e) => e.key === 'Enter' && navigate(routeBuilders.customerDetail(customer.id))}
-                      >
+                      <a href={`/core/customers/${customer.id}`} className="flex items-start gap-3 p-3 rounded-lg hover:bg-slate-50 transition-colors">
+                      
                         <div className="h-10 w-10 rounded-lg bg-blue-100 flex items-center justify-center">
                           <Building2 className="h-5 w-5 text-blue-600" />
                         </div>
@@ -404,17 +396,12 @@ export default function JobDetail() {
                           <p className="font-medium">{customer.name}</p>
                           <p className="text-sm text-slate-500">Customer</p>
                         </div>
-                      </div>
+                      </a>
                     )}
 
                     {site && (
-                      <div 
-                        onClick={() => navigate(routeBuilders.siteDetail(site.id))}
-                        className="flex items-start gap-3 p-3 rounded-lg hover:bg-slate-50 transition-colors cursor-pointer"
-                        role="button"
-                        tabIndex={0}
-                        onKeyDown={(e) => e.key === 'Enter' && navigate(routeBuilders.siteDetail(site.id))}
-                      >
+                      <a href={`/core/sites/${site.id}`} className="flex items-start gap-3 p-3 rounded-lg hover:bg-slate-50 transition-colors">
+                      
                         <div className="h-10 w-10 rounded-lg bg-emerald-100 flex items-center justify-center">
                           <MapPin className="h-5 w-5 text-emerald-600" />
                         </div>
@@ -504,21 +491,16 @@ export default function JobDetail() {
                    <CardTitle className="text-lg">Asset</CardTitle>
                  </CardHeader>
                  <CardContent>
-                   <div 
-                     onClick={() => navigate(routeBuilders.assetDetail(asset.id))}
-                     className="flex items-start gap-3 p-3 rounded-lg hover:bg-slate-50 transition-colors cursor-pointer"
-                     role="button"
-                     tabIndex={0}
-                     onKeyDown={(e) => e.key === 'Enter' && navigate(routeBuilders.assetDetail(asset.id))}
-                   >
+                   <a href={`/core/assets/${asset.id}`} className="flex items-start gap-3 p-3 rounded-lg hover:bg-slate-50 transition-colors">
+
                      <div className="h-10 w-10 rounded-lg bg-purple-100 flex items-center justify-center">
                        <Package className="h-5 w-5 text-purple-600" />
                      </div>
                      <div>
                        <p className="font-medium">{asset.make} {asset.model}</p>
                        <p className="text-sm text-slate-500">{asset.internalAssetId}</p>
-                     </div>
-                   </div>
+                       </div>
+                       </a>
                  </CardContent>
                 </Card>
                 )}

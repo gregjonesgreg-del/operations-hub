@@ -1,9 +1,7 @@
 import React, { useState } from 'react';
 import { useQuery, useMutation, useQueryClient } from '@tanstack/react-query';
 import { base44 } from '@/api/base44Client';
-import { useSearchParams } from 'react-router-dom';
-import useAppNavigate from '@/components/useAppNavigate';
-import { routeBuilders } from '@/components/Routes';
+import { useParams } from 'react-router-dom';
 import {
   MapPin,
   Edit2,
@@ -35,9 +33,7 @@ import EmptyState from '@/components/ui/EmptyState';
 import ActivityTimeline from '@/components/ActivityTimeline';
 
 export default function SiteDetail() {
-  const navigate = useAppNavigate();
-  const [searchParams] = useSearchParams();
-  const siteId = searchParams.get('id');
+  const { siteId } = useParams();
   const queryClient = useQueryClient();
   
   const [showEditDialog, setShowEditDialog] = useState(false);
@@ -106,7 +102,7 @@ export default function SiteDetail() {
       <PageHeader
         title={site.siteName}
         subtitle={site.address}
-        backLink={routeBuilders.sites()}
+        backLink="/core/sites"
         backLabel="Sites"
         actions={
           <div className="flex gap-2">
@@ -177,13 +173,10 @@ export default function SiteDetail() {
       >
         <div className="flex items-center gap-2 mt-4 text-sm text-slate-500">
           {customer && (
-            <button
-              onClick={() => navigate(routeBuilders.customerDetail(customer.id))}
-              className="flex items-center gap-1 text-indigo-600 hover:underline bg-transparent border-0 p-0 cursor-pointer"
-            >
+            <a href={`/core/customers/${customer.id}`} className="flex items-center gap-1 text-indigo-600 hover:underline">
               <Building2 className="h-4 w-4" />
               {customer.name}
-            </button>
+            </a>
           )}
           <span>•</span>
           <span>{assets.length} assets</span>
@@ -260,13 +253,10 @@ export default function SiteDetail() {
                 ) : (
                   <div className="space-y-2">
                     {assets.map(asset => (
-                      <div
+                      <a
                         key={asset.id}
-                        onClick={() => navigate(routeBuilders.assetDetail(asset.id))}
-                        className="flex items-center gap-3 p-3 rounded-lg hover:bg-slate-50 transition-colors cursor-pointer"
-                        role="button"
-                        tabIndex={0}
-                        onKeyDown={(e) => e.key === 'Enter' && navigate(routeBuilders.assetDetail(asset.id))}
+                        href={`/core/assets/${asset.id}`}
+                        className="flex items-center gap-3 p-3 rounded-lg hover:bg-slate-50 transition-colors"
                       >
                         <div className="h-10 w-10 rounded-lg bg-purple-100 flex items-center justify-center">
                           <Package className="h-5 w-5 text-purple-600" />
@@ -277,7 +267,7 @@ export default function SiteDetail() {
                         </div>
                         <StatusBadge status={asset.status} size="xs" />
                         <ChevronRight className="h-4 w-4 text-slate-400" />
-                      </div>
+                      </a>
                     ))}
                   </div>
                 )}
@@ -300,13 +290,10 @@ export default function SiteDetail() {
                 ) : (
                   <div className="space-y-2">
                     {jobs.map(job => (
-                      <div
+                      <a
                         key={job.id}
-                        onClick={() => navigate(routeBuilders.jobDetail(job.id))}
-                        className="flex items-center gap-3 p-3 rounded-lg hover:bg-slate-50 transition-colors cursor-pointer"
-                        role="button"
-                        tabIndex={0}
-                        onKeyDown={(e) => e.key === 'Enter' && navigate(routeBuilders.jobDetail(job.id))}
+                        href={`/jobs/${job.id}`}
+                        className="flex items-center gap-3 p-3 rounded-lg hover:bg-slate-50 transition-colors"
                       >
                         <div className="h-10 w-10 rounded-lg bg-indigo-100 flex items-center justify-center">
                           <Wrench className="h-5 w-5 text-indigo-600" />
@@ -317,7 +304,7 @@ export default function SiteDetail() {
                         </div>
                         <StatusBadge status={job.status} size="xs" />
                         <ChevronRight className="h-4 w-4 text-slate-400" />
-                      </div>
+                      </a>
                     ))}
                   </div>
                 )}
