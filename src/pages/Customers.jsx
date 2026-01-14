@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import { useQuery, useMutation, useQueryClient } from '@tanstack/react-query';
 import { base44 } from '@/api/base44Client';
-import { Link } from 'react-router-dom';
+import useAppNavigate from '@/components/useAppNavigate';
 import { routeBuilders, ROUTES } from '@/components/Routes';
 import {
   Plus,
@@ -39,6 +39,7 @@ import EmptyState from '@/components/ui/EmptyState';
 import { cn } from '@/lib/utils';
 
 export default function Customers() {
+  const navigate = useAppNavigate();
   const queryClient = useQueryClient();
   const [searchQuery, setSearchQuery] = useState('');
   const [showCreateDialog, setShowCreateDialog] = useState(false);
@@ -202,45 +203,50 @@ export default function Customers() {
               const siteCount = getSiteCount(customer.id);
 
               return (
-                <Link key={customer.id} to={routeBuilders.customerDetail(customer.id)}>
-                  <Card className="hover:shadow-md transition-all cursor-pointer">
-                    <CardContent className="p-4">
-                      <div className="flex items-center gap-4">
-                        <div className={cn(
-                          "h-12 w-12 rounded-xl flex items-center justify-center flex-shrink-0",
-                          customer.status === 'Active' ? "bg-blue-100" : "bg-slate-100"
-                        )}>
-                          <Building2 className={cn(
-                            "h-6 w-6",
-                            customer.status === 'Active' ? "text-blue-600" : "text-slate-400"
-                          )} />
-                        </div>
-                        
-                        <div className="flex-1 min-w-0">
-                          <div className="flex items-center gap-2">
-                            <h3 className="font-semibold text-slate-900 truncate">{customer.name}</h3>
-                            <StatusBadge status={customer.status} size="xs" />
-                          </div>
-                          
-                          <div className="flex flex-wrap items-center gap-x-4 gap-y-1 mt-1 text-sm text-slate-500">
-                            {customer.billingAddress && (
-                              <span className="flex items-center gap-1 truncate">
-                                <MapPin className="h-3 w-3" />
-                                {customer.billingAddress.split('\n')[0]}
-                              </span>
-                            )}
-                            <span className="flex items-center gap-1">
-                              <MapPin className="h-3 w-3" />
-                              {siteCount} site{siteCount !== 1 ? 's' : ''}
-                            </span>
-                          </div>
-                        </div>
-                        
-                        <ChevronRight className="h-5 w-5 text-slate-400 flex-shrink-0" />
+                <Card 
+                  key={customer.id}
+                  className="hover:shadow-md transition-all cursor-pointer"
+                  onClick={() => navigate(routeBuilders.customerDetail(customer.id))}
+                  role="button"
+                  tabIndex={0}
+                  onKeyDown={(e) => e.key === 'Enter' && navigate(routeBuilders.customerDetail(customer.id))}
+                >
+                  <CardContent className="p-4">
+                    <div className="flex items-center gap-4">
+                      <div className={cn(
+                        "h-12 w-12 rounded-xl flex items-center justify-center flex-shrink-0",
+                        customer.status === 'Active' ? "bg-blue-100" : "bg-slate-100"
+                      )}>
+                        <Building2 className={cn(
+                          "h-6 w-6",
+                          customer.status === 'Active' ? "text-blue-600" : "text-slate-400"
+                        )} />
                       </div>
-                    </CardContent>
-                  </Card>
-                </Link>
+                      
+                      <div className="flex-1 min-w-0">
+                        <div className="flex items-center gap-2">
+                          <h3 className="font-semibold text-slate-900 truncate">{customer.name}</h3>
+                          <StatusBadge status={customer.status} size="xs" />
+                        </div>
+                        
+                        <div className="flex flex-wrap items-center gap-x-4 gap-y-1 mt-1 text-sm text-slate-500">
+                          {customer.billingAddress && (
+                            <span className="flex items-center gap-1 truncate">
+                              <MapPin className="h-3 w-3" />
+                              {customer.billingAddress.split('\n')[0]}
+                            </span>
+                          )}
+                          <span className="flex items-center gap-1">
+                            <MapPin className="h-3 w-3" />
+                            {siteCount} site{siteCount !== 1 ? 's' : ''}
+                          </span>
+                        </div>
+                      </div>
+                      
+                      <ChevronRight className="h-5 w-5 text-slate-400 flex-shrink-0" />
+                    </div>
+                  </CardContent>
+                </Card>
               );
             })}
           </div>

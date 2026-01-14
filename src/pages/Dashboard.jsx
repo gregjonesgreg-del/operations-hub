@@ -1,8 +1,8 @@
 import React from 'react';
 import { useQuery } from '@tanstack/react-query';
 import { base44 } from '@/api/base44Client';
-import { Link } from 'react-router-dom';
-import { createPageUrl } from '../utils';
+import useAppNavigate from '@/components/useAppNavigate';
+import { routeBuilders } from '@/components/Routes';
 import { format, subDays, startOfWeek, startOfMonth, isAfter, isBefore } from 'date-fns';
 import {
   BarChart,
@@ -40,6 +40,7 @@ import { cn } from '@/lib/utils';
 const COLORS = ['#6366f1', '#22c55e', '#f59e0b', '#ef4444', '#8b5cf6', '#06b6d4'];
 
 export default function Dashboard() {
+  const navigate = useAppNavigate();
   const { data: jobs = [], isLoading: jobsLoading } = useQuery({
     queryKey: ['jobs-dashboard'],
     queryFn: () => base44.entities.Job.filter({}, '-created_date', 500)
@@ -220,11 +221,13 @@ export default function Dashboard() {
                     High priority items need immediate action
                   </p>
                 </div>
-                <Link to={createPageUrl('Jobs') + '?priority=Urgent'}>
-                  <Button variant="destructive" size="sm">
-                    View All <ArrowRight className="h-4 w-4 ml-1" />
-                  </Button>
-                </Link>
+                <Button 
+                  onClick={() => navigate(routeBuilders.jobs())}
+                  variant="destructive" 
+                  size="sm"
+                >
+                  View All <ArrowRight className="h-4 w-4 ml-1" />
+                </Button>
               </div>
             </CardContent>
           </Card>
@@ -320,19 +323,24 @@ export default function Dashboard() {
         <Card>
           <CardHeader className="flex flex-row items-center justify-between">
             <CardTitle className="text-lg">Recent Jobs</CardTitle>
-            <Link to={createPageUrl('Jobs')}>
-              <Button variant="ghost" size="sm">
-                View All <ArrowRight className="h-4 w-4 ml-1" />
-              </Button>
-            </Link>
+            <Button 
+              onClick={() => navigate(routeBuilders.jobs())}
+              variant="ghost" 
+              size="sm"
+            >
+              View All <ArrowRight className="h-4 w-4 ml-1" />
+            </Button>
           </CardHeader>
           <CardContent>
             <div className="space-y-3">
               {recentJobs.map(job => (
-                <Link
+                <div
                   key={job.id}
-                  to={createPageUrl('JobDetail') + `?id=${job.id}`}
-                  className="flex items-center gap-4 p-3 rounded-xl hover:bg-slate-50 transition-colors"
+                  onClick={() => navigate(routeBuilders.jobDetail(job.id))}
+                  className="flex items-center gap-4 p-3 rounded-xl hover:bg-slate-50 transition-colors cursor-pointer"
+                  role="button"
+                  tabIndex={0}
+                  onKeyDown={(e) => e.key === 'Enter' && navigate(routeBuilders.jobDetail(job.id))}
                 >
                   <div className="h-10 w-10 rounded-lg bg-indigo-100 flex items-center justify-center">
                     <Wrench className="h-5 w-5 text-indigo-600" />
@@ -349,7 +357,7 @@ export default function Dashboard() {
                     </p>
                   </div>
                   <StatusBadge status={job.status} size="xs" />
-                </Link>
+                </div>
               ))}
             </div>
           </CardContent>
@@ -357,49 +365,65 @@ export default function Dashboard() {
 
         {/* Quick Actions */}
         <div className="grid grid-cols-2 sm:grid-cols-4 gap-4">
-          <Link to={createPageUrl('CreateJob')}>
-            <Card className="hover:shadow-md transition-shadow cursor-pointer h-full">
-              <CardContent className="p-4 flex flex-col items-center justify-center text-center gap-2">
-                <div className="h-12 w-12 rounded-xl bg-indigo-100 flex items-center justify-center">
-                  <Wrench className="h-6 w-6 text-indigo-600" />
-                </div>
-                <p className="font-medium text-sm">Create Job</p>
-              </CardContent>
-            </Card>
-          </Link>
+          <Card 
+            className="hover:shadow-md transition-shadow cursor-pointer h-full"
+            onClick={() => navigate(routeBuilders.jobsNew())}
+            role="button"
+            tabIndex={0}
+            onKeyDown={(e) => e.key === 'Enter' && navigate(routeBuilders.jobsNew())}
+          >
+            <CardContent className="p-4 flex flex-col items-center justify-center text-center gap-2">
+              <div className="h-12 w-12 rounded-xl bg-indigo-100 flex items-center justify-center">
+                <Wrench className="h-6 w-6 text-indigo-600" />
+              </div>
+              <p className="font-medium text-sm">Create Job</p>
+            </CardContent>
+          </Card>
 
-          <Link to={createPageUrl('JobsBoard')}>
-            <Card className="hover:shadow-md transition-shadow cursor-pointer h-full">
-              <CardContent className="p-4 flex flex-col items-center justify-center text-center gap-2">
-                <div className="h-12 w-12 rounded-xl bg-amber-100 flex items-center justify-center">
-                  <Calendar className="h-6 w-6 text-amber-600" />
-                </div>
-                <p className="font-medium text-sm">Jobs Board</p>
-              </CardContent>
-            </Card>
-          </Link>
+          <Card 
+            className="hover:shadow-md transition-shadow cursor-pointer h-full"
+            onClick={() => navigate(routeBuilders.jobsBoard())}
+            role="button"
+            tabIndex={0}
+            onKeyDown={(e) => e.key === 'Enter' && navigate(routeBuilders.jobsBoard())}
+          >
+            <CardContent className="p-4 flex flex-col items-center justify-center text-center gap-2">
+              <div className="h-12 w-12 rounded-xl bg-amber-100 flex items-center justify-center">
+                <Calendar className="h-6 w-6 text-amber-600" />
+              </div>
+              <p className="font-medium text-sm">Jobs Board</p>
+            </CardContent>
+          </Card>
 
-          <Link to={createPageUrl('Assets')}>
-            <Card className="hover:shadow-md transition-shadow cursor-pointer h-full">
-              <CardContent className="p-4 flex flex-col items-center justify-center text-center gap-2">
-                <div className="h-12 w-12 rounded-xl bg-purple-100 flex items-center justify-center">
-                  <Package className="h-6 w-6 text-purple-600" />
-                </div>
-                <p className="font-medium text-sm">Equipment</p>
-              </CardContent>
-            </Card>
-          </Link>
+          <Card 
+            className="hover:shadow-md transition-shadow cursor-pointer h-full"
+            onClick={() => navigate(routeBuilders.assets())}
+            role="button"
+            tabIndex={0}
+            onKeyDown={(e) => e.key === 'Enter' && navigate(routeBuilders.assets())}
+          >
+            <CardContent className="p-4 flex flex-col items-center justify-center text-center gap-2">
+              <div className="h-12 w-12 rounded-xl bg-purple-100 flex items-center justify-center">
+                <Package className="h-6 w-6 text-purple-600" />
+              </div>
+              <p className="font-medium text-sm">Equipment</p>
+            </CardContent>
+          </Card>
 
-          <Link to={createPageUrl('Customers')}>
-            <Card className="hover:shadow-md transition-shadow cursor-pointer h-full">
-              <CardContent className="p-4 flex flex-col items-center justify-center text-center gap-2">
-                <div className="h-12 w-12 rounded-xl bg-emerald-100 flex items-center justify-center">
-                  <UsersIcon className="h-6 w-6 text-emerald-600" />
-                </div>
-                <p className="font-medium text-sm">Customers</p>
-              </CardContent>
-            </Card>
-          </Link>
+          <Card 
+            className="hover:shadow-md transition-shadow cursor-pointer h-full"
+            onClick={() => navigate(routeBuilders.customers())}
+            role="button"
+            tabIndex={0}
+            onKeyDown={(e) => e.key === 'Enter' && navigate(routeBuilders.customers())}
+          >
+            <CardContent className="p-4 flex flex-col items-center justify-center text-center gap-2">
+              <div className="h-12 w-12 rounded-xl bg-emerald-100 flex items-center justify-center">
+                <UsersIcon className="h-6 w-6 text-emerald-600" />
+              </div>
+              <p className="font-medium text-sm">Customers</p>
+            </CardContent>
+          </Card>
         </div>
       </div>
     </div>
