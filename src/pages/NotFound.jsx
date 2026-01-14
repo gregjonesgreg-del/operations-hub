@@ -2,7 +2,6 @@ import React from 'react';
 import { Link } from 'react-router-dom';
 import { AlertTriangle } from 'lucide-react';
 import { Button } from '@/components/ui/button';
-import { ROUTES } from '../components/Routes';
 
 export default function NotFound() {
   return (
@@ -14,7 +13,7 @@ export default function NotFound() {
         <p className="text-sm text-slate-500 mb-8">
           The page you're looking for doesn't exist or has been moved.
         </p>
-        <Link to={ROUTES.HOME}>
+        <Link to="/">
           <Button className="w-full">Return Home</Button>
         </Link>
       </div>
