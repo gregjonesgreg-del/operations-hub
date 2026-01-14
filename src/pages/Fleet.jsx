@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 import { useQuery } from '@tanstack/react-query';
 import { base44 } from '@/api/base44Client';
 import { Link } from 'react-router-dom';
-import { createPageUrl } from '../utils';
+import { ROUTES } from '@/components/Routes';
 import { Car, AlertTriangle, Fuel, CheckCircle } from 'lucide-react';
 import { Button } from '@/components/ui/button';
 import { Tabs, TabsContent, TabsList, TabsTrigger } from '@/components/ui/tabs';
@@ -40,7 +40,7 @@ export default function Fleet() {
         title="Fleet Management"
         subtitle={`${vehicles.length} vehicles • ${openDefects} open defects • ${unreviewed} unreviewed fuel`}
         actions={
-          <Link to={createPageUrl('FleetDashboard')}>
+          <Link to={ROUTES.DASHBOARDS_FLEET}>
             <Button variant="outline" className="gap-2">
               <Car className="h-4 w-4" />
               <span className="hidden sm:inline">Dashboard</span>
