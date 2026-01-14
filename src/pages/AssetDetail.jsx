@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import { useQuery, useMutation, useQueryClient } from '@tanstack/react-query';
 import { base44 } from '@/api/base44Client';
-import { useParams } from 'react-router-dom';
+import { useSearchParams } from 'react-router-dom';
 import useAppNavigate from '@/components/useAppNavigate';
 import { routeBuilders, ROUTES } from '@/components/Routes';
 import { format } from 'date-fns';
@@ -49,7 +49,8 @@ const LOCATION_TYPES = ['Site', 'Workshop', 'Yard', 'On Hire'];
 
 export default function AssetDetail() {
   const navigate = useAppNavigate();
-  const { assetId } = useParams();
+  const [searchParams] = useSearchParams();
+  const assetId = searchParams.get('id');
   const queryClient = useQueryClient();
   
   const [showEditDialog, setShowEditDialog] = useState(false);
