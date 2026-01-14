@@ -1,9 +1,9 @@
 import React from 'react';
-import { useSearchParams } from 'react-router-dom';
+import { useParams } from 'react-router-dom';
 import { useQuery } from '@tanstack/react-query';
 import { base44 } from '@/api/base44Client';
 import { Link } from 'react-router-dom';
-import { createPageUrl } from '../utils';
+import { routeBuilders } from '@/components/Routes';
 import { User, Phone, Mail, Building2, MapPin } from 'lucide-react';
 import { Button } from '@/components/ui/button';
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
@@ -13,8 +13,7 @@ import LoadingSpinner from '@/components/ui/LoadingSpinner';
 import EmptyState from '@/components/ui/EmptyState';
 
 export default function ContactDetail() {
-  const [searchParams] = useSearchParams();
-  const contactId = searchParams.get('id');
+  const { contactId } = useParams();
 
   const { data: contact, isLoading } = useQuery({
     queryKey: ['contact', contactId],
@@ -113,7 +112,7 @@ export default function ContactDetail() {
             </CardHeader>
             <CardContent className="space-y-3">
               {customer && (
-                <Link to={createPageUrl('CustomerDetail') + `?id=${customer.id}`}>
+                <Link to={routeBuilders.customerDetail(customer.id)}>
                   <div className="flex items-center gap-3 p-3 rounded-lg hover:bg-slate-50 transition-colors">
                     <div className="h-10 w-10 rounded-lg bg-blue-100 flex items-center justify-center">
                       <Building2 className="h-5 w-5 text-blue-600" />
@@ -126,7 +125,7 @@ export default function ContactDetail() {
                 </Link>
               )}
               {site && (
-                <Link to={createPageUrl('SiteDetail') + `?id=${site.id}`}>
+                <Link to={routeBuilders.siteDetail(site.id)}>
                   <div className="flex items-center gap-3 p-3 rounded-lg hover:bg-slate-50 transition-colors">
                     <div className="h-10 w-10 rounded-lg bg-emerald-100 flex items-center justify-center">
                       <MapPin className="h-5 w-5 text-emerald-600" />

@@ -1,8 +1,8 @@
 import React, { useState } from 'react';
 import { useQuery, useMutation, useQueryClient } from '@tanstack/react-query';
 import { base44 } from '@/api/base44Client';
-import { useSearchParams, Link } from 'react-router-dom';
-import { createPageUrl } from '../utils';
+import { useParams, Link } from 'react-router-dom';
+import { routeBuilders } from '@/components/Routes';
 import {
   MapPin,
   Edit2,
@@ -34,8 +34,7 @@ import EmptyState from '@/components/ui/EmptyState';
 import ActivityTimeline from '@/components/ActivityTimeline';
 
 export default function SiteDetail() {
-  const [searchParams] = useSearchParams();
-  const siteId = searchParams.get('id');
+  const { siteId } = useParams();
   const queryClient = useQueryClient();
   
   const [showEditDialog, setShowEditDialog] = useState(false);
@@ -175,7 +174,7 @@ export default function SiteDetail() {
       >
         <div className="flex items-center gap-2 mt-4 text-sm text-slate-500">
           {customer && (
-            <Link to={createPageUrl('CustomerDetail') + `?id=${customer.id}`} className="flex items-center gap-1 text-indigo-600 hover:underline">
+            <Link to={routeBuilders.customerDetail(customer.id)} className="flex items-center gap-1 text-indigo-600 hover:underline">
               <Building2 className="h-4 w-4" />
               {customer.name}
             </Link>
@@ -255,7 +254,7 @@ export default function SiteDetail() {
                 ) : (
                   <div className="space-y-2">
                     {assets.map(asset => (
-                      <Link key={asset.id} to={createPageUrl('AssetDetail') + `?id=${asset.id}`}>
+                      <Link key={asset.id} to={routeBuilders.assetDetail(asset.id)}>
                         <div className="flex items-center gap-3 p-3 rounded-lg hover:bg-slate-50 transition-colors">
                           <div className="h-10 w-10 rounded-lg bg-purple-100 flex items-center justify-center">
                             <Package className="h-5 w-5 text-purple-600" />
@@ -290,7 +289,7 @@ export default function SiteDetail() {
                 ) : (
                   <div className="space-y-2">
                     {jobs.map(job => (
-                      <Link key={job.id} to={createPageUrl('JobDetail') + `?id=${job.id}`}>
+                      <Link key={job.id} to={routeBuilders.jobDetail(job.id)}>
                         <div className="flex items-center gap-3 p-3 rounded-lg hover:bg-slate-50 transition-colors">
                           <div className="h-10 w-10 rounded-lg bg-indigo-100 flex items-center justify-center">
                             <Wrench className="h-5 w-5 text-indigo-600" />
