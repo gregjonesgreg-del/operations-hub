@@ -22,7 +22,8 @@ import {
   CheckCircle,
   FileText,
   Wrench,
-  PenLine
+  PenLine,
+  Users as UsersIcon
 } from 'lucide-react';
 import { Button } from '@/components/ui/button';
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
@@ -545,16 +546,16 @@ export default function JobDetail() {
                   </CardHeader>
                   <CardContent className="space-y-3">
                     {team && (
-                      <div className="flex items-center gap-3">
-                        <div className="h-8 w-8 rounded-lg bg-indigo-100 flex items-center justify-center">
-                          <Users className="h-4 w-4 text-indigo-600" />
-                        </div>
-                        <div>
-                          <p className="text-sm text-slate-500">Team</p>
-                          <p className="font-medium">{team.name}</p>
-                        </div>
-                      </div>
-                    )}
+                       <div className="flex items-center gap-3">
+                         <div className="h-8 w-8 rounded-lg bg-indigo-100 flex items-center justify-center">
+                           <UsersIcon className="h-4 w-4 text-indigo-600" />
+                         </div>
+                         <div>
+                           <p className="text-sm text-slate-500">Team</p>
+                           <p className="font-medium">{team.name}</p>
+                         </div>
+                       </div>
+                     )}
                     {assignee && (
                       <div className="flex items-center gap-3">
                         <div className="h-8 w-8 rounded-full bg-slate-200 flex items-center justify-center">
