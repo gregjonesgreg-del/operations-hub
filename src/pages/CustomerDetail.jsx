@@ -528,7 +528,7 @@ export default function CustomerDetail() {
             <Card>
               <CardHeader className="flex flex-row items-center justify-between">
                 <CardTitle className="text-lg">All Jobs</CardTitle>
-                <Link to={createPageUrl('CreateJob')}>
+                <AppLink to={ROUTES.JOBS_CREATE}>
                   <Button size="sm" className="gap-2">
                     <Plus className="h-4 w-4" />
                     New Job
