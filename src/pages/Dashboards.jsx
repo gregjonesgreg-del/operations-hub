@@ -1,6 +1,5 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
-import { ROUTES } from '@/components/Routes';
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
 import { Button } from '@/components/ui/button';
 import { BarChart3, FileText, CheckSquare, Truck, Package, AlertCircle } from 'lucide-react';
@@ -10,31 +9,31 @@ const dashboards = [
     title: 'Work Orders',
     description: 'Job performance, completion rates, SLA compliance',
     icon: FileText,
-    route: ROUTES.DASHBOARDS_JOBS,
+    route: '/DashboardsJobs',
   },
   {
     title: 'PPM',
     description: 'Planned maintenance schedules, completion tracking',
     icon: CheckSquare,
-    route: ROUTES.DASHBOARDS_PPM,
+    route: '/DashboardsPPM',
   },
   {
     title: 'Fleet',
     description: 'Vehicle status, defects, compliance, fuel costs',
     icon: Truck,
-    route: ROUTES.DASHBOARDS_FLEET,
+    route: '/DashboardsFleet',
   },
   {
     title: 'Hire / Rental',
     description: 'Asset utilization, contract status, revenue',
     icon: Package,
-    route: ROUTES.DASHBOARDS_HIRE,
+    route: '/DashboardsHire',
   },
   {
     title: 'Compliance & Ops',
     description: 'Safety incidents, internal tasks, audits',
     icon: AlertCircle,
-    route: ROUTES.DASHBOARDS_OPS,
+    route: '/DashboardsOps',
   },
 ];
 
