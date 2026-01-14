@@ -1,85 +1,95 @@
-import Dashboard from './pages/Dashboard';
-import Jobs from './pages/Jobs';
-import JobsBoard from './pages/JobsBoard';
-import CreateJob from './pages/CreateJob';
-import JobDetail from './pages/JobDetail';
-import MyJobs from './pages/MyJobs';
-import Customers from './pages/Customers';
-import CustomerDetail from './pages/CustomerDetail';
-import Assets from './pages/Assets';
-import AssetDetail from './pages/AssetDetail';
-import Sites from './pages/Sites';
-import SiteDetail from './pages/SiteDetail';
-import Contacts from './pages/Contacts';
-import Teams from './pages/Teams';
-import Employees from './pages/Employees';
 import AdminSettings from './pages/AdminSettings';
-import PPM from './pages/PPM';
-import Hire from './pages/Hire';
-import InternalOps from './pages/InternalOps';
-import Fleet from './pages/Fleet';
+import AssetDetail from './pages/AssetDetail';
+import Assets from './pages/Assets';
 import ContactDetail from './pages/ContactDetail';
-import PPMPlanDetail from './pages/PPMPlanDetail';
-import PPMInstanceDetail from './pages/PPMInstanceDetail';
-import InternalTaskDetail from './pages/InternalTaskDetail';
-import IncidentDetail from './pages/IncidentDetail';
-import MyVehicle from './pages/MyVehicle';
-import VehicleDetail from './pages/VehicleDetail';
-import HireContractDetail from './pages/HireContractDetail';
-import NotFound from './pages/NotFound';
-import DiagnosticsRoutes from './pages/DiagnosticsRoutes';
+import Contacts from './pages/Contacts';
+import CreateJob from './pages/CreateJob';
+import CustomerDetail from './pages/CustomerDetail';
+import Customers from './pages/Customers';
+import Dashboard from './pages/Dashboard';
 import Dashboards from './pages/Dashboards';
+import DiagnosticsRoutes from './pages/DiagnosticsRoutes';
+import Employees from './pages/Employees';
+import Fleet from './pages/Fleet';
 import FleetChecks from './pages/FleetChecks';
-import FleetDefects from './pages/FleetDefects';
 import FleetDefectDetail from './pages/FleetDefectDetail';
+import FleetDefects from './pages/FleetDefects';
 import FleetFuel from './pages/FleetFuel';
 import FleetFuelDetail from './pages/FleetFuelDetail';
 import FleetFuelReview from './pages/FleetFuelReview';
-import HireCalendar from './pages/HireCalendar';
+import Hire from './pages/Hire';
 import HireAssetDetail from './pages/HireAssetDetail';
+import HireCalendar from './pages/HireCalendar';
+import HireContractDetail from './pages/HireContractDetail';
+import IncidentDetail from './pages/IncidentDetail';
+import InternalOps from './pages/InternalOps';
+import InternalTaskDetail from './pages/InternalTaskDetail';
+import JobDetail from './pages/JobDetail';
+import Jobs from './pages/Jobs';
+import JobsBoard from './pages/JobsBoard';
+import MyJobs from './pages/MyJobs';
+import MyVehicle from './pages/MyVehicle';
+import NotFound from './pages/NotFound';
+import PPM from './pages/PPM';
+import PPMInstanceDetail from './pages/PPMInstanceDetail';
+import PPMPlanDetail from './pages/PPMPlanDetail';
+import SiteDetail from './pages/SiteDetail';
+import Sites from './pages/Sites';
+import Teams from './pages/Teams';
+import VehicleDetail from './pages/VehicleDetail';
+import DashboardsJobs from './pages/DashboardsJobs';
+import DashboardsPPM from './pages/DashboardsPPM';
+import DashboardsFleet from './pages/DashboardsFleet';
+import DashboardsHire from './pages/DashboardsHire';
+import DashboardsOps from './pages/DashboardsOps';
 import __Layout from './Layout.jsx';
 
 
 export const PAGES = {
-    "Dashboard": Dashboard,
-    "Jobs": Jobs,
-    "JobsBoard": JobsBoard,
-    "CreateJob": CreateJob,
-    "JobDetail": JobDetail,
-    "MyJobs": MyJobs,
-    "Customers": Customers,
-    "CustomerDetail": CustomerDetail,
-    "Assets": Assets,
-    "AssetDetail": AssetDetail,
-    "Sites": Sites,
-    "SiteDetail": SiteDetail,
-    "Contacts": Contacts,
-    "Teams": Teams,
-    "Employees": Employees,
     "AdminSettings": AdminSettings,
-    "PPM": PPM,
-    "Hire": Hire,
-    "InternalOps": InternalOps,
-    "Fleet": Fleet,
+    "AssetDetail": AssetDetail,
+    "Assets": Assets,
     "ContactDetail": ContactDetail,
-    "PPMPlanDetail": PPMPlanDetail,
-    "PPMInstanceDetail": PPMInstanceDetail,
-    "InternalTaskDetail": InternalTaskDetail,
-    "IncidentDetail": IncidentDetail,
-    "MyVehicle": MyVehicle,
-    "VehicleDetail": VehicleDetail,
-    "HireContractDetail": HireContractDetail,
-    "NotFound": NotFound,
-    "DiagnosticsRoutes": DiagnosticsRoutes,
+    "Contacts": Contacts,
+    "CreateJob": CreateJob,
+    "CustomerDetail": CustomerDetail,
+    "Customers": Customers,
+    "Dashboard": Dashboard,
     "Dashboards": Dashboards,
+    "DiagnosticsRoutes": DiagnosticsRoutes,
+    "Employees": Employees,
+    "Fleet": Fleet,
     "FleetChecks": FleetChecks,
-    "FleetDefects": FleetDefects,
     "FleetDefectDetail": FleetDefectDetail,
+    "FleetDefects": FleetDefects,
     "FleetFuel": FleetFuel,
     "FleetFuelDetail": FleetFuelDetail,
     "FleetFuelReview": FleetFuelReview,
-    "HireCalendar": HireCalendar,
+    "Hire": Hire,
     "HireAssetDetail": HireAssetDetail,
+    "HireCalendar": HireCalendar,
+    "HireContractDetail": HireContractDetail,
+    "IncidentDetail": IncidentDetail,
+    "InternalOps": InternalOps,
+    "InternalTaskDetail": InternalTaskDetail,
+    "JobDetail": JobDetail,
+    "Jobs": Jobs,
+    "JobsBoard": JobsBoard,
+    "MyJobs": MyJobs,
+    "MyVehicle": MyVehicle,
+    "NotFound": NotFound,
+    "PPM": PPM,
+    "PPMInstanceDetail": PPMInstanceDetail,
+    "PPMPlanDetail": PPMPlanDetail,
+    "SiteDetail": SiteDetail,
+    "Sites": Sites,
+    "Teams": Teams,
+    "VehicleDetail": VehicleDetail,
+    "DashboardsJobs": DashboardsJobs,
+    "DashboardsPPM": DashboardsPPM,
+    "DashboardsFleet": DashboardsFleet,
+    "DashboardsHire": DashboardsHire,
+    "DashboardsOps": DashboardsOps,
 }
 
 export const pagesConfig = {
