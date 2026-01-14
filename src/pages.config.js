@@ -1,10 +1,17 @@
+import Dashboard from './pages/Dashboard';
+import Jobs from './pages/Jobs';
+import JobsBoard from './pages/JobsBoard';
 import __Layout from './Layout.jsx';
 
 
 export const PAGES = {
+    "Dashboard": Dashboard,
+    "Jobs": Jobs,
+    "JobsBoard": JobsBoard,
 }
 
 export const pagesConfig = {
+    mainPage: "Dashboard",
     Pages: PAGES,
     Layout: __Layout,
 };
