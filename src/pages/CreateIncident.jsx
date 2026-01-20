@@ -2,7 +2,6 @@ import React, { useState } from 'react';
 import { useMutation } from '@tanstack/react-query';
 import { base44 } from '@/api/base44Client';
 import { useNavigate } from 'react-router-dom';
-import { routeBuilders } from '@/components/Routes';
 import { Button } from '@/components/ui/button';
 import { Input } from '@/components/ui/input';
 import { Textarea } from '@/components/ui/textarea';
@@ -21,7 +20,7 @@ export default function CreateIncident() {
   const createMutation = useMutation({
     mutationFn: (data) => base44.entities.IncidentNearMiss.create(data),
     onSuccess: (result) => {
-      navigate(routeBuilders.incidentDetail(result.id));
+      navigate(`/IncidentDetail?incidentId=${result.id}`);
     }
   });
 
