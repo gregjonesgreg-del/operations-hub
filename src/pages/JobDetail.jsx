@@ -1,7 +1,7 @@
 import React, { useState, useMemo } from 'react';
 import { useQuery, useMutation, useQueryClient } from '@tanstack/react-query';
 import { base44 } from '@/api/base44Client';
-import { useParams } from 'react-router-dom';
+import { useSearchParams } from 'react-router-dom';
 import { format } from 'date-fns';
 import {
   Building2,
@@ -57,7 +57,8 @@ import { cn } from '@/lib/utils';
 const JOB_STATUSES = ['Draft', 'Scheduled', 'Assigned', 'In Progress', 'Awaiting Parts', 'Awaiting Customer', 'Completed', 'Closed', 'Cancelled'];
 
 export default function JobDetail() {
-  const { jobId } = useParams();
+  const [searchParams] = useSearchParams();
+  const jobId = searchParams.get('jobId');
   const queryClient = useQueryClient();
   
   const [activeTab, setActiveTab] = useState('overview');
