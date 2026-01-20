@@ -2,7 +2,6 @@ import React, { useState } from 'react';
 import { useQuery } from '@tanstack/react-query';
 import { base44 } from '@/api/base44Client';
 import { Link } from 'react-router-dom';
-import { routeBuilders } from '@/components/Routes';
 import { Plus, Search } from 'lucide-react';
 import { Button } from '@/components/ui/button';
 import { Input } from '@/components/ui/input';
@@ -71,7 +70,7 @@ export default function HireContracts() {
           {filteredContracts.map(contract => {
             const customer = customers.find(c => c.id === contract.customer);
             return (
-              <Link key={contract.id} to={routeBuilders.hireContractDetail(contract.id)}>
+              <Link key={contract.id} to={`/HireContractDetail?contractId=${contract.id}`}>
                 <Card className="p-4 hover:shadow-md transition-shadow cursor-pointer">
                   <div className="flex items-center justify-between gap-4">
                     <div className="flex-1 min-w-0">

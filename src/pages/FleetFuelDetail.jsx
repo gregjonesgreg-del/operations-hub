@@ -7,7 +7,6 @@ import { Badge } from '@/components/ui/badge';
 import PageHeader from '@/components/ui/PageHeader';
 import LoadingSpinner from '@/components/ui/LoadingSpinner';
 import EmptyState from '@/components/ui/EmptyState';
-import { ROUTES } from '@/components/Routes';
 import { format } from 'date-fns';
 import { AlertTriangle } from 'lucide-react';
 
@@ -37,7 +36,7 @@ export default function FleetFuelDetail() {
     <div className="pb-8">
       <PageHeader
         title="Fuel Transaction"
-        backLink={ROUTES.FLEET_FUEL}
+        backLink="/FleetFuel"
         backLabel="Fuel"
       >
         <Badge variant="outline">{fuel.reviewStatus}</Badge>

@@ -2,7 +2,6 @@ import React, { useState } from 'react';
 import { useQuery } from '@tanstack/react-query';
 import { base44 } from '@/api/base44Client';
 import { Link } from 'react-router-dom';
-import { routeBuilders } from '@/components/Routes';
 import PageHeader from '@/components/ui/PageHeader';
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
 import { Badge } from '@/components/ui/badge';
@@ -114,7 +113,7 @@ export default function JobsBoardPage() {
                   groupedJobs[status].map(job => (
                     <Link
                       key={job.id}
-                      to={routeBuilders.jobDetail(job.id)}
+                      to={`/JobDetail?jobId=${job.id}`}
                     >
                       <Card className="hover:shadow-md transition-shadow cursor-pointer">
                         <CardContent className="p-4 space-y-2">

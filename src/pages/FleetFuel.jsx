@@ -2,7 +2,6 @@ import React from 'react';
 import { useQuery } from '@tanstack/react-query';
 import { base44 } from '@/api/base44Client';
 import { Link } from 'react-router-dom';
-import { ROUTES, routeBuilders } from '@/components/Routes';
 import { Card, CardContent } from '@/components/ui/card';
 import { Badge } from '@/components/ui/badge';
 import { format } from 'date-fns';
@@ -39,7 +38,7 @@ export default function FleetFuel() {
         ) : (
           <div className="space-y-3">
             {sorted.map(fuel => (
-              <Link key={fuel.id} to={routeBuilders.fuelDetail(fuel.id)}>
+              <Link key={fuel.id} to={`/FleetFuelDetail?id=${fuel.id}`}>
                 <Card className="hover:shadow-md transition-all cursor-pointer">
                   <CardContent className="p-4">
                     <div className="flex items-start justify-between">

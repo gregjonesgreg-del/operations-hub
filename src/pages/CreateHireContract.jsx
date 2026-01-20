@@ -2,7 +2,6 @@ import React, { useState } from 'react';
 import { useQuery, useMutation } from '@tanstack/react-query';
 import { base44 } from '@/api/base44Client';
 import { useNavigate } from 'react-router-dom';
-import { routeBuilders } from '@/components/Routes';
 import { Button } from '@/components/ui/button';
 import { Input } from '@/components/ui/input';
 import { Textarea } from '@/components/ui/textarea';
@@ -40,7 +39,7 @@ export default function CreateHireContract() {
   const createMutation = useMutation({
     mutationFn: (data) => base44.entities.HireContract.create(data),
     onSuccess: (result) => {
-      navigate(routeBuilders.hireContractDetail(result.id));
+      navigate(`/HireContractDetail?contractId=${result.id}`);
     }
   });
 

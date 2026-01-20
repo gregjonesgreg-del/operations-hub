@@ -7,7 +7,6 @@ import { Badge } from '@/components/ui/badge';
 import PageHeader from '@/components/ui/PageHeader';
 import LoadingSpinner from '@/components/ui/LoadingSpinner';
 import EmptyState from '@/components/ui/EmptyState';
-import { ROUTES } from '@/components/Routes';
 import { AlertTriangle } from 'lucide-react';
 
 export default function FleetDefectDetail() {
@@ -36,7 +35,7 @@ export default function FleetDefectDetail() {
     <div className="pb-8">
       <PageHeader
         title="Vehicle Defect"
-        backLink={ROUTES.FLEET_DEFECTS}
+        backLink="/FleetDefects"
         backLabel="Defects"
       >
         <Badge className={

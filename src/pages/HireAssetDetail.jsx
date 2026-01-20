@@ -7,7 +7,6 @@ import { Badge } from '@/components/ui/badge';
 import PageHeader from '@/components/ui/PageHeader';
 import LoadingSpinner from '@/components/ui/LoadingSpinner';
 import EmptyState from '@/components/ui/EmptyState';
-import { ROUTES } from '@/components/Routes';
 import { AlertTriangle } from 'lucide-react';
 
 export default function HireAssetDetail() {
@@ -36,7 +35,7 @@ export default function HireAssetDetail() {
     <div className="pb-8">
       <PageHeader
         title={`${asset.make} ${asset.model}`}
-        backLink={ROUTES.HIRE_ASSETS}
+        backLink="/Hire"
         backLabel="Assets"
       >
         <Badge variant={asset.availabilityStatus === 'Available' ? 'default' : 'secondary'}>
