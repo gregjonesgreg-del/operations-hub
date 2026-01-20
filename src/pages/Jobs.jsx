@@ -483,10 +483,10 @@ export default function Jobs() {
                     "hover:shadow-md transition-all cursor-pointer h-full",
                     overdue && "border-red-200 bg-red-50/30"
                   )}
-                  onClick={() => navigate(routeBuilders.jobDetail(job.id))}
+                  onClick={() => navigate(`/JobDetail?jobId=${job.id}`)}
                   role="button"
                   tabIndex={0}
-                  onKeyDown={(e) => e.key === 'Enter' && navigate(routeBuilders.jobDetail(job.id))}
+                  onKeyDown={(e) => e.key === 'Enter' && navigate(`/JobDetail?jobId=${job.id}`)}
                 >
                   <CardContent className="p-4">
                     <div className="flex items-center justify-between mb-3">
