@@ -2,7 +2,6 @@ import React from 'react';
 import { useQuery } from '@tanstack/react-query';
 import { base44 } from '@/api/base44Client';
 import useAppNavigate from '@/components/useAppNavigate';
-import { routeBuilders } from '@/components/Routes';
 import { format, subDays, startOfWeek, startOfMonth, isAfter, isBefore } from 'date-fns';
 import {
   BarChart,
@@ -222,7 +221,7 @@ export default function Dashboard() {
                   </p>
                 </div>
                 <Button 
-                  onClick={() => navigate(routeBuilders.jobs())}
+                  onClick={() => navigate('/Jobs')}
                   variant="destructive" 
                   size="sm"
                 >
@@ -324,7 +323,7 @@ export default function Dashboard() {
           <CardHeader className="flex flex-row items-center justify-between">
             <CardTitle className="text-lg">Recent Jobs</CardTitle>
             <Button 
-              onClick={() => navigate(routeBuilders.jobs())}
+              onClick={() => navigate('/Jobs')}
               variant="ghost" 
               size="sm"
             >
@@ -336,11 +335,11 @@ export default function Dashboard() {
               {recentJobs.map(job => (
                 <div
                   key={job.id}
-                  onClick={() => navigate(routeBuilders.jobDetail(job.id))}
+                  onClick={() => navigate(`/JobDetail?jobId=${job.id}`)}
                   className="flex items-center gap-4 p-3 rounded-xl hover:bg-slate-50 transition-colors cursor-pointer"
                   role="button"
                   tabIndex={0}
-                  onKeyDown={(e) => e.key === 'Enter' && navigate(routeBuilders.jobDetail(job.id))}
+                  onKeyDown={(e) => e.key === 'Enter' && navigate(`/JobDetail?jobId=${job.id}`)}
                 >
                   <div className="h-10 w-10 rounded-lg bg-indigo-100 flex items-center justify-center">
                     <Wrench className="h-5 w-5 text-indigo-600" />
@@ -367,10 +366,10 @@ export default function Dashboard() {
         <div className="grid grid-cols-2 sm:grid-cols-4 gap-4">
           <Card 
             className="hover:shadow-md transition-shadow cursor-pointer h-full"
-            onClick={() => navigate(routeBuilders.jobsNew())}
+            onClick={() => navigate('/CreateJob')}
             role="button"
             tabIndex={0}
-            onKeyDown={(e) => e.key === 'Enter' && navigate(routeBuilders.jobsNew())}
+            onKeyDown={(e) => e.key === 'Enter' && navigate('/CreateJob')}
           >
             <CardContent className="p-4 flex flex-col items-center justify-center text-center gap-2">
               <div className="h-12 w-12 rounded-xl bg-indigo-100 flex items-center justify-center">
@@ -382,10 +381,10 @@ export default function Dashboard() {
 
           <Card 
             className="hover:shadow-md transition-shadow cursor-pointer h-full"
-            onClick={() => navigate(routeBuilders.jobsBoard())}
+            onClick={() => navigate('/JobsBoard')}
             role="button"
             tabIndex={0}
-            onKeyDown={(e) => e.key === 'Enter' && navigate(routeBuilders.jobsBoard())}
+            onKeyDown={(e) => e.key === 'Enter' && navigate('/JobsBoard')}
           >
             <CardContent className="p-4 flex flex-col items-center justify-center text-center gap-2">
               <div className="h-12 w-12 rounded-xl bg-amber-100 flex items-center justify-center">
@@ -397,10 +396,10 @@ export default function Dashboard() {
 
           <Card 
             className="hover:shadow-md transition-shadow cursor-pointer h-full"
-            onClick={() => navigate(routeBuilders.assets())}
+            onClick={() => navigate('/Assets')}
             role="button"
             tabIndex={0}
-            onKeyDown={(e) => e.key === 'Enter' && navigate(routeBuilders.assets())}
+            onKeyDown={(e) => e.key === 'Enter' && navigate('/Assets')}
           >
             <CardContent className="p-4 flex flex-col items-center justify-center text-center gap-2">
               <div className="h-12 w-12 rounded-xl bg-purple-100 flex items-center justify-center">
@@ -412,10 +411,10 @@ export default function Dashboard() {
 
           <Card 
             className="hover:shadow-md transition-shadow cursor-pointer h-full"
-            onClick={() => navigate(routeBuilders.customers())}
+            onClick={() => navigate('/Customers')}
             role="button"
             tabIndex={0}
-            onKeyDown={(e) => e.key === 'Enter' && navigate(routeBuilders.customers())}
+            onKeyDown={(e) => e.key === 'Enter' && navigate('/Customers')}
           >
             <CardContent className="p-4 flex flex-col items-center justify-center text-center gap-2">
               <div className="h-12 w-12 rounded-xl bg-emerald-100 flex items-center justify-center">
