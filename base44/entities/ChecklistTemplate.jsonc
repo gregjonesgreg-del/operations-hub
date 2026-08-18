@@ -1,0 +1,35 @@
+{
+  "name": "ChecklistTemplate",
+  "type": "object",
+  "properties": {
+    "name": {
+      "type": "string",
+      "description": "Checklist template name"
+    },
+    "category": {
+      "type": "string",
+      "enum": [
+        "PPM",
+        "Vehicle Check",
+        "Workshop Check",
+        "H&S",
+        "Housekeeping",
+        "Other"
+      ],
+      "description": "Category of the checklist"
+    },
+    "description": {
+      "type": "string",
+      "description": "Optional description"
+    },
+    "isActive": {
+      "type": "boolean",
+      "default": true,
+      "description": "Whether template is active"
+    }
+  },
+  "required": [
+    "name",
+    "category"
+  ]
+}

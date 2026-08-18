@@ -1,0 +1,38 @@
+{
+  "name": "Customer",
+  "type": "object",
+  "properties": {
+    "name": {
+      "type": "string",
+      "description": "Customer/company name"
+    },
+    "billingAddress": {
+      "type": "string",
+      "description": "Billing address"
+    },
+    "notes": {
+      "type": "string",
+      "description": "General notes about the customer"
+    },
+    "status": {
+      "type": "string",
+      "enum": [
+        "Active",
+        "Inactive"
+      ],
+      "default": "Active",
+      "description": "Customer status"
+    },
+    "primaryPhone": {
+      "type": "string",
+      "description": "Primary contact phone"
+    },
+    "primaryEmail": {
+      "type": "string",
+      "description": "Primary contact email"
+    }
+  },
+  "required": [
+    "name"
+  ]
+}

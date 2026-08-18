@@ -1,0 +1,49 @@
+{
+  "name": "Contact",
+  "type": "object",
+  "properties": {
+    "customer": {
+      "type": "string",
+      "description": "Link to Customer entity"
+    },
+    "site": {
+      "type": "string",
+      "description": "Optional link to Site entity"
+    },
+    "name": {
+      "type": "string",
+      "description": "Contact full name"
+    },
+    "role": {
+      "type": "string",
+      "description": "Contact's role/title"
+    },
+    "phone": {
+      "type": "string",
+      "description": "Phone number"
+    },
+    "email": {
+      "type": "string",
+      "description": "Email address"
+    },
+    "preferredContactMethod": {
+      "type": "string",
+      "enum": [
+        "Phone",
+        "Email",
+        "SMS"
+      ],
+      "default": "Phone",
+      "description": "Preferred contact method"
+    },
+    "isPrimary": {
+      "type": "boolean",
+      "default": false,
+      "description": "Whether this is the primary contact"
+    }
+  },
+  "required": [
+    "customer",
+    "name"
+  ]
+}

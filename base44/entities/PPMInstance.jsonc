@@ -1,0 +1,82 @@
+{
+  "name": "PPMInstance",
+  "type": "object",
+  "properties": {
+    "ppmPlan": {
+      "type": "string",
+      "description": "Link to PPMPlan"
+    },
+    "asset": {
+      "type": "string",
+      "description": "Link to Asset"
+    },
+    "site": {
+      "type": "string",
+      "description": "Link to Site (auto-populated from asset.site, but editable)"
+    },
+    "dueDate": {
+      "type": "string",
+      "format": "date",
+      "description": "When the PPM is due"
+    },
+    "scheduledDate": {
+      "type": "string",
+      "format": "date",
+      "description": "Optional scheduled date for the PPM"
+    },
+    "assignedTeam": {
+      "type": "string",
+      "description": "Link to Team assigned"
+    },
+    "assignedEngineer": {
+      "type": "string",
+      "description": "Optional link to EmployeeProfile assigned"
+    },
+    "status": {
+      "type": "string",
+      "enum": [
+        "Due",
+        "Scheduled",
+        "In Progress",
+        "Completed",
+        "Overdue",
+        "Skipped"
+      ],
+      "default": "Due",
+      "description": "Current status"
+    },
+    "skippedReason": {
+      "type": "string",
+      "description": "Reason for skipping (required if status=Skipped)"
+    },
+    "completionNotes": {
+      "type": "string",
+      "description": "Notes on completion"
+    },
+    "completionPhotos": {
+      "type": "array",
+      "items": {
+        "type": "string"
+      },
+      "description": "Photos from completion"
+    },
+    "signature": {
+      "type": "string",
+      "description": "Optional signature upload"
+    },
+    "checklistResults": {
+      "type": "object",
+      "description": "Storage for checklist item results (JSON: {itemId: {response, notes, photo}})"
+    },
+    "linkedJob": {
+      "type": "string",
+      "description": "Optional link to Job created from this instance"
+    }
+  },
+  "required": [
+    "ppmPlan",
+    "asset",
+    "dueDate",
+    "assignedTeam"
+  ]
+}

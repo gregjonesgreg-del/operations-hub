@@ -1,0 +1,62 @@
+{
+  "name": "ActivityLog",
+  "type": "object",
+  "properties": {
+    "entityType": {
+      "type": "string",
+      "enum": [
+        "Job",
+        "Asset",
+        "Site",
+        "Customer",
+        "Vehicle",
+        "HireContract"
+      ],
+      "description": "Type of entity this activity is for"
+    },
+    "entityId": {
+      "type": "string",
+      "description": "ID of the related entity"
+    },
+    "activityType": {
+      "type": "string",
+      "enum": [
+        "Created",
+        "Status Change",
+        "Assignment Change",
+        "Edit",
+        "Note Added",
+        "Photo Added",
+        "Completed",
+        "Other"
+      ],
+      "description": "Type of activity"
+    },
+    "description": {
+      "type": "string",
+      "description": "Human readable description"
+    },
+    "previousValue": {
+      "type": "string",
+      "description": "Previous value if applicable"
+    },
+    "newValue": {
+      "type": "string",
+      "description": "New value if applicable"
+    },
+    "performedBy": {
+      "type": "string",
+      "description": "User email who performed the action"
+    },
+    "performedByName": {
+      "type": "string",
+      "description": "Display name of user"
+    }
+  },
+  "required": [
+    "entityType",
+    "entityId",
+    "activityType",
+    "description"
+  ]
+}

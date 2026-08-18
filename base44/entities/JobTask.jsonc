@@ -1,0 +1,68 @@
+{
+  "name": "JobTask",
+  "type": "object",
+  "properties": {
+    "job": {
+      "type": "string",
+      "description": "Link to Job entity"
+    },
+    "title": {
+      "type": "string",
+      "description": "Task title"
+    },
+    "taskType": {
+      "type": "string",
+      "enum": [
+        "Checklist",
+        "Free Text"
+      ],
+      "default": "Checklist",
+      "description": "Type of task"
+    },
+    "required": {
+      "type": "boolean",
+      "default": false,
+      "description": "Whether task is required for completion"
+    },
+    "status": {
+      "type": "string",
+      "enum": [
+        "Open",
+        "Done"
+      ],
+      "default": "Open",
+      "description": "Task status"
+    },
+    "completedBy": {
+      "type": "string",
+      "description": "Link to EmployeeProfile who completed"
+    },
+    "completedAt": {
+      "type": "string",
+      "format": "date-time",
+      "description": "When task was completed"
+    },
+    "photoRequired": {
+      "type": "boolean",
+      "default": false,
+      "description": "Whether photo is required"
+    },
+    "photoUpload": {
+      "type": "string",
+      "description": "Photo URL if uploaded"
+    },
+    "notes": {
+      "type": "string",
+      "description": "Task notes"
+    },
+    "sortOrder": {
+      "type": "number",
+      "default": 0,
+      "description": "Order in task list"
+    }
+  },
+  "required": [
+    "job",
+    "title"
+  ]
+}

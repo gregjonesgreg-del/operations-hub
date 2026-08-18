@@ -1,0 +1,62 @@
+{
+  "name": "HireInspection",
+  "type": "object",
+  "properties": {
+    "hireContract": {
+      "type": "string",
+      "description": "Link to HireContract"
+    },
+    "inspectionType": {
+      "type": "string",
+      "enum": [
+        "Check-Out",
+        "Check-In"
+      ],
+      "description": "Type of inspection"
+    },
+    "performedBy": {
+      "type": "string",
+      "description": "Link to EmployeeProfile"
+    },
+    "dateTime": {
+      "type": "string",
+      "format": "date-time",
+      "description": "Inspection date and time"
+    },
+    "conditionRating": {
+      "type": "string",
+      "enum": [
+        "Good",
+        "Fair",
+        "Poor"
+      ],
+      "description": "Equipment condition rating"
+    },
+    "photos": {
+      "type": "array",
+      "items": {
+        "type": "string"
+      },
+      "description": "Inspection photos"
+    },
+    "notes": {
+      "type": "string",
+      "description": "Inspection notes"
+    },
+    "defectsFound": {
+      "type": "boolean",
+      "default": false,
+      "description": "Whether defects were found"
+    },
+    "linkedJob": {
+      "type": "string",
+      "description": "Optional link to repair/cleaning Job"
+    }
+  },
+  "required": [
+    "hireContract",
+    "inspectionType",
+    "performedBy",
+    "dateTime"
+  ]
+}

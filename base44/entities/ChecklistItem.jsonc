@@ -1,0 +1,42 @@
+{
+  "name": "ChecklistItem",
+  "type": "object",
+  "properties": {
+    "template": {
+      "type": "string",
+      "description": "Link to ChecklistTemplate"
+    },
+    "itemText": {
+      "type": "string",
+      "description": "Item description"
+    },
+    "responseType": {
+      "type": "string",
+      "enum": [
+        "Pass/Fail/NA",
+        "Yes/No/NA"
+      ],
+      "default": "Pass/Fail/NA",
+      "description": "Type of response options"
+    },
+    "photoRequired": {
+      "type": "boolean",
+      "default": false,
+      "description": "Whether photo is required"
+    },
+    "notesRequired": {
+      "type": "boolean",
+      "default": false,
+      "description": "Whether notes are required"
+    },
+    "sortOrder": {
+      "type": "number",
+      "default": 0,
+      "description": "Display order"
+    }
+  },
+  "required": [
+    "template",
+    "itemText"
+  ]
+}

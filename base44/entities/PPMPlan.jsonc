@@ -1,0 +1,74 @@
+{
+  "name": "PPMPlan",
+  "type": "object",
+  "properties": {
+    "name": {
+      "type": "string",
+      "description": "PPM plan name"
+    },
+    "appliesToAssetType": {
+      "type": "string",
+      "enum": [
+        "Vehicle",
+        "Hire Asset",
+        "Workshop Machinery",
+        "Customer Machinery",
+        "Other",
+        "Any"
+      ],
+      "default": "Any",
+      "description": "Asset type scope"
+    },
+    "siteScope": {
+      "type": "string",
+      "description": "Optional link to Site entity for location-specific plans"
+    },
+    "frequencyUnit": {
+      "type": "string",
+      "enum": [
+        "Days",
+        "Weeks",
+        "Months"
+      ],
+      "description": "Frequency unit"
+    },
+    "frequencyValue": {
+      "type": "number",
+      "description": "Frequency value (e.g., 3 months)"
+    },
+    "nextDueDate": {
+      "type": "string",
+      "format": "date",
+      "description": "Next due date for instance generation"
+    },
+    "checklistTemplate": {
+      "type": "string",
+      "description": "Link to ChecklistTemplate"
+    },
+    "responsibilityTeam": {
+      "type": "string",
+      "description": "Link to Team responsible"
+    },
+    "responsibilityRole": {
+      "type": "string",
+      "description": "Optional role description (e.g., 'Senior Engineer')"
+    },
+    "complianceCritical": {
+      "type": "boolean",
+      "default": false,
+      "description": "Whether this is critical for compliance"
+    },
+    "isActive": {
+      "type": "boolean",
+      "default": true,
+      "description": "Whether plan is active"
+    }
+  },
+  "required": [
+    "name",
+    "frequencyUnit",
+    "frequencyValue",
+    "checklistTemplate",
+    "responsibilityTeam"
+  ]
+}

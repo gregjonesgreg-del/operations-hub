@@ -1,0 +1,35 @@
+{
+  "name": "Site",
+  "type": "object",
+  "properties": {
+    "customer": {
+      "type": "string",
+      "description": "Link to Customer entity"
+    },
+    "siteName": {
+      "type": "string",
+      "description": "Name of the site"
+    },
+    "address": {
+      "type": "string",
+      "description": "Full address"
+    },
+    "accessNotes": {
+      "type": "string",
+      "description": "Access instructions: gate codes, hours, parking, reception"
+    },
+    "siteRiskNotes": {
+      "type": "string",
+      "description": "Health & safety risk notes"
+    },
+    "isActive": {
+      "type": "boolean",
+      "default": true,
+      "description": "Whether site is active"
+    }
+  },
+  "required": [
+    "customer",
+    "siteName"
+  ]
+}

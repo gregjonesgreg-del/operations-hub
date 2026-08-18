@@ -1,0 +1,54 @@
+{
+  "name": "VehicleCheck",
+  "type": "object",
+  "properties": {
+    "vehicleAsset": {
+      "type": "string",
+      "description": "Link to Asset (Vehicle)"
+    },
+    "driver": {
+      "type": "string",
+      "description": "Link to EmployeeProfile"
+    },
+    "date": {
+      "type": "string",
+      "format": "date-time",
+      "description": "Check date and time"
+    },
+    "checklistTemplate": {
+      "type": "string",
+      "description": "Link to ChecklistTemplate"
+    },
+    "status": {
+      "type": "string",
+      "enum": [
+        "Submitted",
+        "Passed",
+        "Failed"
+      ],
+      "default": "Submitted",
+      "description": "Check status"
+    },
+    "defectsFound": {
+      "type": "boolean",
+      "default": false,
+      "description": "Whether defects were found"
+    },
+    "photos": {
+      "type": "array",
+      "items": {
+        "type": "string"
+      },
+      "description": "Check photos"
+    },
+    "notes": {
+      "type": "string",
+      "description": "Additional notes"
+    }
+  },
+  "required": [
+    "vehicleAsset",
+    "driver",
+    "date"
+  ]
+}

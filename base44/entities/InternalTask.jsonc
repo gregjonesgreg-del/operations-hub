@@ -1,0 +1,104 @@
+{
+  "name": "InternalTask",
+  "type": "object",
+  "properties": {
+    "title": {
+      "type": "string",
+      "description": "Task title"
+    },
+    "category": {
+      "type": "string",
+      "enum": [
+        "Housekeeping",
+        "H&S",
+        "Vehicle Checks",
+        "Workshop Equipment Checks",
+        "Audit",
+        "Other"
+      ],
+      "description": "Task category"
+    },
+    "site": {
+      "type": "string",
+      "description": "Optional link to Site"
+    },
+    "asset": {
+      "type": "string",
+      "description": "Optional link to Asset"
+    },
+    "assignedTo": {
+      "type": "string",
+      "description": "Optional link to EmployeeProfile (assigned person)"
+    },
+    "assignedTeam": {
+      "type": "string",
+      "description": "Optional link to Team (assigned team)"
+    },
+    "recurrenceType": {
+      "type": "string",
+      "enum": [
+        "None",
+        "Daily",
+        "Weekly",
+        "Monthly"
+      ],
+      "default": "None",
+      "description": "Recurrence type"
+    },
+    "recurrenceDetail": {
+      "type": "string",
+      "description": "Optional details (e.g., 'Every Monday' or 'Every 15th')"
+    },
+    "dueDate": {
+      "type": "string",
+      "format": "date",
+      "description": "Due date for this task"
+    },
+    "status": {
+      "type": "string",
+      "enum": [
+        "Open",
+        "In Progress",
+        "Done",
+        "Overdue",
+        "Verified"
+      ],
+      "default": "Open",
+      "description": "Task status"
+    },
+    "verificationRequired": {
+      "type": "boolean",
+      "default": false,
+      "description": "Whether verification is required"
+    },
+    "verifiedBy": {
+      "type": "string",
+      "description": "Link to EmployeeProfile who verified"
+    },
+    "verifiedAt": {
+      "type": "string",
+      "format": "date-time",
+      "description": "When task was verified"
+    },
+    "checklistTemplate": {
+      "type": "string",
+      "description": "Optional link to ChecklistTemplate"
+    },
+    "notes": {
+      "type": "string",
+      "description": "Task notes"
+    },
+    "photoUploads": {
+      "type": "array",
+      "items": {
+        "type": "string"
+      },
+      "description": "Photo URLs"
+    }
+  },
+  "required": [
+    "title",
+    "category",
+    "dueDate"
+  ]
+}

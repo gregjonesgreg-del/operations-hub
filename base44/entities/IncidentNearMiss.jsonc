@@ -1,0 +1,56 @@
+{
+  "name": "IncidentNearMiss",
+  "type": "object",
+  "properties": {
+    "dateTime": {
+      "type": "string",
+      "format": "date-time",
+      "description": "When incident occurred"
+    },
+    "site": {
+      "type": "string",
+      "description": "Optional link to Site"
+    },
+    "reportedBy": {
+      "type": "string",
+      "description": "Link to EmployeeProfile who reported"
+    },
+    "severity": {
+      "type": "string",
+      "enum": [
+        "Low",
+        "Medium",
+        "High"
+      ],
+      "description": "Severity level"
+    },
+    "description": {
+      "type": "string",
+      "description": "Incident description"
+    },
+    "immediateActions": {
+      "type": "string",
+      "description": "Immediate actions taken"
+    },
+    "photos": {
+      "type": "array",
+      "items": {
+        "type": "string"
+      },
+      "description": "Incident photos"
+    },
+    "linkedActions": {
+      "type": "array",
+      "items": {
+        "type": "string"
+      },
+      "description": "Links to InternalTask entities (follow-up actions)"
+    }
+  },
+  "required": [
+    "dateTime",
+    "reportedBy",
+    "severity",
+    "description"
+  ]
+}

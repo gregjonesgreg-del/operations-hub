@@ -1,0 +1,65 @@
+{
+  "name": "RolePermission",
+  "type": "object",
+  "properties": {
+    "roleName": {
+      "type": "string",
+      "enum": [
+        "Admin",
+        "Office/Dispatch",
+        "Engineer (Field)",
+        "Workshop Tech",
+        "Driver",
+        "H&S Manager",
+        "Manager"
+      ],
+      "description": "Role name"
+    },
+    "module": {
+      "type": "string",
+      "enum": [
+        "Jobs",
+        "PPM",
+        "Hire",
+        "Fleet",
+        "Internal Ops",
+        "Dashboards",
+        "Core Data",
+        "Admin"
+      ],
+      "description": "Module name"
+    },
+    "canView": {
+      "type": "boolean",
+      "default": false
+    },
+    "canCreate": {
+      "type": "boolean",
+      "default": false
+    },
+    "canEdit": {
+      "type": "boolean",
+      "default": false
+    },
+    "canDelete": {
+      "type": "boolean",
+      "default": false
+    },
+    "scopeType": {
+      "type": "string",
+      "enum": [
+        "All",
+        "Team Only",
+        "Assigned Only",
+        "Read Only",
+        "None"
+      ],
+      "default": "None",
+      "description": "Visibility scope"
+    }
+  },
+  "required": [
+    "roleName",
+    "module"
+  ]
+}

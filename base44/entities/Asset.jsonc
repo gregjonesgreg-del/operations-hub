@@ -1,0 +1,195 @@
+{
+  "name": "Asset",
+  "type": "object",
+  "properties": {
+    "assetType": {
+      "type": "string",
+      "enum": [
+        "Vehicle",
+        "Hire Asset",
+        "Workshop Machinery",
+        "Customer Machinery",
+        "Other"
+      ],
+      "description": "Type of asset"
+    },
+    "internalAssetId": {
+      "type": "string",
+      "description": "Unique internal asset identifier"
+    },
+    "make": {
+      "type": "string",
+      "description": "Manufacturer/make"
+    },
+    "model": {
+      "type": "string",
+      "description": "Model name/number"
+    },
+    "serialNumber": {
+      "type": "string",
+      "description": "Serial number"
+    },
+    "status": {
+      "type": "string",
+      "enum": [
+        "Active",
+        "In Repair",
+        "Off Hire",
+        "Decommissioned"
+      ],
+      "default": "Active",
+      "description": "Current asset status"
+    },
+    "locationType": {
+      "type": "string",
+      "enum": [
+        "Site",
+        "Workshop",
+        "Yard",
+        "On Hire"
+      ],
+      "default": "Workshop",
+      "description": "Current location type"
+    },
+    "site": {
+      "type": "string",
+      "description": "Link to Site entity if at a site"
+    },
+    "notes": {
+      "type": "string",
+      "description": "General notes"
+    },
+    "photosAndFiles": {
+      "type": "array",
+      "items": {
+        "type": "string"
+      },
+      "description": "Uploaded manuals, certificates, photos"
+    },
+    "warrantyExpiry": {
+      "type": "string",
+      "format": "date",
+      "description": "Warranty expiry date"
+    },
+    "regNumber": {
+      "type": "string",
+      "description": "Vehicle registration number"
+    },
+    "vinNumber": {
+      "type": "string",
+      "description": "Vehicle VIN number"
+    },
+    "year": {
+      "type": "number",
+      "description": "Vehicle year"
+    },
+    "fuelType": {
+      "type": "string",
+      "enum": [
+        "Petrol",
+        "Diesel",
+        "Electric",
+        "Hybrid",
+        "Other"
+      ],
+      "description": "Fuel type for vehicles"
+    },
+    "motDueDate": {
+      "type": "string",
+      "format": "date",
+      "description": "MOT due date for vehicles"
+    },
+    "serviceDueDate": {
+      "type": "string",
+      "format": "date",
+      "description": "Service due date for vehicles"
+    },
+    "insuranceDueDate": {
+      "type": "string",
+      "format": "date",
+      "description": "Insurance renewal due date for vehicles"
+    },
+    "currentOdometer": {
+      "type": "number",
+      "description": "Current odometer reading for vehicles"
+    },
+    "vehicleStatus": {
+      "type": "string",
+      "enum": [
+        "Active",
+        "Off Road",
+        "In Repair"
+      ],
+      "default": "Active",
+      "description": "Vehicle operational status"
+    },
+    "assignedDriver": {
+      "type": "string",
+      "description": "Link to EmployeeProfile (assigned driver for vehicles)"
+    },
+    "hireCategory": {
+      "type": "string",
+      "enum": [
+        "Pressure Washer",
+        "Scrubber Dryer",
+        "Sweeper",
+        "Vacuum",
+        "Extractor",
+        "Steam",
+        "Other"
+      ],
+      "description": "Category for hire assets"
+    },
+    "availabilityStatus": {
+      "type": "string",
+      "enum": [
+        "Available",
+        "Reserved",
+        "On Hire",
+        "In Maintenance"
+      ],
+      "default": "Available",
+      "description": "Availability status for hire assets"
+    },
+    "conditionNotes": {
+      "type": "string",
+      "description": "Condition notes for hire assets"
+    },
+    "rateDaily": {
+      "type": "number",
+      "description": "Daily hire rate"
+    },
+    "rateWeekly": {
+      "type": "number",
+      "description": "Weekly hire rate"
+    },
+    "powerType": {
+      "type": "string",
+      "enum": [
+        "Electric 110V",
+        "Electric 230V",
+        "Electric 415V 3-phase",
+        "Battery",
+        "Petrol",
+        "Diesel",
+        "Other"
+      ],
+      "description": "Power type for hire equipment"
+    },
+    "hoursMeter": {
+      "type": "number",
+      "description": "Hours meter reading for hire equipment"
+    },
+    "accessoriesIncluded": {
+      "type": "array",
+      "items": {
+        "type": "string"
+      },
+      "description": "Accessories included with hire asset"
+    }
+  },
+  "required": [
+    "assetType",
+    "internalAssetId"
+  ]
+}

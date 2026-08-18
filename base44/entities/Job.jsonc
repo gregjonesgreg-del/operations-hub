@@ -1,0 +1,155 @@
+{
+  "name": "Job",
+  "type": "object",
+  "properties": {
+    "jobNumber": {
+      "type": "string",
+      "description": "Auto-generated job number"
+    },
+    "customer": {
+      "type": "string",
+      "description": "Link to Customer entity"
+    },
+    "site": {
+      "type": "string",
+      "description": "Link to Site entity"
+    },
+    "primaryContact": {
+      "type": "string",
+      "description": "Link to Contact entity"
+    },
+    "jobType": {
+      "type": "string",
+      "enum": [
+        "Breakdown",
+        "Service",
+        "Install",
+        "Transport",
+        "Inspection",
+        "Other"
+      ],
+      "description": "Type of job"
+    },
+    "workLocation": {
+      "type": "string",
+      "enum": [
+        "On-site",
+        "Workshop",
+        "Transport"
+      ],
+      "default": "On-site",
+      "description": "Where work will be performed"
+    },
+    "asset": {
+      "type": "string",
+      "description": "Link to Asset entity"
+    },
+    "priority": {
+      "type": "string",
+      "enum": [
+        "Low",
+        "Medium",
+        "High",
+        "Urgent"
+      ],
+      "default": "Medium",
+      "description": "Job priority"
+    },
+    "dueDate": {
+      "type": "string",
+      "format": "date",
+      "description": "Due date"
+    },
+    "slaTargetDate": {
+      "type": "string",
+      "format": "date-time",
+      "description": "SLA target date/time"
+    },
+    "status": {
+      "type": "string",
+      "enum": [
+        "Draft",
+        "Scheduled",
+        "Assigned",
+        "In Progress",
+        "Awaiting Parts",
+        "Awaiting Customer",
+        "Completed",
+        "Closed",
+        "Cancelled"
+      ],
+      "default": "Draft",
+      "description": "Current job status"
+    },
+    "description": {
+      "type": "string",
+      "description": "Job description"
+    },
+    "faultDetails": {
+      "type": "string",
+      "description": "Fault/issue details"
+    },
+    "riskNotes": {
+      "type": "string",
+      "description": "Risk assessment notes"
+    },
+    "assignedTeam": {
+      "type": "string",
+      "description": "Link to Team entity"
+    },
+    "assignedPrimary": {
+      "type": "string",
+      "description": "Link to primary EmployeeProfile"
+    },
+    "additionalAssignees": {
+      "type": "array",
+      "items": {
+        "type": "string"
+      },
+      "description": "Links to additional EmployeeProfiles"
+    },
+    "completionNotes": {
+      "type": "string",
+      "description": "Notes on job completion"
+    },
+    "signatureStatus": {
+      "type": "string",
+      "enum": [
+        "Pending",
+        "Signed",
+        "Not Possible"
+      ],
+      "default": "Pending",
+      "description": "Customer signature status"
+    },
+    "signatureNotPossibleReason": {
+      "type": "string",
+      "description": "Reason if signature not possible"
+    },
+    "customerSignature": {
+      "type": "string",
+      "description": "Customer signature file URL"
+    },
+    "completionPhotos": {
+      "type": "array",
+      "items": {
+        "type": "string"
+      },
+      "description": "Photos taken on completion"
+    },
+    "scheduledDate": {
+      "type": "string",
+      "format": "date",
+      "description": "Scheduled date for the job"
+    },
+    "scheduledTime": {
+      "type": "string",
+      "description": "Scheduled time slot"
+    }
+  },
+  "required": [
+    "customer",
+    "site",
+    "jobType"
+  ]
+}

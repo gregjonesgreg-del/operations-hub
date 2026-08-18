@@ -1,0 +1,72 @@
+{
+  "name": "VehicleDefect",
+  "type": "object",
+  "properties": {
+    "vehicleAsset": {
+      "type": "string",
+      "description": "Link to Asset (Vehicle)"
+    },
+    "reportedBy": {
+      "type": "string",
+      "description": "Link to EmployeeProfile"
+    },
+    "reportedAt": {
+      "type": "string",
+      "format": "date-time",
+      "description": "When defect was reported"
+    },
+    "severity": {
+      "type": "string",
+      "enum": [
+        "Low",
+        "Med",
+        "High",
+        "Critical"
+      ],
+      "description": "Defect severity"
+    },
+    "description": {
+      "type": "string",
+      "description": "Defect description"
+    },
+    "photos": {
+      "type": "array",
+      "items": {
+        "type": "string"
+      },
+      "description": "Defect photos"
+    },
+    "status": {
+      "type": "string",
+      "enum": [
+        "Reported",
+        "Approved",
+        "Booked In",
+        "Fixed",
+        "Closed"
+      ],
+      "default": "Reported",
+      "description": "Defect status"
+    },
+    "linkedJob": {
+      "type": "string",
+      "description": "Optional link to repair Job"
+    },
+    "resolutionNotes": {
+      "type": "string",
+      "description": "How defect was resolved"
+    },
+    "closedAt": {
+      "type": "string",
+      "format": "date-time",
+      "description": "When defect was closed"
+    }
+  },
+  "required": [
+    "vehicleAsset",
+    "reportedBy",
+    "reportedAt",
+    "severity",
+    "description"
+  ]
+}

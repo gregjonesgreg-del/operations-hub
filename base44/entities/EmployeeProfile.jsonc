@@ -1,0 +1,52 @@
+{
+  "name": "EmployeeProfile",
+  "type": "object",
+  "properties": {
+    "user": {
+      "type": "string",
+      "description": "Link to User entity"
+    },
+    "displayName": {
+      "type": "string",
+      "description": "Display name for the employee"
+    },
+    "role": {
+      "type": "string",
+      "enum": [
+        "Admin",
+        "Office/Dispatch",
+        "Engineer (Field)",
+        "Workshop Tech",
+        "Driver",
+        "H&S Manager",
+        "Manager"
+      ],
+      "description": "Employee role"
+    },
+    "team": {
+      "type": "string",
+      "description": "Link to Team entity"
+    },
+    "phone": {
+      "type": "string",
+      "description": "Contact phone number"
+    },
+    "assignedVehicle": {
+      "type": "string",
+      "description": "Link to Asset entity (vehicle)"
+    },
+    "email": {
+      "type": "string",
+      "description": "Employee email"
+    },
+    "isActive": {
+      "type": "boolean",
+      "default": true,
+      "description": "Whether employee is active"
+    }
+  },
+  "required": [
+    "displayName",
+    "role"
+  ]
+}

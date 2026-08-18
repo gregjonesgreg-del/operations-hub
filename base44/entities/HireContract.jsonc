@@ -1,0 +1,166 @@
+{
+  "name": "HireContract",
+  "type": "object",
+  "properties": {
+    "contractNumber": {
+      "type": "string",
+      "description": "Auto-generated contract number"
+    },
+    "customer": {
+      "type": "string",
+      "description": "Link to Customer"
+    },
+    "site": {
+      "type": "string",
+      "description": "Link to Site"
+    },
+    "contact": {
+      "type": "string",
+      "description": "Link to Contact"
+    },
+    "hireAssets": {
+      "type": "array",
+      "items": {
+        "type": "string"
+      },
+      "description": "Links to Asset (Hire Assets)"
+    },
+    "startDate": {
+      "type": "string",
+      "format": "date-time",
+      "description": "Hire start date and time"
+    },
+    "endDate": {
+      "type": "string",
+      "format": "date-time",
+      "description": "Hire end date and time"
+    },
+    "deliveryRequired": {
+      "type": "boolean",
+      "default": false,
+      "description": "Whether delivery is required"
+    },
+    "collectionRequired": {
+      "type": "boolean",
+      "default": false,
+      "description": "Whether collection is required"
+    },
+    "deliveryAddress": {
+      "type": "string",
+      "description": "Delivery address"
+    },
+    "collectionAddress": {
+      "type": "string",
+      "description": "Collection address"
+    },
+    "status": {
+      "type": "string",
+      "enum": [
+        "Draft",
+        "Confirmed",
+        "On Hire",
+        "Off Hire Requested",
+        "Returned",
+        "Closed"
+      ],
+      "default": "Draft",
+      "description": "Contract status"
+    },
+    "notes": {
+      "type": "string",
+      "description": "Contract notes"
+    },
+    "depositRequired": {
+      "type": "boolean",
+      "default": false,
+      "description": "Whether deposit is required"
+    },
+    "depositAmount": {
+      "type": "number",
+      "description": "Deposit amount"
+    },
+    "hirePurposeOrProjectRef": {
+      "type": "string",
+      "description": "Hire purpose or project reference"
+    },
+    "operatorTrainingProvided": {
+      "type": "boolean",
+      "default": false,
+      "description": "Whether operator training was provided"
+    },
+    "trainingDate": {
+      "type": "string",
+      "format": "date",
+      "description": "Training date"
+    },
+    "outHoursMeterReading": {
+      "type": "number",
+      "description": "Hours meter reading at checkout"
+    },
+    "inHoursMeterReading": {
+      "type": "number",
+      "description": "Hours meter reading at checkin"
+    },
+    "accessoriesOut": {
+      "type": "array",
+      "items": {
+        "type": "string"
+      },
+      "description": "Accessories provided at checkout"
+    },
+    "accessoriesIn": {
+      "type": "array",
+      "items": {
+        "type": "string"
+      },
+      "description": "Accessories returned at checkin"
+    },
+    "missingOrDamagedAccessoriesNotes": {
+      "type": "string",
+      "description": "Notes on missing or damaged accessories"
+    },
+    "cleaningDecontaminationRequired": {
+      "type": "boolean",
+      "default": false,
+      "description": "Whether cleaning/decontamination is required"
+    },
+    "decontaminationCompleted": {
+      "type": "boolean",
+      "default": false,
+      "description": "Whether decontamination has been completed"
+    },
+    "conditionReportOut": {
+      "type": "array",
+      "items": {
+        "type": "string"
+      },
+      "description": "Condition report photos at checkout"
+    },
+    "conditionReportIn": {
+      "type": "array",
+      "items": {
+        "type": "string"
+      },
+      "description": "Condition report photos at checkin"
+    },
+    "damageNotes": {
+      "type": "string",
+      "description": "Notes on damage found"
+    },
+    "linkedDeliveryJob": {
+      "type": "string",
+      "description": "Link to delivery Job"
+    },
+    "linkedCollectionJob": {
+      "type": "string",
+      "description": "Link to collection Job"
+    }
+  },
+  "required": [
+    "customer",
+    "site",
+    "startDate",
+    "endDate",
+    "hireAssets"
+  ]
+}

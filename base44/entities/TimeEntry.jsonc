@@ -1,0 +1,51 @@
+{
+  "name": "TimeEntry",
+  "type": "object",
+  "properties": {
+    "job": {
+      "type": "string",
+      "description": "Link to Job entity"
+    },
+    "employee": {
+      "type": "string",
+      "description": "Link to EmployeeProfile"
+    },
+    "date": {
+      "type": "string",
+      "format": "date",
+      "description": "Date of work"
+    },
+    "minutes": {
+      "type": "number",
+      "description": "Duration in minutes"
+    },
+    "startTime": {
+      "type": "string",
+      "description": "Start time (optional)"
+    },
+    "endTime": {
+      "type": "string",
+      "description": "End time (optional)"
+    },
+    "type": {
+      "type": "string",
+      "enum": [
+        "Travel",
+        "Labour"
+      ],
+      "default": "Labour",
+      "description": "Type of time entry"
+    },
+    "notes": {
+      "type": "string",
+      "description": "Notes about the time entry"
+    }
+  },
+  "required": [
+    "job",
+    "employee",
+    "date",
+    "minutes",
+    "type"
+  ]
+}

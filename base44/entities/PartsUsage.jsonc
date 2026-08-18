@@ -1,0 +1,41 @@
+{
+  "name": "PartsUsage",
+  "type": "object",
+  "properties": {
+    "job": {
+      "type": "string",
+      "description": "Link to Job entity"
+    },
+    "partName": {
+      "type": "string",
+      "description": "Name/description of the part"
+    },
+    "qty": {
+      "type": "number",
+      "description": "Quantity used"
+    },
+    "source": {
+      "type": "string",
+      "enum": [
+        "Van",
+        "Workshop",
+        "Other"
+      ],
+      "default": "Van",
+      "description": "Where part came from"
+    },
+    "notes": {
+      "type": "string",
+      "description": "Additional notes"
+    },
+    "unitCost": {
+      "type": "number",
+      "description": "Cost per unit (optional)"
+    }
+  },
+  "required": [
+    "job",
+    "partName",
+    "qty"
+  ]
+}

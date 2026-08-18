@@ -1,0 +1,95 @@
+{
+  "name": "FuelTransaction",
+  "type": "object",
+  "properties": {
+    "dateTime": {
+      "type": "string",
+      "format": "date-time",
+      "description": "Transaction date and time"
+    },
+    "employee": {
+      "type": "string",
+      "description": "Link to EmployeeProfile (who bought fuel)"
+    },
+    "vehicleAsset": {
+      "type": "string",
+      "description": "Link to Asset (Vehicle)"
+    },
+    "odometerAtFill": {
+      "type": "number",
+      "description": "Odometer reading at fill"
+    },
+    "fuelVolume": {
+      "type": "number",
+      "description": "Fuel volume in litres"
+    },
+    "totalCost": {
+      "type": "number",
+      "description": "Total cost in currency"
+    },
+    "supplier": {
+      "type": "string",
+      "description": "Fuel supplier/garage name"
+    },
+    "paymentMethod": {
+      "type": "string",
+      "enum": [
+        "Company Card",
+        "Cash",
+        "Other"
+      ],
+      "description": "Payment method"
+    },
+    "receiptPhoto": {
+      "type": "string",
+      "description": "Receipt photo (required for Company Card)"
+    },
+    "notes": {
+      "type": "string",
+      "description": "Additional notes"
+    },
+    "allocationType": {
+      "type": "string",
+      "enum": [
+        "General",
+        "Job",
+        "Site",
+        "Hire Contract"
+      ],
+      "description": "Cost allocation type"
+    },
+    "linkedJob": {
+      "type": "string",
+      "description": "Optional link to Job"
+    },
+    "linkedSite": {
+      "type": "string",
+      "description": "Optional link to Site"
+    },
+    "linkedHireContract": {
+      "type": "string",
+      "description": "Optional link to HireContract"
+    },
+    "reviewStatus": {
+      "type": "string",
+      "enum": [
+        "Submitted",
+        "Flagged",
+        "Approved",
+        "Query Raised"
+      ],
+      "default": "Submitted",
+      "description": "Review status"
+    }
+  },
+  "required": [
+    "dateTime",
+    "employee",
+    "vehicleAsset",
+    "odometerAtFill",
+    "fuelVolume",
+    "totalCost",
+    "supplier",
+    "paymentMethod"
+  ]
+}
